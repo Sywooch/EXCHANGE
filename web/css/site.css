@@ -1,0 +1,33 @@
+.header {
+    z-index: 1;
+}
+
+img {
+    max-width: 100%;
+}
+
+.bid .bid-block .info .rows .row .image {
+    max-width: 40px;
+    margin-left: 5px;
+}
+
+.bid .bid-block .info .rows .row .amount {
+    margin: 0 0 0 5px;
+    font-size: 11px;
+}
+
+.bid .bid-block .info .rows .row {
+    cursor: pointer;
+}
+
+.bid .bid-block .info .rows .row.active {
+    background: #4b4b4b;
+}
+
+.bid .bid-block .info .rows .row.active .amount, .bid .bid-block .info .rows .row.active .reserve {
+    color: #fff;
+}
+
+.hidden {
+    display: none!important;
+}
