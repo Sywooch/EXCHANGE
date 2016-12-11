@@ -5,11 +5,13 @@ namespace app\controllers;
 use app\models\Currency;
 use app\models\ExchangeDirection;
 use app\models\Order;
+use app\models\Testimonial;
 use Yii;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\Request;
 use yii\web\Response;
+use yii\web\UploadedFile;
 
 
 class SiteController extends Controller
@@ -47,9 +49,15 @@ class SiteController extends Controller
             return $item->directions;
         });
 
+        $orders = Order::find()->all();
+
+        $testimonials = Testimonial::findAll(['enabled'=>1]);
+
         return $this->render('index', [
             'currency'=>$currency,
             'currency_all'=>$currency_all,
+            'orders'=>$orders,
+            'testimonials'=>$testimonials,
         ]);
     }
 
@@ -81,6 +89,23 @@ class SiteController extends Controller
             return $post;
         }
 
+        return false;
+    }
+
+    public function actionTestimonial(){
+        $post = Yii::$app->request->post();
+        $file = UploadedFile::getInstanceByName('avatar');
+        Yii::$app->response->format = Response::FORMAT_JSON;
+
+        if($post && $file){
+            $model = new Testimonial();
+            $model->setAttributes($post);
+            $model->save();
+            $path = Yii::getAlias('@webroot').'/images/'. $imageName = rand(1000,100000).'.'.$file->extension;
+            $file->saveAs($path);
+            $model->attachImage($path);
+            return $model->id;
+        }
         return false;
     }
 }

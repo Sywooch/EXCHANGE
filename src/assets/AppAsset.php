@@ -27,6 +27,7 @@ class AppAsset extends AssetBundle
         'css/site.css',
     ];
     public $js = [
+        "https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js",
         'js/tools.js',
         'js/scripts.js',
         "js/jquery.dd.min.js",
@@ -36,6 +37,7 @@ class AppAsset extends AssetBundle
         "js/formstone/scrollbar.js",
         "js/owl.carousel.min.js",
         "js/common.js",
+        "js/forms.js",
         "js/index.js",
     ];
     public $depends = [

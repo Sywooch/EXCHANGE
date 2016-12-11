@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\helpers\Html;
 
 /**
  * This is the model class for table "order".
@@ -38,7 +39,7 @@ class Order extends \yii\db\ActiveRecord
             [['exchange_id', 'status'], 'integer'],
             [['from_value', 'to_value'], 'number'],
             [['date'], 'safe'],
-            [['card', 'bank', 'fio', 'wallet', 'email'], 'string', 'max' => 255],
+            [['card', 'bank', 'fio', 'wallet', 'email', 'ip'], 'string', 'max' => 255],
         ];
     }
 
@@ -66,5 +67,16 @@ class Order extends \yii\db\ActiveRecord
         return $this->hasOne(ExchangeDirection::className(), [
             'id'=>'exchange_id'
         ]);
+    }
+
+    public function getLocation($attribute = 'name'){
+        $geo = new \jisoft\sypexgeo\Sypexgeo();
+
+        $location = $geo->get($this->ip);
+
+        $out['name'] = $location['country']['name_ru'];
+        $out['img'] = Html::img('/img/country/'.strtolower($location['country']['iso']).'.png');
+
+        return $out[$attribute];
     }
 }

@@ -78,6 +78,24 @@ AppAsset::register($this);
     </div><!-- /.header -->
     <?=$content?>
 
+<div class="footer">
+    <div class="container">
+        <div class="info">
+            <div class="copy">© 100 монет 2014—2016. Все права защищены</div>
+            <div>Экспорт курсов в xml: xrates.ru, bestchange.ru</div>
+            <div>Добавление вашего IP по запросу</div>
+        </div>
+        <div class="counters">
+            <div class="counter"><img src="./img/counter-1.jpg" /></div>
+            <div class="counter"><img src="./img/counter-2.jpg" /></div>
+            <div class="counter"><img src="./img/counter-3.jpg" /></div>
+            <div class="counter"><img src="./img/counter-4.jpg" /></div>
+            <div class="counter"><img src="./img/counter-5.jpg" /></div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div><!-- /.footer -->
+
 <?php $this->endBody() ?>
 </body>
 </html>

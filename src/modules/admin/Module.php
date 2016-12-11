@@ -23,6 +23,15 @@ class Module extends \nullref\admin\Module implements IAdminModule
                     'label' => 'Валюта',
                     'url' => ['/admin/currency'],
                 ],
+                [
+                    'label' => 'Отзывы',
+                    'url' => ['/admin/testimonial'],
+                ],
+                [
+                    'label' => 'Настройки',
+                    'url' => ['/admin/settings'],
+                ],
+
             ]
         ];
     }

@@ -3,6 +3,7 @@ use yii\helpers\Url;
 use yii\helpers\Html;
 /* @var $this yii\web\View */
 $this->title = Yii::$app->name;
+Yii::$app->formatter->locale = 'ru-RU';
 ?>
 <div class="bid">
     <div class="container">
@@ -107,6 +108,7 @@ $this->title = Yii::$app->name;
                     <div class="row">
                         <input type="text" name="email" placeholder="Ваш Email" class="full" />
                     </div>
+                    <input type="hidden" name="ip" value="<?=Yii::$app->request->getUserIP()?>">
                     <div class="agree">
                         <input type="checkbox" id="ch" /> <label for="ch">Я согласен с правилами обмена</label>
                     </div>
@@ -121,4 +123,82 @@ $this->title = Yii::$app->name;
             <a href="#">&nbsp;</a>
         </div>
     </div>
+</div>
+
+<div class="info-block">
+    <div class="container">
+        <div class="block scrollbar">
+            <div class="title">Последние обмены</div>
+            <div class="last-changes">
+                <?php foreach($orders as $order): ?>
+                <div class="last-change">
+                    <div class="transaction">
+                        <div>
+                            <div class="image"><?=$order->exchange->from->getImage() ? Html::img($order->exchange->from->getImage()->getUrl()) : ''?></div>
+                            <div class="name"><?=$order->exchange->from->title?></div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div>
+                            <div class="image"><?=$order->exchange->to->getImage() ? Html::img($order->exchange->to->getImage()->getUrl()) : ''?></div>
+                            <div class="name"><?=$order->exchange->to->title?></div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <div class="info"><?=$order->getLocation('img')?> <?=$order->getLocation('name')?>, 2 часа назад</div>
+                </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+        <div class="block">
+            <div class="title">Статистика</div>
+            <div class="stat">
+                <div class="counter">0</div>
+                <div class="name">Зарегистрировано пользователей</div>
+            </div>
+        </div>
+        <div class="block">
+            <div class="title">Отзывы</div>
+            <div class="comments owl-carousel">
+                <?php foreach($testimonials as $testimonial): ?>
+                <div class="item">
+                    <div class="avatar"><?=$testimonial->getImage() ? Html::img($testimonial->getImage()->getUrl('92x92')) : ''?></div>
+                    <div class="name"><?=$testimonial->name?></div>
+                    <div class="date"><?=Yii::$app->formatter->asDate($testimonial->date); ?></div>
+                    <div class="text"><?=$testimonial->content?></div>
+                </div>
+                <?php endforeach; ?>
+            </div>
+            <div class="link"><a href="#" id="comment_dialog_btn">Оставить отзыв</a></div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div><!-- /.info-block -->
+
+<div class="how-work">
+    <div class="container">
+        <div class="title">Как это работает?</div>
+        <div class="descr">Конвертируйте валюту в другую с наименьшими потерями!</div>
+        <div class="text scrollbar">
+            <div class="text-wrapper">
+                <?=\yii\helpers\Html::decode(\app\models\Settings::findOne(['slug'=>'how_it_works'])['content'])?>
+            </div>
+        </div>
+    </div>
+</div><!-- /.how-work -->
+
+
+<div id="comment_dialog">
+    <div class="d-title">Оставить отзыв</div>
+    <form action="<?=Url::to(['site/testimonial'])?>" method="post" class="ajax-form">
+        <p>
+            <label for="avatar">Ваше фото</label>
+        <input type="file" name="avatar" id="avatar">
+        </p>
+        <input type="text" placeholder="Как Вас зовут" name="name" />
+        <input type="text" placeholder="Email" name="email" />
+        <textarea placeholder="Ваш отзыв" name="content"></textarea>
+        <input type="hidden" name="enabled" value="1">
+        <input type="hidden" name="date" value="<?=date('Y-m-d')?>">
+        <input type="submit" value="Отправить" />
+    </form>
 </div>

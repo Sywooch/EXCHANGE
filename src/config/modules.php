@@ -8,6 +8,8 @@ return array_merge(require(__DIR__ . '/installed_modules.php'), [
            'user' => 'app\modules\admin\controllers\UserController',
            'main' => 'app\modules\admin\controllers\MainController',
            'currency' => 'app\modules\admin\controllers\CurrencyController',
+           'testimonial' => 'app\modules\admin\controllers\TestimonialController',
+           'settings' => 'app\modules\admin\controllers\SettingsController',
            'exchange-direction'=>'app\modules\admin\controllers\ExchangeDirectionController',
        ],
    ],
