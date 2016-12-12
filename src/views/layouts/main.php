@@ -70,8 +70,8 @@ AppAsset::register($this);
                     <li><a href="<?=Url::to(['page/index', 'slug'=>'pravila'])?>">Правила</a></li>
                     <li><a href="<?=Url::to(['page/help'])?>">Помощь</a></li>
                     <li><a href="<?=Url::to(['page/index', 'slug'=>'partneram'])?>">Партнерам</a></li>
-                    <li><a href="#">Блог</a></li>
-                    <li><a href="#">Новости</a></li>
+                    <li><a href="<?=Url::to(['article/index'])?>">Блог</a></li>
+                    <li><a href="<?=Url::to(['news/index'])?>">Новости</a></li>
                     <li><a href="<?=Url::to(['page/index', 'slug'=>'kontakty'])?>">Контакты</a></li>
                 </ul>
                 <div class="clearfix"></div>

@@ -52,8 +52,13 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
 						'rules' => [
-									'page/<slug:.+>'=>'page/index',
-									'help'=>'page/help'
+								'page/<slug:.+>'=>'page/index',
+								'help'=>'page/help',
+								'news'=>'news/index',
+								'news/<slug:.+>'=>'news/view',
+								'articles'=>'article/index',
+								'article/<slug:.+>'=>'article/view',
+
 						],
         ],
         'db' => require(__DIR__ . '/db.php'),

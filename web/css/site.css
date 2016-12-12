@@ -12,13 +12,18 @@ img {
 .full-page strong {
     font-weight: bold;
 }
-.full-page h1:first-letter {
+.full-page h1:first-letter,
+.article-page h1:first-letter{
     color: #1ead57;
 }
 
 .bid .bid-block .info .rows .row .image {
     max-width: 40px;
     margin-left: 5px;
+}
+
+.article-page {
+    margin-top: 120px;
 }
 
 .bid .bid-block .info .rows .row .amount {
@@ -28,6 +33,21 @@ img {
 
 .ui-dialog.ui-widget.ui-widget-content {
     z-index: 99;
+}
+
+.article-page .main-content .pagination-wrapper .pagination a.current {
+    display: inline-block;
+    font-size: 14px;
+    line-height: 14px;
+    font-weight: 600;
+    color: #000000;
+    padding: 4px;
+}
+.article-page .main-content .pagination-wrapper .pagination a.current {
+color: #ffffff;
+background: #1ead57;
+padding: 4px 9px 4px 7px;
+cursor: default;
 }
 
 .ui-widget-overlay.ui-front {

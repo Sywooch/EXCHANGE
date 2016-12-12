@@ -3,17 +3,17 @@
 namespace app\modules\admin\controllers;
 
 use Yii;
-use app\models\Currency;
-use app\modules\admin\models\CurrencySearch;
+use app\models\Article;
+use app\modules\admin\models\ArticleSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\UploadedFile;
 
 /**
- * CurrencyController implements the CRUD actions for Currency model.
+ * ArticleController implements the CRUD actions for Article model.
  */
-class CurrencyController extends Controller
+class ArticleController extends Controller
 {
     /**
      * @inheritdoc
@@ -31,12 +31,12 @@ class CurrencyController extends Controller
     }
 
     /**
-     * Lists all Currency models.
+     * Lists all Article models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new CurrencySearch();
+        $searchModel = new ArticleSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -46,7 +46,7 @@ class CurrencyController extends Controller
     }
 
     /**
-     * Displays a single Currency model.
+     * Displays a single Article model.
      * @param integer $id
      * @return mixed
      */
@@ -58,24 +58,22 @@ class CurrencyController extends Controller
     }
 
     /**
-     * Creates a new Currency model.
+     * Creates a new Article model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Currency();
+        $model = new Article();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            $file = UploadedFile::getInstance($model, 'icon');
-            if($file){
-                if($model->getImage()){
-                    $model->removeImage($model->getImage());
-                }
-                $path = Yii::getAlias('@webroot').'/images/';
-                $file->saveAs($path . $file->baseName . '.' . $file->extension);
-                $model->attachImage($path . $file->baseName . '.' . $file->extension);
-            }
+
+        		$file = UploadedFile::getInstance($model, 'image');
+        		if($file){
+							$path = Yii::getAlias('@webroot').'/images/'.date('U').'.'.$file->extension;
+							$file->saveAs($path);
+							$model->attachImage($path);
+						}
 
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
@@ -86,7 +84,7 @@ class CurrencyController extends Controller
     }
 
     /**
-     * Updates an existing Currency model.
+     * Updates an existing Article model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -96,15 +94,13 @@ class CurrencyController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            $file = UploadedFile::getInstance($model, 'icon');
-            if($file){
-                if($model->getImage()){
-                    $model->removeImage($model->getImage());
-                }
-                $path = Yii::getAlias('@webroot').'images/';
-                $file->saveAs($path . $file->baseName . '.' . $file->extension);
-                $model->attachImage($path . $file->baseName . '.' . $file->extension);
-            }
+					$file = UploadedFile::getInstance($model, 'image');
+					if($file){
+						$path = Yii::getAlias('@webroot').'/images/'.date('U').'.'.$file->extension;
+						$file->saveAs($path);
+						$model->attachImage($path);
+					}
+
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
@@ -114,7 +110,7 @@ class CurrencyController extends Controller
     }
 
     /**
-     * Deletes an existing Currency model.
+     * Deletes an existing Article model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -127,15 +123,15 @@ class CurrencyController extends Controller
     }
 
     /**
-     * Finds the Currency model based on its primary key value.
+     * Finds the Article model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Currency the loaded model
+     * @return Article the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Currency::findOne($id)) !== null) {
+        if (($model = Article::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
