@@ -115,7 +115,7 @@ NgAppAsset::register($this); ?>
                     <div class="row">
                         <input type="text" name="email" placeholder="Ваш Email" class="full" />
                     </div>
-                    <input type="hidden" name="ip" value="<?=Yii::$app->request->userHost?>">
+                    <input type="hidden" name="ip" value="<?=$_SERVER['REMOTE_ADDR']?>">
                     <div class="agree">
                         <input type="checkbox" id="ch" /> <label for="ch">Я согласен с правилами обмена</label>
                     </div>
