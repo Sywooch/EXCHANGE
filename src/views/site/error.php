@@ -13,7 +13,7 @@ $this->title = $name;
 
     <div class="full-page">
         <div class="error_404">
-            <div class="image"><img src="./img/error_404.png" /></div>
+            <div class="image"><img src="/img/error_404.png" /></div>
             <div class="e-text">Страница не найдена</div>
         </div>
     </div><!-- /.full-page -->

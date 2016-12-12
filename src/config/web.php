@@ -52,7 +52,8 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
 						'rules' => [
-								['class' => 'yii\rest\UrlRule', 'controller' => 'api'],
+									'page/<slug:.+>'=>'page/index',
+									'help'=>'page/help'
 						],
         ],
         'db' => require(__DIR__ . '/db.php'),

@@ -6,7 +6,16 @@ use yii\helpers\Html;
 $this->title = Yii::$app->name;
 Yii::$app->formatter->locale = 'ru-RU';
 NgAppAsset::register($this); ?>
-<div class="bid" ng-app="ExchangeApp">
+<style>
+    .bid {
+        transition: all .5s;
+    }
+    [ng-cloak] {
+        opacity: 0!important;
+        display: block !important;
+    }
+</style>
+<div class="bid" ng-app="ExchangeApp" ng-cloak>
     <div class="container" ng-controller="FormController">
         <div class="bid-block">
             <div class="info-wrapper">
@@ -106,7 +115,7 @@ NgAppAsset::register($this); ?>
                     <div class="row">
                         <input type="text" name="email" placeholder="Ваш Email" class="full" />
                     </div>
-                    <input type="hidden" name="ip" value="<?=Yii::$app->request->getUserIP()?>">
+                    <input type="hidden" name="ip" value="<?=Yii::$app->request->userHost?>">
                     <div class="agree">
                         <input type="checkbox" id="ch" /> <label for="ch">Я согласен с правилами обмена</label>
                     </div>

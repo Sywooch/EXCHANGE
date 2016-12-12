@@ -3,6 +3,7 @@ use app\assets\AppAsset;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\Breadcrumbs;
 
 /* @var $this \yii\web\View */
@@ -65,12 +66,13 @@ AppAsset::register($this);
                 <div class="close"></div>
                 <ul class="nav">
                     <li><a href="/">Обмен валют</a></li>
-                    <li><a href="#">О сервисе</a></li>
-                    <li><a href="#">Правила</a></li>
-                    <li><a href="#">Помощь</a></li>
-                    <li><a href="#">Партнерам</a></li>
+                    <li><a href="<?=Url::to(['page/index', 'slug'=>'o-servise'])?>">О сервисе</a></li>
+                    <li><a href="<?=Url::to(['page/index', 'slug'=>'pravila'])?>">Правила</a></li>
+                    <li><a href="<?=Url::to(['page/help'])?>">Помощь</a></li>
+                    <li><a href="<?=Url::to(['page/index', 'slug'=>'partneram'])?>">Партнерам</a></li>
                     <li><a href="#">Блог</a></li>
-                    <li><a href="#">Контакты</a></li>
+                    <li><a href="#">Новости</a></li>
+                    <li><a href="<?=Url::to(['page/index', 'slug'=>'kontakty'])?>">Контакты</a></li>
                 </ul>
                 <div class="clearfix"></div>
             </div>
@@ -86,11 +88,11 @@ AppAsset::register($this);
             <div>Добавление вашего IP по запросу</div>
         </div>
         <div class="counters">
-            <div class="counter"><img src="./img/counter-1.jpg" /></div>
-            <div class="counter"><img src="./img/counter-2.jpg" /></div>
-            <div class="counter"><img src="./img/counter-3.jpg" /></div>
-            <div class="counter"><img src="./img/counter-4.jpg" /></div>
-            <div class="counter"><img src="./img/counter-5.jpg" /></div>
+            <div class="counter"><img src="/img/counter-1.jpg" /></div>
+            <div class="counter"><img src="/img/counter-2.jpg" /></div>
+            <div class="counter"><img src="/img/counter-3.jpg" /></div>
+            <div class="counter"><img src="/img/counter-4.jpg" /></div>
+            <div class="counter"><img src="/img/counter-5.jpg" /></div>
         </div>
         <div class="clearfix"></div>
     </div>
