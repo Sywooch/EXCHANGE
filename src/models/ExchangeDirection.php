@@ -71,6 +71,15 @@ class ExchangeDirection extends \yii\db\ActiveRecord
             'currencyId' => function($model){
                 return $model->to->id;
             },
+						'currencyReserve' => function($model){
+							return $model->to->reserve.' '.$model->to->type;
+						},
+						'to' => function($model){
+							return $model->to;
+						},
+						'from' => function($model){
+							return $model->from;
+						},
         ]);
     }
 

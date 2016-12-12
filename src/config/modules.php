@@ -1,18 +1,8 @@
 <?php
 
 return array_merge(require(__DIR__ . '/installed_modules.php'), [
-   'core' => ['class' => 'app\modules\admin\Module'],
-   'admin' => [
-       'class' => 'nullref\admin\Module',
-       'controllerMap' => [  //controllers
-           'user' => 'app\modules\admin\controllers\UserController',
-           'main' => 'app\modules\admin\controllers\MainController',
-           'currency' => 'app\modules\admin\controllers\CurrencyController',
-           'testimonial' => 'app\modules\admin\controllers\TestimonialController',
-           'settings' => 'app\modules\admin\controllers\SettingsController',
-           'exchange-direction'=>'app\modules\admin\controllers\ExchangeDirectionController',
-       ],
-   ],
+   'core' => ['class' => 'nullref\core\Module'],
+   'admin' => ['class' => 'app\modules\admin\Module'],
     'yii2images' => [
         'class' => 'rico\yii2images\Module',
         //be sure, that permissions ok

@@ -1,12 +1,13 @@
 <?php
+use app\assets\NgAppAsset;
 use yii\helpers\Url;
 use yii\helpers\Html;
 /* @var $this yii\web\View */
 $this->title = Yii::$app->name;
 Yii::$app->formatter->locale = 'ru-RU';
-?>
-<div class="bid">
-    <div class="container">
+NgAppAsset::register($this); ?>
+<div class="bid" ng-app="ExchangeApp">
+    <div class="container" ng-controller="FormController">
         <div class="bid-block">
             <div class="info-wrapper">
                 <div class="info">
@@ -28,39 +29,36 @@ Yii::$app->formatter->locale = 'ru-RU';
                     <div class="col-1">
                         <div class="head">У Вас есть</div>
                         <div class="rows">
-                            <?php foreach($currency as $k => $item): ?>
-                            <div class="row value <?=!$k ? 'active' : ''?>" data-id-caption="<?=$item->id?>">
-                                <div class="image"><div><?=$item->getImage() ? Html::img($item->getImage()->getUrl()) : ''?></div></div>
-                                <div class="amount">1.0000 <?=$item->title?> <?=$item->type?></div>
+
+                            <div ng-repeat="item in currencies" class="row value" ng-class="{active: activeCurrency.id == item.id}" ng-mouseenter="changeCurrency(item)">
+                                <div class="image"><div><img ng-src="{{item.ajaxIcon}}" alt=""></div></div>
+                                <div class="amount">1.0000 {{item.title}} {{item.type}}</div>
                                 <div class="clearfix"></div>
                             </div>
-                            <?php endforeach; ?>
+
                         </div>
                     </div>
-                    <?php foreach($currency as $k => $item): ?>
-                    <div class="col-2 <?=$k ? 'hidden': ''?>" data-id="<?=$item->id?>">
+
+                    <div class="col-2">
                         <div class="head">Вы можете получить</div>
                         <div class="rows">
-                            <?php foreach($item->directions as $direction){ ?>
-                            <div class="row" data-child-id="<?=$direction->to->id?>" data-course="<?=$direction->course?>">
-                                <div class="image"><div><?=$direction->to->getImage() ? Html::img($direction->to->getImage()->getUrl()) : ''?></div></div>
-                                <div class="amount"><?=$direction->course?> <?=$direction->to->title?> <?=$direction->to->type?></div>
+
+                            <div class="row" ng-repeat="direction in filteredDirections = (directions | filter:{'currency_from': activeCurrency.id}:true)" ng-class="{active:directionActive.id == direction.id}" ng-mouseenter="changeDirection(direction)">
+                                <div class="image"><div><img ng-src="{{direction.ajaxIcon}}" alt=""></div></div>
+                                <div class="amount">{{direction.course}} {{direction.currencyTitle}} {{direction.currencyType}}</div>
                                 <div class="clearfix"></div>
                             </div>
-                            <?php } ?>
+
                         </div>
                     </div>
-                        <div class="col-3 <?=$k ? 'hidden': ''?>" data-id="<?=$item->id?>">
+                        <div class="col-3">
                             <div class="head">Получаете Резерв</div>
                             <div class="rows">
-                                <?php foreach($item->directions as $direction){ ?>
-                                <div class="row">
-                                    <div class="reserve"><?=$direction->to->reserve.' '.$direction->to->type?></div>
+                                <div class="row" ng-repeat="reserve in filteredDirections" ng-class="{active:directionActive.id == reserve.id}" ng-mouseenter="changeDirection(reserve)">
+                                    <div class="reserve">{{reserve.currencyReserve}}</div>
                                 </div>
-                                <?php } ?>
                             </div>
                         </div>
-                    <?php endforeach; ?>
                     <div class="clearfix"></div>
                 </div>
             </div><!-- /.info -->
@@ -75,8 +73,8 @@ Yii::$app->formatter->locale = 'ru-RU';
                             <?php endforeach; ?>
                         </select>
                         <div class="amount">
-                            <input type="text" name="from_value" id="from_value_input" placeholder="min 500" />
-                            <div class="currency">RUR</div>
+                            <input type="text" name="from_value" id="from_value_input" ng-change="exchange_to = countExchangeResult()" ng-model="exchange_from" placeholder="min {{directionActive.min}}" />
+                            <div class="currency">{{directionActive.from.type}}</div>
                         </div>
                         <div class="clearfix"></div>
                     </div>
@@ -87,12 +85,12 @@ Yii::$app->formatter->locale = 'ru-RU';
                             <?php endforeach; ?>
                         </select>
                         <div class="amount">
-                            <input type="text" name="to_value" id="to_value_input" placeholder="0" />
-                            <div class="currency">RUR</div>
+                            <input type="text" name="to_value" id="to_value_input" ng-model="exchange_to" placeholder="0" />
+                            <div class="currency">{{directionActive.to.type}}</div>
                         </div>
                         <div class="clearfix"></div>
                     </div>
-                    <div class="hint">По курсу: <span id="form_course"></span> RUR Visa/MasterCard RUB = 1 RUR Яндекс.Деньги</div>
+                    <div class="hint">По курсу: <span id="form_course"></span> 1.0000 {{directionActive.from.type}} {{directionActive.from.title}} = {{directionActive.course}} {{directionActive.to.type}} {{directionActive.to.title}}</div>
                     <div class="row">
                         <input type="text" name="card" placeholder="Номер карты" class="full" />
                     </div>

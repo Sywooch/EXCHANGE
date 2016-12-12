@@ -34,7 +34,7 @@ AppAsset::register($this);
         <div class="top">
             <div class="container">
                 <div class="logo">
-                    <a href="#"><span>Web-</span>obmen.net</a>
+                    <a href="/"><span>Web-</span>obmen.net</a>
                 </div>
                 <div class="links">
                     <div class="email">
@@ -64,7 +64,7 @@ AppAsset::register($this);
             <div class="container">
                 <div class="close"></div>
                 <ul class="nav">
-                    <li><a href="#">Обмен валют</a></li>
+                    <li><a href="/">Обмен валют</a></li>
                     <li><a href="#">О сервисе</a></li>
                     <li><a href="#">Правила</a></li>
                     <li><a href="#">Помощь</a></li>
