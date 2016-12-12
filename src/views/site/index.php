@@ -5,6 +5,15 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 $this->title = Yii::$app->name;
 Yii::$app->formatter->locale = 'ru-RU';
+
+if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+	$ip = $_SERVER['HTTP_CLIENT_IP'];
+} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+	$ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+} else {
+	$ip = $_SERVER['REMOTE_ADDR'];
+}
+
 NgAppAsset::register($this); ?>
 <style>
     .bid {
@@ -115,7 +124,7 @@ NgAppAsset::register($this); ?>
                     <div class="row">
                         <input type="text" name="email" placeholder="Ваш Email" class="full" />
                     </div>
-                    <input type="hidden" name="ip" value="<?=$_SERVER['REMOTE_ADDR']?>">
+                    <input type="hidden" name="ip" value="<?=$ip?>">
                     <div class="agree">
                         <input type="checkbox" id="ch" /> <label for="ch">Я согласен с правилами обмена</label>
                     </div>
