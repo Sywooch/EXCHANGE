@@ -27,6 +27,6 @@ app.controller('FormController', ['$scope', '$http', function($scope, $http){
     }
 
     $scope.countExchangeResult = function(){
-        return $scope.exchange_from ? (parseFloat($scope.exchange_from) * parseFloat($scope.directionActive.course)).toFixed(2) : 0
+        return $scope.exchange_from ? (parseFloat($scope.exchange_from) * parseFloat($scope.directionActive.courseCounted)).toFixed(2) : 0
     }
 }]);

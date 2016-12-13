@@ -80,6 +80,9 @@ class ExchangeDirection extends \yii\db\ActiveRecord
 						'from' => function($model){
 							return $model->from;
 						},
+						'courseCounted' => function($model){
+							return round((float)$model->course - ((float)$model->course * (float)$model->exchange_percent / 100), 4);
+						}
         ]);
     }
 

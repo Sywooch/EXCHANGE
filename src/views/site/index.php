@@ -1,5 +1,6 @@
 <?php
 use app\assets\NgAppAsset;
+use app\models\User;
 use yii\helpers\Url;
 use yii\helpers\Html;
 /* @var $this yii\web\View */
@@ -63,7 +64,7 @@ NgAppAsset::register($this); ?>
 
                             <div class="row" ng-repeat="direction in filteredDirections = (directions | filter:{'currency_from': activeCurrency.id}:true)" ng-class="{active:directionActive.id == direction.id}" ng-mouseenter="changeDirection(direction)">
                                 <div class="image"><div><img ng-src="{{direction.ajaxIcon}}" alt=""></div></div>
-                                <div class="amount">{{direction.course}} {{direction.currencyTitle}} {{direction.currencyType}}</div>
+                                <div class="amount">{{direction.courseCounted}} {{direction.currencyTitle}} {{direction.currencyType}}</div>
                                 <div class="clearfix"></div>
                             </div>
 
@@ -108,7 +109,7 @@ NgAppAsset::register($this); ?>
                         </div>
                         <div class="clearfix"></div>
                     </div>
-                    <div class="hint">По курсу: <span id="form_course"></span> 1.0000 {{directionActive.from.type}} {{directionActive.from.title}} = {{directionActive.course}} {{directionActive.to.type}} {{directionActive.to.title}}</div>
+                    <div class="hint">По курсу: <span id="form_course"></span> 1.0000 {{directionActive.from.type}} {{directionActive.from.title}} = {{directionActive.courseCounted}} {{directionActive.to.type}} {{directionActive.to.title}}</div>
                     <div class="row">
                         <input type="text" name="card" placeholder="Номер карты" class="full" />
                     </div>
@@ -124,7 +125,8 @@ NgAppAsset::register($this); ?>
                     <div class="row">
                         <input type="text" name="email" placeholder="Ваш Email" class="full" />
                     </div>
-                    <input type="hidden" name="ip" value="<?=$ip?>">
+                    <input type="hidden" name="ip" value="<?=$ip != '::1' ? $ip : '95.31.18.119'?>">
+                    <input type="hidden" name="user_id" value="<?=Yii::$app->user->id?>">
                     <div class="agree">
                         <input type="checkbox" id="ch" /> <label for="ch">Я согласен с правилами обмена</label>
                     </div>
@@ -168,7 +170,7 @@ NgAppAsset::register($this); ?>
         <div class="block">
             <div class="title">Статистика</div>
             <div class="stat">
-                <div class="counter">0</div>
+                <div class="counter"><?=User::find()->count()?></div>
                 <div class="name">Зарегистрировано пользователей</div>
             </div>
         </div>

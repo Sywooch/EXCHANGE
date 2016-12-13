@@ -10,6 +10,14 @@
         });
     });
 
+    $('#register-form-email').change(function(e){
+       var val = $(this).val();
+
+       $('#register-form-username').val(val.split('@')[0])
+
+        console.log(val);
+    });
+
     $('.ajax-form').submit(function(e){
         e.preventDefault();
         var action = $(this).attr('action'),

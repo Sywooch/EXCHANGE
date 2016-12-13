@@ -36,7 +36,7 @@ class Order extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['exchange_id', 'status'], 'integer'],
+            [['exchange_id', 'status', 'user_id'], 'integer'],
             [['from_value', 'to_value'], 'number'],
             [['date'], 'safe'],
             [['card', 'bank', 'fio', 'wallet', 'email', 'ip'], 'string', 'max' => 255],

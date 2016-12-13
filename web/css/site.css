@@ -5,7 +5,8 @@
 img {
     max-width: 100%;
 }
-.full-page {
+.full-page,
+.account-page{
     margin-top: 120px;
 }
 .full-page b,
@@ -74,4 +75,29 @@ cursor: default;
 
 .hidden {
     display: none!important;
+}
+
+.ui-dialog.ui-widget.ui-widget-content .ui-dialog-content form .chkbx label {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.bid .bid-block .form .fields .amount {
+    position: relative;
+}
+.bid .bid-block .form .fields .amount .currency {
+    position: absolute;
+    right: 8px;
+    top: 7px;
+}
+
+.firms .col {
+    max-width: 720px;
+    float: none;
+    width: auto;
+}
+.firms .col .firm {
+    display: inline-block;
+    vertical-align: top;
+    width: 32%;
 }

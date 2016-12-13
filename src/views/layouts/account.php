@@ -1,5 +1,6 @@
 <?php
 use app\assets\AppAsset;
+use app\models\Currency;
 use app\models\User;
 use app\models\RegistrationForm;
 use dektrium\user\models\LoginForm;
@@ -93,7 +94,39 @@ AppAsset::register($this);
             </div>
         </div><!-- /.menu -->
     </div><!-- /.header -->
-    <?=$content?>
+
+
+<div class="inner-wrapper inner-wrapper-auto account-page">
+    <div class="container">
+      <?=$this->render('/account/_menu')?>
+
+        <?=$content?>
+
+    </div>
+</div><!-- /.inner-wrapper -->
+
+<?php if(!empty($this->params['showFirms'])):
+	$currencies = Currency::find()->all();
+  ?>
+<div class="firms">
+    <div class="container">
+        <div class="col">
+            <?php foreach($currencies as $currency): ?>
+            <div class="firm">
+                <div class="image"><div class="image-wrapper"><?=$currency->getImage() ? Html::img($currency->getImage()->getUrl()) : ''?></div></div>
+                <div class="text">
+                  <span><?=$currency->title?></span>
+                    <div class="form-group"><input type="text" name="currency[<?=$currency->id?>]" value=""></div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <?php endforeach; ?>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div><!-- /.firms -->
+<?php endif; ?>
+
 
 <div class="footer">
     <div class="container">

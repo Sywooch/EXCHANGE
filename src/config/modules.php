@@ -1,6 +1,4 @@
-<?php
-
-return array_merge(require(__DIR__ . '/installed_modules.php'), [
+<?php return array_merge(require(__DIR__ . '/installed_modules.php'), [
    'core' => ['class' => 'nullref\core\Module'],
    'admin' => ['class' => 'app\modules\admin\Module'],
     'yii2images' => [
@@ -12,4 +10,16 @@ return array_merge(require(__DIR__ . '/installed_modules.php'), [
         'graphicsLibrary' => 'GD', //but really its better to use 'Imagick'
         //'placeHolderPath' => '@webroot/images/placeHolder.png', // if you want to get placeholder when image not exists, string will be processed by Yii::getAlias
     ],
+		'user' => [
+				'enableConfirmation'=>false,
+				'class' => 'dektrium\user\Module',
+				'modelMap' => [
+							'User' => 'app\models\User'
+				],
+				'controllerMap' => [
+						'registration' => 'app\controllers\user\RegistrationController',
+						'security' => 'app\controllers\user\SecurityController',
+						'settings' => 'app\controllers\user\SettingsController',
+				],
+		],
 ]);
