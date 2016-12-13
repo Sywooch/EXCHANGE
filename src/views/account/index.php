@@ -32,6 +32,7 @@ $this->title = 'Личный кабинет';
 							<div class="clearfix"></div>
 						</div>
 						<div class="from-amount"><?=round($order->from_value, 2)?> <?=$order->exchange->from->type?></div>
+						<img src="/img/bid-direction.png" style="height: 18px; width: 15px; float: left; margin: 5px 31px 0 0;"/>
 						<div class="to">
 							<div class="image"><?=$order->exchange->to->getImage() ? Html::img($order->exchange->to->getImage()->getUrl()) : ''?></div>
 							<div class="to-info">

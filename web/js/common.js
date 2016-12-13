@@ -6,4 +6,15 @@ $(document).ready(function() {
 		$('.menu').css('top', '-100%');
 	});
 	$(".scrollbar").scrollbar();
+	
+	$("#tosecond").on("click", function (event) {
+        //отменяем стандартную обработку нажатия по ссылке
+        event.preventDefault();
+        //забираем идентификатор бока с атрибута href
+        var id  = $(this).attr('href'),
+        //узнаем высоту от начала страницы до блока на который ссылается якорь
+        top = $(id).offset().top;
+        //анимируем переход на расстояние - top за 850 мс
+        $('body,html').animate({scrollTop: top}, 850);
+    });
 });

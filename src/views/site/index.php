@@ -35,7 +35,7 @@ NgAppAsset::register($this); ?>
                         <label>У вас есть</label>
                         <select>
                             <?php foreach($currency as $item): ?>
-                            <option data-image="<?=$item->getImage()?$item->getImage()->getUrl('15x'):''?>"><?=$item->title?></option>
+                            <option data-image="<?=$item->getImage()?$item->getImage()->getUrl():''?>"><?=$item->title?></option>
                             <?php endforeach; ?>
                         </select>
                         <label>Можете олучить</label>
@@ -88,7 +88,7 @@ NgAppAsset::register($this); ?>
                     <div class="row">
                         <select id="cur_from" name="exchange_from_id">
                             <?php foreach($currency as $item): ?>
-                                <option value="<?=$item->id?>" data-image="<?=$item->getImage()?$item->getImage()->getUrl('15x'):''?>"><?=$item->title?></option>
+                                <option value="<?=$item->id?>" data-image="<?=$item->getImage()?$item->getImage()->getUrl():''?>"><?=$item->title?></option>
                             <?php endforeach; ?>
                         </select>
                         <div class="amount">
@@ -100,7 +100,7 @@ NgAppAsset::register($this); ?>
                     <div class="row">
                         <select id="cur_to" name="exchange_to_id">
                             <?php foreach($currency_all as $item): ?>
-                                <option value="<?=$item->id?>" data-image="<?=$item->getImage()?$item->getImage()->getUrl('15x'):''?>"><?=$item->title?></option>
+                                <option value="<?=$item->id?>" data-image="<?=$item->getImage()?$item->getImage()->getUrl():''?>"><?=$item->title?></option>
                             <?php endforeach; ?>
                         </select>
                         <div class="amount">
@@ -112,18 +112,24 @@ NgAppAsset::register($this); ?>
                     <div class="hint">По курсу: <span id="form_course"></span> 1.0000 {{directionActive.from.type}} {{directionActive.from.title}} = {{directionActive.courseCounted}} {{directionActive.to.type}} {{directionActive.to.title}}</div>
                     <div class="row">
                         <input type="text" name="card" placeholder="Номер карты" class="full" />
+						<button class="btcross">+</button>
+						
                     </div>
                     <div class="row">
                         <input type="text" name="bank" placeholder="Название банка" class="full" />
+						<button class="btcross">+</button>
                     </div>
                     <div class="row">
                         <input type="text" name="fio" placeholder="ФИО отправителя" class="full" />
+						<button class="btcross">+</button>
                     </div>
                     <div class="row">
                         <input type="text" name="wallet" placeholder="Кошелек для получения" class="full" />
+						<button class="btcross">+</button>
                     </div>
                     <div class="row">
                         <input type="text" name="email" placeholder="Ваш Email" class="full" />
+						<button class="btcross">+</button>
                     </div>
                     <input type="hidden" name="ip" value="<?=$ip != '::1' ? $ip : '95.31.18.119'?>">
                     <input type="hidden" name="user_id" value="<?=Yii::$app->user->id?>">
@@ -138,12 +144,12 @@ NgAppAsset::register($this); ?>
             <div class="clearfix"></div>
         </div>
         <div class="link">
-            <a href="#">&nbsp;</a>
+            <a id="tosecond" href="#second">&nbsp;</a>
         </div>
     </div>
 </div>
 
-<div class="info-block">
+<div id="second" class="info-block">
     <div class="container">
         <div class="block scrollbar">
             <div class="title">Последние обмены</div>
@@ -209,8 +215,10 @@ NgAppAsset::register($this); ?>
     <div class="d-title">Оставить отзыв</div>
     <form action="<?=Url::to(['site/testimonial'])?>" method="post" class="ajax-form">
         <p>
-            <label for="avatar">Ваше фото</label>
-        <input type="file" name="avatar" id="avatar">
+			<label for="avatar">Ваше фото</label>
+			<div class="btadd">Выберите файл
+				<input type="file" name="avatar" id="avatar">
+			</div>
         </p>
         <input type="text" placeholder="Как Вас зовут" name="name" />
         <input type="text" placeholder="Email" name="email" />

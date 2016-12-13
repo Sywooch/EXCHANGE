@@ -43,6 +43,7 @@ a {
   color: #808080;
   font-size: 12px;
   line-height: 12px;
+  height: 26px;
 }
 .dd .ddTitle .ddTitleText {
   padding: 4px 27px 2px 5px;
@@ -82,6 +83,8 @@ a {
   float: left;
   width: 650px;
   position: relative;
+  background-color: #fff;
+  height: 496px;
 }
 .bid .bid-block .info .mob-info {
   display: none;
@@ -107,18 +110,22 @@ a {
 .bid .bid-block .info .col-1 {
   float: left;
   width: 208px;
+  height: 100%;
 }
 .bid .bid-block .info .col-2 {
   float: left;
   width: 252px;
+  border-left: 1px solid #e1e1e1;
+  border-right: 1px solid #e1e1e1;
+  height: 100%;
 }
 .bid .bid-block .info .col-2 .head {
   border-left: 1px solid #ae7532;
   border-right: 1px solid #ae7532;
 }
 .bid .bid-block .info .col-2 .rows {
-  border-left: 1px solid #e1e1e1;
-  border-right: 1px solid #e1e1e1;
+  /*border-left: 1px solid #e1e1e1;
+  border-right: 1px solid #e1e1e1;*/
 }
 .bid .bid-block .info .col-2 .rows .row .image {
   margin-left: 45px;
@@ -214,6 +221,7 @@ a {
 }
 .bid .bid-block .form .fields .row {
   padding: 0 0 13px;
+  position: relative
 }
 .bid .bid-block .form .fields .hint {
   color: #c0c0c0;
@@ -229,6 +237,29 @@ a {
   font-size: 12px;
   line-height: 12px;
   padding: 8px 0 5px 9px;
+
+}
+.btcross{
+   height: 29px;
+    width: 29px;
+    position: absolute;
+    right: 1px;
+    top: 0;
+    background: #4b4b4b;
+    border: 1px #4b4b4b;
+    color: #fff;
+    cursor: pointer;
+    font-size: 20px;
+}
+.btcross:hover,.ddArrow:hover,
+.ui-dialog.ui-widget.ui-widget-content .ui-dialog-content form .dd .ddArrow:hover,
+{
+  background-color: #2f2f2f;
+}
+
+.article-page .main-content .news-list .new-item .info .name a:hover,
+.article-page .main-content .news-list .big-new .info .name a:hover{
+  color: #696969;
 }
 .bid .bid-block .form .fields .agree {
   margin: 0 0 10px;
@@ -258,6 +289,23 @@ a {
   width: 272px;
   height: 33px;
   cursor: pointer;
+}
+.bid .bid-block .form .fields .control button:active,
+.bid .bid-block .form .fields .control button:hover,
+.ui-dialog.ui-widget.ui-widget-content .ui-dialog-content form div.btadd:hover,
+.ui-dialog.ui-widget.ui-widget-content .ui-dialog-content form div.btadd:active,
+.ui-dialog.ui-widget.ui-widget-content .ui-dialog-content form input[type="submit"]:hover,
+.ui-dialog.ui-widget.ui-widget-content .ui-dialog-content form input[type="submit"]:active,
+.full-page .text button:hover, .full-page .text input[type="submit"]:hover,
+.full-page .text button:active, .full-page .text input[type="submit"]:active,
+.ui-dialog.ui-widget.ui-widget-content .ui-dialog-content form input[type="submit"]:hover,
+.ui-dialog.ui-widget.ui-widget-content .ui-dialog-content form input[type="submit"]:active,
+.inner-wrapper .lk-main input[type="submit"]:hover,
+.inner-wrapper .lk-main input[type="submit"]:active{
+  
+    box-shadow: inset 3px 3px 17px rgb(183, 133, 24);
+    cursor: pointer;
+    border: solid 1px #e8bb82;
 }
 .bid .link {
   text-align: center;
@@ -1191,7 +1239,7 @@ a {
 }
 .inner-wrapper .lk-main .bids-list .bid-item .b-info .from {
   float: left;
-  width: 48%;
+  width: 40%;
 }
 .inner-wrapper .lk-main .bids-list .bid-item .b-info .from .image {
   float: left;
@@ -1210,9 +1258,11 @@ a {
   color: #4b4b4b;
   font-size: 24px;
   line-height: 24px;
+  word-break: break-all;
   font-weight: 600;
-  width: 10.05128205%;
-  background: url(../img/bid-direction.png) no-repeat right top 6px;
+  /*width: 10.05128205%;*/
+  width: 14.051282%;
+  /*background: url(../img/bid-direction.png) no-repeat right top 6px;*/
   margin: 4px 2.461538461% 0 0;
 }
 .inner-wrapper .lk-main .bids-list .bid-item .b-info .to {
@@ -1781,23 +1831,35 @@ a {
   border: none;
 }
 .ui-dialog.ui-widget.ui-widget-content .ui-dialog-titlebar .ui-dialog-titlebar-close {
-  border-radius: 0;
-  height: 21px;
+  /*height: 21px;
   width: 21px;
   padding: 0;
-  background: transparent;
   border: 1px solid #4c4c4c;
   margin: 0;
   top: 6px;
-  right: 7px;
+  right: 7px;*/
+  border-radius: 0;
+  height: 26px;
+  float: left;
+  width: 84px;
+  background: transparent;
+  border: none;
+  
 }
 .ui-dialog.ui-widget.ui-widget-content .ui-dialog-titlebar .ui-dialog-titlebar-close .ui-icon {
-  margin: 0;
+  /*margin: 0;
   left: 0;
   top: 0;
   width: 100%;
-  height: 100%;
+  height: 100%;*/
+  left: 2px;
+  top: 3px;
+  height: 21px;
+  width: 20px;
+  position: absolute;
   background: url(../img/dialog-close-ico.png) no-repeat center center;
+  
+  
 }
 .ui-dialog.ui-widget.ui-widget-content .ui-dialog-content {
   padding: 15px 16.58536585% 56px;
@@ -1828,6 +1890,35 @@ a {
   display: block;
   margin: 0 0 18px;
   font-family: "Open Sans", sans-serif;
+}
+
+.ui-dialog.ui-widget.ui-widget-content .ui-dialog-content form div.btadd {
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 14px;
+  color: #ffffff;
+  font-weight: 700;
+  text-shadow: 0px 1px 1px rgba(95, 57, 0, 0.75);
+  border: solid 1px #ff8d00;
+  background-image: -moz-linear-gradient(90deg, #ff8a00 0%, #ffd800 100%);
+  background-image: -webkit-linear-gradient(90deg, #ff8a00 0%, #ffd800 100%);
+  background-image: -ms-linear-gradient(90deg, #ff8a00 0%, #ffd800 100%);
+  box-shadow: 0px 2px 0px 0px rgba(131, 96, 5, 0.8);
+  width: 272px;
+  height: 33px;
+  padding-top: 6px;
+  margin-top: 7px;
+  position: relative;
+}
+
+.ui-dialog.ui-widget.ui-widget-content .ui-dialog-content form div.btadd input[type=file]{
+  opacity: 0;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+  height: 100%;
 }
 .ui-dialog.ui-widget.ui-widget-content .ui-dialog-content form textarea {
   height: 117px;
