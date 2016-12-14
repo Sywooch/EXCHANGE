@@ -92,49 +92,51 @@ NgAppAsset::register($this); ?>
                             <?php endforeach; ?>
                         </select>
                         <div class="amount">
-                            <input type="text" name="from_value" id="from_value_input" ng-change="exchange_to = countExchangeResult()" ng-model="exchange_from" placeholder="min {{directionActive.min}}" />
+                            <input required type="text" name="from_value" id="from_value_input" ng-change="exchange_to = countExchangeResult()" ng-model="exchange_from" placeholder="min {{directionActive.min}}" />
                             <div class="currency">{{directionActive.from.type}}</div>
                         </div>
                         <div class="clearfix"></div>
                     </div>
                     <div class="row">
                         <select id="cur_to" name="exchange_to_id">
-                            <?php foreach($currency_all as $item): ?>
-                                <option value="<?=$item->id?>" data-image="<?=$item->getImage()?$item->getImage()->getUrl():''?>"><?=$item->title?></option>
-                            <?php endforeach; ?>
+                            <option ng-repeat="curr in directions | filter:{'currency_from': activeCurrency.id}:true" value="{{curr.currency_to}}" data-image="{{curr.ajaxIcon}}">{{curr.currencyTitle}}</option>
                         </select>
                         <div class="amount">
-                            <input type="text" name="to_value" id="to_value_input" ng-model="exchange_to" placeholder="0" />
+                            <input required type="text" name="to_value" id="to_value_input" ng-model="exchange_to" placeholder="0" />
                             <div class="currency">{{directionActive.to.type}}</div>
                         </div>
                         <div class="clearfix"></div>
                     </div>
-                    <div class="hint">По курсу: <span id="form_course"></span> 1.0000 {{directionActive.from.type}} {{directionActive.from.title}} = {{directionActive.courseCounted}} {{directionActive.to.type}} {{directionActive.to.title}}</div>
-                    <div class="row">
-                        <input type="text" name="card" placeholder="Номер карты" class="full" />
+                    <div class="hint">По курсу: <span id="form_course"></span> 1.0000 {{directionActive.from.type}} {{directionActive.from.title}} = {{directionActive.course}} {{directionActive.to.type}} {{directionActive.to.title}}</div>
+                    <!--<div class="row">
+                        <input required type="text" name="card" placeholder="Номер карты" class="full" />
 						<button class="btcross">+</button>
 						
                     </div>
                     <div class="row">
-                        <input type="text" name="bank" placeholder="Название банка" class="full" />
+                        <input required type="text" name="bank" placeholder="Название банка" class="full" />
 						<button class="btcross">+</button>
+                    </div>-->
+                    <!--<div class="row">
+                        <input required type="text" name="wallet" placeholder="Кошелек для получения" class="full" />
+                        <button class="btcross">+</button>
+                    </div>-->
+                    <div class="row" ng-repeat="field in directionActive.to.fields.concat(directionActive.from.fields)">
+                        <input required type="text" name="orderField[{{field.id}}]" placeholder="{{field.title}}" class="full" />
+                        <?php if(Yii::$app->user->id): ?><button class="btcross">+</button><?php endif; ?>
                     </div>
                     <div class="row">
-                        <input type="text" name="fio" placeholder="ФИО отправителя" class="full" />
-						<button class="btcross">+</button>
+                        <input required type="text" name="fio" placeholder="ФИО отправителя" class="full" />
+                        <?php if(Yii::$app->user->id): ?><button class="btcross">+</button><?php endif; ?>
                     </div>
                     <div class="row">
-                        <input type="text" name="wallet" placeholder="Кошелек для получения" class="full" />
-						<button class="btcross">+</button>
+                        <input required type="text" name="email" placeholder="Ваш Email" class="full" />
+                        <?php if(Yii::$app->user->id): ?><button class="btcross">+</button><?php endif; ?>
                     </div>
-                    <div class="row">
-                        <input type="text" name="email" placeholder="Ваш Email" class="full" />
-						<button class="btcross">+</button>
-                    </div>
-                    <input type="hidden" name="ip" value="<?=$ip != '::1' ? $ip : '95.31.18.119'?>">
-                    <input type="hidden" name="user_id" value="<?=Yii::$app->user->id?>">
+                    <input required type="hidden" name="ip" value="<?=$ip != '::1' ? $ip : '95.31.18.119'?>">
+                    <input required type="hidden" name="user_id" value="<?=Yii::$app->user->id?>">
                     <div class="agree">
-                        <input type="checkbox" id="ch" /> <label for="ch">Я согласен с правилами обмена</label>
+                        <input required type="checkbox" id="ch" /> <label for="ch">Я согласен с правилами обмена</label>
                     </div>
                     <div class="control">
                         <button>Перейти к оплате</button>
@@ -151,9 +153,9 @@ NgAppAsset::register($this); ?>
 
 <div id="second" class="info-block">
     <div class="container">
-        <div class="block scrollbar">
+        <div class="block">
             <div class="title">Последние обмены</div>
-            <div class="last-changes">
+            <div class="last-changes scrollbar">
                 <?php foreach($orders as $order): ?>
                 <div class="last-change">
                     <div class="transaction">
@@ -168,7 +170,7 @@ NgAppAsset::register($this); ?>
                             <div class="clearfix"></div>
                         </div>
                     </div>
-                    <div class="info"><?=$order->getLocation('img')?> <?=$order->getLocation('name')?>, 2 часа назад</div>
+                    <div class="info"><?=$order->getLocation('img')?> <?=$order->getLocation('name')?>, <?=Yii::$app->formatter->asRelativeTime($order->date)?></div>
                 </div>
                 <?php endforeach; ?>
             </div>
@@ -185,7 +187,7 @@ NgAppAsset::register($this); ?>
             <div class="comments owl-carousel">
                 <?php foreach($testimonials as $testimonial): ?>
                 <div class="item">
-                    <div class="avatar"><?=$testimonial->getImage() ? Html::img($testimonial->getImage()->getUrl('92x92')) : ''?></div>
+                    <div class="avatar"><?=$testimonial->getImage() ? Html::img($testimonial->getImage()->getUrl()) : ''?></div>
                     <div class="name"><?=$testimonial->name?></div>
                     <div class="date"><?=Yii::$app->formatter->asDate($testimonial->date); ?></div>
                     <div class="text"><?=$testimonial->content?></div>
@@ -217,14 +219,19 @@ NgAppAsset::register($this); ?>
         <p>
 			<label for="avatar">Ваше фото</label>
 			<div class="btadd">Выберите файл
-				<input type="file" name="avatar" id="avatar">
+				<input required type="file" name="avatar" id="avatar">
 			</div>
         </p>
-        <input type="text" placeholder="Как Вас зовут" name="name" />
-        <input type="text" placeholder="Email" name="email" />
+        <input required type="text" placeholder="Как Вас зовут" name="name" />
+        <input required type="text" placeholder="Email" name="email" />
         <textarea placeholder="Ваш отзыв" name="content"></textarea>
-        <input type="hidden" name="enabled" value="1">
-        <input type="hidden" name="date" value="<?=date('Y-m-d')?>">
-        <input type="submit" value="Отправить" />
+        <input required type="hidden" name="enabled" value="1">
+        <input required type="hidden" name="date" value="<?=date('Y-m-d')?>">
+        <input required type="submit" value="Отправить" />
     </form>
+</div>
+
+<div id="tot_dialog">
+    <h5>Мы зарезервировали для вас средства на 30 минут. Переведите <div id="total"></div></h5>
+    <button id="totalBut" data-id="0">Я оплатил(а) заявку</button>
 </div>

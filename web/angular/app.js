@@ -1,6 +1,6 @@
 var app = angular.module('ExchangeApp', []);
 
-app.controller('FormController', ['$scope', '$http', function($scope, $http){
+app.controller('FormController', ['$scope', '$http', '$timeout', function($scope, $http, $timeout){
     $http.get('currency?_format=json').then(function(response){
         $scope.currencies = response.data.filter(function(item){
             return item.directionsCount;
@@ -14,6 +14,12 @@ app.controller('FormController', ['$scope', '$http', function($scope, $http){
 
     $scope.directionActive = 0;
 
+    $scope.$watch('activeCurrency', function(){
+        $('#cur_to').data('dd').destroy();
+        $('#cur_to').msDropDown();
+        $scope.directionActive = 0;
+    });
+
     $scope.changeCurrency = function(obj){
         $scope.activeCurrency = obj;
         $scope.exchange_to = 0;
@@ -24,7 +30,7 @@ app.controller('FormController', ['$scope', '$http', function($scope, $http){
         $scope.directionActive = obj;
         $scope.exchange_from = 0;
         $('#cur_to').val(obj.to.id).data('dd').refresh();
-    }
+    };
 
     $scope.countExchangeResult = function(){
         return $scope.exchange_from ? (parseFloat($scope.exchange_from) * parseFloat($scope.directionActive.courseCounted)).toFixed(2) : 0

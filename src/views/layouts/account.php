@@ -108,23 +108,28 @@ AppAsset::register($this);
 <?php if(!empty($this->params['showFirms'])):
 	$currencies = Currency::find()->all();
   ?>
-<div class="firms">
+    <?php $form = ActiveForm::begin([
+            'id'=>'firms-form',
+      'options'=>['class'=>'firms'],
+    ])?>
     <div class="container">
         <div class="col">
             <?php foreach($currencies as $currency): ?>
             <div class="firm">
                 <div class="image"><div class="image-wrapper"><?=$currency->getImage() ? Html::img($currency->getImage()->getUrl()) : ''?></div></div>
                 <div class="text">
-                  <span><?=$currency->title?></span>
-                    <div class="form-group"><input type="text" name="currency[<?=$currency->id?>]" value=""></div>
+                  <span><?=$currency->wallet->wallet ? $currency->wallet->wallet : $currency->title?></span>
+                    <div class="form-group"><input type="text" name="currency[<?=$currency->id?>]" value="<?=$currency->wallet ? $currency->wallet->wallet : ''?>"></div>
                 </div>
                 <div class="clearfix"></div>
             </div>
             <?php endforeach; ?>
         </div>
+
+        <?=Html::submitButton('Сохранить', ['class'=>'btn-save-firm hidden'])?>
         <div class="clearfix"></div>
     </div>
-</div><!-- /.firms -->
+<?php ActiveForm::end()?><!-- /.firms -->
 <?php endif; ?>
 
 

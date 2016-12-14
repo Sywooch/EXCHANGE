@@ -2,6 +2,7 @@
 
 namespace app\modules\admin\controllers;
 
+use app\models\CurrencyFields;
 use Yii;
 use app\models\Currency;
 use app\modules\admin\models\CurrencySearch;
@@ -77,6 +78,8 @@ class CurrencyController extends Controller
                 $model->attachImage($path . $file->baseName . '.' . $file->extension);
             }
 
+            $this->processFields($model);
+
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
@@ -105,6 +108,9 @@ class CurrencyController extends Controller
                 $file->saveAs($path . $file->baseName . '.' . $file->extension);
                 $model->attachImage($path . $file->baseName . '.' . $file->extension);
             }
+
+						$this->processFields($model);
+
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
@@ -141,4 +147,16 @@ class CurrencyController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
+    protected function processFields(Currency $model){
+    	$fields = Yii::$app->request->post('CurrencyFields');
+
+    	CurrencyFields::deleteAll(['currency_id'=>$model->id]);
+    	foreach($fields['title'] as $fieldd){
+    		$field = new CurrencyFields();
+    		$field->currency_id = $model->id;
+    		$field->title = $fieldd;
+    		$field->save();
+			}
+		}
 }

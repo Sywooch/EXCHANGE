@@ -88,4 +88,10 @@ class User extends BaseUser
 	}
 
 
+	public function getWallets(){
+		return $this->hasMany(UserWallet::className(), [
+				'user_id'=>'id'
+		]);
+	}
+
 }

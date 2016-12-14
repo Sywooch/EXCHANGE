@@ -1,13 +1,33 @@
 (function(){
     $('.order-form').submit(function(e){
         e.preventDefault();
+        $(this).find('input').each(function(){
+           if(!$(this).val()){
+               return false;
+           }
+        });
         var data = $(this).serialize();
         var form = this;
         $.post($(this).attr('action'), data, function(response){
             console.log(response);
-            $(form).find('input:not([type="hidden"])').val('');
-            alert('Ваша заявка принята в обработку!');
+            $(form).find('.row input').val('');
+            if(response){
+                $('#total').text(response.info.sum+' '+response.info.currency+' '+response.info.valute+' на кошелёк '+response.info.wallet);
+                $('#totalBut').data('id', response.orderId);
+                $('#tot_dialog').dialog('open');
+            }
         });
+    });
+
+    $('#totalBut').click(function(e){
+        e.preventDefault();
+        $.post('site/change-order-status', {
+            id:$(this).data('id'),
+            status:3
+        }, function(response){
+            console.log(response);
+            $('#tot_dialog').dialog('close');
+        })
     });
 
     $('#register-form-email').change(function(e){
@@ -48,6 +68,25 @@
 
             }
         });
-    })
+    });
+
+    $('.firms .firm').click(function(e){
+       e.preventDefault();
+       $(this).parents('.firms').find('input').hide();
+        $(this).parents('.firms').find('span').show();
+       $(this).find('span').hide();
+        $(this).find('input').show();
+    });
+    $('.firms .firm input').change(function(e){
+        $('.btn-save-firm').removeClass('hidden')
+       $(this).parents('.firm').find('span').text($(this).val());
+    });
+
+    $("#tot_dialog").dialog({
+        'autoOpen': false,
+        'modal': true,
+        'draggable': false,
+        'resizable': false
+    });
 
 })($);

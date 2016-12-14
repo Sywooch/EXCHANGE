@@ -10,6 +10,7 @@ namespace app\components;
 
 use app\models\Currency;
 use app\models\ExchangeDirection;
+use app\models\Order;
 use Yii;
 use yii\base\Object;
 
@@ -29,6 +30,13 @@ class CourseParser extends Object
             $this->usd('USD', 'RUR');
         }
 
+        $ordersToReturn = Order::find()->where(['status'=>Order::STATUS_IN_WORK])->andWhere(['<', 'date', date('Y-m-d H:i:s', strtotime("-30 minutes"))])->all();
+				if($ordersToReturn){
+					//var_dump($ordersToReturn);die;
+					foreach($ordersToReturn as $order){
+						$this->returnReserve($order);
+					}
+				}
 
         parent::init();
     }
@@ -75,8 +83,19 @@ class CourseParser extends Object
     }
 
     protected function coin($from = 'BITCOIN', $to = 'USD'){
-
+			//todo
     }
+
+    public function returnReserve(Order $order){
+    		$currency = $order->exchange->getTo()->one();
+    		$currency->reserve = round((float)$currency->reserve + (float)$order->to_value, 2);
+
+				if(!$currency->save()){
+					var_dump($currency, $currency->getErrors());die;
+				}
+				$order->status = Order::STATUS_INACTIVE;
+				return $order->save();
+		}
 
     protected function check($from, $to){
         return (bool)\app\models\CourseParser::findOne(['from'=>$from, 'to'=>$to, 'updated'=>date('Y-m-d')]);

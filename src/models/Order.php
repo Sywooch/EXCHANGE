@@ -30,13 +30,18 @@ class Order extends \yii\db\ActiveRecord
         return 'order';
     }
 
+    const STATUS_IN_WORK = 2;
+    const STATUS_INACTIVE = 0;
+    const STATUS_PAYED_USER = 3;
+    const STATUS_ACCEPTED = 4;
+
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['exchange_id', 'status', 'user_id'], 'integer'],
+            [['exchange_id', 'status', 'user_id', 'history'], 'integer'],
             [['from_value', 'to_value'], 'number'],
             [['date'], 'safe'],
             [['card', 'bank', 'fio', 'wallet', 'email', 'ip'], 'string', 'max' => 255],
@@ -79,4 +84,10 @@ class Order extends \yii\db\ActiveRecord
 
         return $out[$attribute];
     }
+
+    public function getFields() {
+    	return $this->hasMany(OrderFields::className(),[
+    			'order_id'=>'id'
+			]);
+		}
 }

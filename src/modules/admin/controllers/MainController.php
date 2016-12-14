@@ -47,31 +47,14 @@ class MainController extends AdminController
         ]);
     }
 
-    public function actionIndex($currency_from = 3)
+    public function actionIndex($status = 3)
     {
-        $post = Yii::$app->request->post();
-        if($post){
-            ExchangeDirection::deleteAll(['currency_from'=>$currency_from]);
-            foreach($post['directions'] as $direction){
-                $direction['currency_from'] = $currency_from;
-                $model = new ExchangeDirection();
-                $model->load($direction);
-                $model->setAttributes($direction);
-                $model->save();
-            }
-        }
-
-        $directions = ExchangeDirection::find()->where(['currency_from'=>$currency_from])->all();
-        $currency = Currency::find()->all();
-
-        $current = Currency::findOne(['id'=>$currency_from]);
-        $orders = Order::findAll(['status'=>1]);
+    		$status = $status === false ? ['in','status',[Order::STATUS_IN_WORK,Order::STATUS_PAYED_USER]] : ['status'=>$status];
+        $orders = Order::find()->where($status)->orderBy('date DESC')->all();
         
         return $this->render('index', [
-            'directions'=>$directions,
-            'currency'=>$currency,
-            'cur'=>$current,
             'orders'=>$orders,
+						'sts'=>$status['status'],
         ]);
     }
 

@@ -6,8 +6,11 @@
  * Time: 2:49
  */
 
+use app\assets\AccountAsset;
 use app\components\Formatter;
 use yii\helpers\Html;
+
+AccountAsset::register($this);
 
 $this->title = 'Личный кабинет';
 ?>
@@ -18,10 +21,13 @@ $this->title = 'Личный кабинет';
 				<div class="bid-item">
 					<div class="b-head">
 						<div class="b-title">Заявка № <?=$order->id?></div>
-						<?php if($order->status == 1): ?><div class="b-status">Новая заявка</div><?php endif; ?>
+						<?php if($order->status == 0): ?><div class="b-status">Отклонено</div><?php endif; ?>
+                        <?php if($order->status == 2): ?><div class="b-status">Оплата не подтверждена</div><?php endif; ?>
+                        <?php if($order->status == 3): ?><div class="b-status">Оплата подтверждена</div><?php endif; ?>
+                        <?php if($order->status == 4): ?><div class="b-status">Выполнено</div><?php endif; ?>
 						<div class="b-time">
 							<span class="date"><?=Yii::$app->formatter->asDate($order->date, 'php:d.m.Y')?></span>
-							<span class="time"><?=Yii::$app->formatter->asDate($order->date, 'php:H:m:s')?></span>
+							<span class="time"><?=Yii::$app->formatter->asDate($order->date, 'php:H:i:s')?></span>
 						</div>
 						<div class="clearfix"></div>
 					</div>
@@ -44,7 +50,7 @@ $this->title = 'Личный кабинет';
 						<div class="to-amount"><?=round($order->to_value, 2)?> <?=$order->exchange->to->type?></div>
 						<div class="clearfix"></div>
 					</div>
-					<div class="action"><a href="#">Удалить из истории</a></div>
+					<div class="action"><a href="" class="history-remove" data-id="<?=$order->id?>">Удалить из истории</a></div>
 				</div>
 				<?php endforeach; ?>
 			</div><!-- /.bids -->

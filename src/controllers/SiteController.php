@@ -5,6 +5,8 @@ namespace app\controllers;
 use app\models\Currency;
 use app\models\ExchangeDirection;
 use app\models\Order;
+use app\models\OrderFields;
+use app\models\RegistrationForm;
 use app\models\Testimonial;
 use Yii;
 use yii\filters\VerbFilter;
@@ -49,7 +51,7 @@ class SiteController extends Controller
             return $item->directions;
         });
 
-        $orders = Order::find()->all();
+        $orders = Order::find()->orderBy('date DESC')->all();
 
         $testimonials = Testimonial::findAll(['enabled'=>1]);
 
@@ -64,16 +66,75 @@ class SiteController extends Controller
     public function actionProcessOrder(){
         Yii::$app->response->format = Response::FORMAT_JSON;
         $data = Yii::$app->request->post();
-        $data['exchange_id'] = ExchangeDirection::findOne([
-            'currency_from'=>$data['exchange_from_id'],
-            'currency_to'=>$data['exchange_to_id'],
-        ])->id;
-        $data['date'] = date('Y-m-d H:m:s');
+        $direction = ExchangeDirection::findOne([
+						'currency_from'=>$data['exchange_from_id'],
+						'currency_to'=>$data['exchange_to_id'],
+				]);
+        $data['exchange_id'] = $direction->id;
+        $data['date'] = date('Y-m-d H:i:s');
         $model = new Order();
         $model->setAttributes($data);
+        $model->status = Order::STATUS_IN_WORK;
+				$model->save();
 
-        return $model->save() ? true : $model->getErrors();
+				if(Yii::$app->user->isGuest){
+						$form = new RegistrationForm();
+						$form->email = $model->email;
+						$form->password = $this->generatePassword();
+						$form->register();
+				}
+
+				foreach($data['orderField'] as $id => $value){
+					$orderField = new OrderFields();
+					$orderField->value = $value;
+					$orderField->field_id = $id;
+					$orderField->order_id = $model->id;
+					$orderField->save();
+				}
+
+        //reserve
+				$currency = $direction->getTo()->one();
+				$currency->reserve = round((float)$currency->reserve - (float)$model->to_value, 2);
+				if(!$currency->reserve){
+					return false;
+				}
+				$currency->save();
+
+        return $model ? [
+        		'accepted'=>1,
+						'orderId'=>$model->id,
+						'info'=>[
+							'currency'=>$direction->getFrom()->one()->title,
+							'wallet'=>$direction->getFrom()->one()->wallet,
+							'sum'=>$model->from_value,
+							'valute'=>$direction->getFrom()->one()->type
+						]
+				] : $model->getErrors();
     }
+
+    public function generatePassword($length = 8) {
+			$chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+			$count = mb_strlen($chars);
+
+			for ($i = 0, $result = ''; $i < $length; $i++) {
+				$index = rand(0, $count - 1);
+				$result .= mb_substr($chars, $index, 1);
+			}
+
+			return $result;
+		}
+
+	public function actionChangeOrderStatus(){
+    	$post = Yii::$app->request->post();
+
+    	$order = Order::findOne(['id'=>$post['id']]);
+    	$order->status = Order::STATUS_PAYED_USER;
+    	$order->save();
+
+			Yii::$app->response->format = Response::FORMAT_JSON;
+
+    	return true;
+		}
 
     public function actionAjaxCurrency(){
         $post = Yii::$app->request->post();

@@ -30,7 +30,7 @@ class AppAsset extends AssetBundle
         "https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js",
         'js/tools.js',
         'js/scripts.js',
-        "js/jquery.dd.min.js",
+        "js/jquery.dd.js",
         "js/icheck.min.js",
         "js/formstone/core.js",
         "js/formstone/touch.js",

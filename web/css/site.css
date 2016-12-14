@@ -101,3 +101,13 @@ cursor: default;
     vertical-align: top;
     width: 32%;
 }
+
+.firms .col .firm input {
+    display: none;
+}
+.info-block .block {
+    overflow-y: hidden;
+}
+.info-block .block .last-changes {
+    height: 260px;
+}
