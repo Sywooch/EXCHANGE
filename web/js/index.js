@@ -7,4 +7,5 @@ $(document).ready(function() {
 		nav: true,
 		navText: ['','']
 	});
+
 });

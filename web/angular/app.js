@@ -20,6 +20,41 @@ app.controller('FormController', ['$scope', '$http', '$timeout', function($scope
         $scope.directionActive = 0;
     });
 
+    $scope.$watch('directionActive', function(newval){
+        if(newval){
+            $('#cur_to').data('dd').destroy();
+            $('#cur_to').msDropDown();
+        }
+
+        $scope.exchange_from = 0;
+        $scope.exchange_to = 0;
+    });
+
+    $timeout(function(){
+        $('#cur_to').data('dd').on('change', function(arg){
+            var index = $(arg.currentTarget).val();
+            $scope.directionActive = $scope.directions.find(function(item){
+                return item.currency_to == index && item.currency_from == $scope.activeCurrency.id;
+            });
+            $scope.$apply();
+
+            $('#cur_from').data('dd').refresh();
+        });
+
+        $('#cur_from').data('dd').on('change', function(arg){
+            var index = $(arg.currentTarget).val();
+            $scope.activeCurrency = $scope.currencies.find(function(item){
+                return item.id == index;
+            });
+
+            $scope.directionActive = {};
+
+            $scope.$apply();
+
+            $('#cur_to').data('dd').refresh();
+        });
+    }, 1000);
+
     $scope.changeCurrency = function(obj){
         $scope.activeCurrency = obj;
         $scope.exchange_to = 0;
