@@ -6,6 +6,7 @@
  * Time: 3:59
  */
 use yii\helpers\Html;
+use yii\helpers\Url;
 
 $this->title = 'Личный кабинет';
 ?>
@@ -15,7 +16,7 @@ $this->title = 'Личный кабинет';
 	<div class="top-text">Ваша реферальная ссылка для приглашения других пользователей:  <a href="https://xchange.cc/?rid=14755865688186">https://xchange.cc/?rid=14755865688186</a></div>
 	<div class="types">
         <?php foreach($banners as $banner):
-          $sizes = $this->context->ranger('http://localhost:8080'.$banner->getImage()->getUrl());
+          $sizes = $this->context->ranger(Url::base().$banner->getImage()->getUrl());
         //var_dump($sizes);
           ?>
 		<div class="type" data-banner="<?=$banner->id?>"><?=$sizes[0]?>x<?=$sizes[1]?></div>
