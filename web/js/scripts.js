@@ -89,4 +89,15 @@
         'resizable': false
     });
 
+    $('.ref-link:not(:first-child)').hide();
+
+    $('.banner-type').click(function(e){
+        e.preventDefault();
+
+        var id = $(this).data('banner');
+
+        $('.ref-link').hide();
+        $('[data-banner-show="'+id+'"]').show();
+    })
+
 })($);
