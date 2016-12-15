@@ -28,6 +28,7 @@ class AppAsset extends AssetBundle
     ];
     public $js = [
         "https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js",
+				"https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.4.0/clipboard.min.js",
         'js/tools.js',
         'js/scripts.js',
         "js/jquery.dd.js",

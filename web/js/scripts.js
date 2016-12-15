@@ -100,4 +100,6 @@
         $('[data-banner-show="'+id+'"]').show();
     })
 
+    new Clipboard('.copy');
+
 })($);
