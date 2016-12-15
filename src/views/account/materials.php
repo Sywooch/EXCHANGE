@@ -16,9 +16,7 @@ $this->title = 'Личный кабинет';
 	<div class="top-text">Ваша реферальная ссылка для приглашения других пользователей:  <a href="https://xchange.cc/?rid=14755865688186">https://xchange.cc/?rid=14755865688186</a></div>
 	<div class="types">
         <?php foreach($banners as $banner):
-          $sizes = $this->context->ranger('http://'.$_SERVER['SERVER_NAME'].$banner->getImage()->getUrl());
-        var_dump($sizes);
-          ?>
+          $sizes = $this->context->ranger('http://'.$_SERVER['SERVER_NAME'].$banner->getImage()->getUrl()); ?>
 		<div class="type" data-banner="<?=$banner->id?>"><?=$sizes[0]?>x<?=$sizes[1]?></div>
 		<?php endforeach; ?>
         <div class="clearfix"></div>
