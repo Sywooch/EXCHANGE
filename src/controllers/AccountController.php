@@ -100,16 +100,16 @@ class AccountController extends Controller
 				"Range: bytes=0-32768"
 		);
 
-		$curl = curl_init($url);
-		curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+		$curl = \curl_init($url);
+		\curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+		\curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 		$data = curl_exec($curl);
-		curl_close($curl);
+		\curl_close($curl);
 
-		$im = imagecreatefromstring($data);
+		$im = \imagecreatefromstring($data);
 
-		$width = imagesx($im);
-		$height = imagesy($im);
+		$width = \imagesx($im);
+		$height = \imagesy($im);
 		return [$width, $height];
 	}
 
