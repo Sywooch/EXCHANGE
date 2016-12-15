@@ -17,7 +17,7 @@ $this->title = 'Личный кабинет';
 	<div class="types">
         <?php foreach($banners as $banner):
           $sizes = $this->context->ranger('http://'.$_SERVER['SERVER_NAME'].$banner->getImage()->getUrl());
-        //var_dump($sizes);
+        var_dump($sizes);
           ?>
 		<div class="type" data-banner="<?=$banner->id?>"><?=$sizes[0]?>x<?=$sizes[1]?></div>
 		<?php endforeach; ?>

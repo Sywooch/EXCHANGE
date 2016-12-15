@@ -107,8 +107,8 @@ class BannerController extends Controller
 						$path = Yii::getAlias('@webroot').'/images/'.date('U').'.'.$file->extension;
 						$file->saveAs($path);
 						$model->attachImage($path);
-						$imgUrl = Yii::$app->homeUrl.$model->getImage()->getUrl();
-						$link = Yii::$app->homeUrl.'/?rid=<USERID>';
+						$imgUrl = 'http://'.$_SERVER['SERVER_NAME'].$model->getImage()->getUrl();
+						$link = 'http://'.$_SERVER['SERVER_NAME'].'/?rid=<USERID>';
 						$code = '<a href="'.$link.'"><img alt="Обменник" title="Обменять" src="'.$imgUrl.'"></a>';
 						$model->code = $code;
 						$model->image = '/images/'.date('U').'.'.$file->extension;
