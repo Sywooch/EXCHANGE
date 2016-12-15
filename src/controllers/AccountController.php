@@ -9,6 +9,7 @@
 namespace app\controllers;
 
 
+use app\models\Banner;
 use app\models\Currency;
 use app\models\Order;
 use app\models\UserWallet;
@@ -86,7 +87,30 @@ class AccountController extends Controller
 	}
 
 	public function actionMaterials(){
-		return $this->render('materials');
+
+		$banners = Banner::find()->all();
+
+		return $this->render('materials',[
+				'banners'=>$banners
+		]);
+	}
+
+	public function ranger($url){
+		$headers = array(
+				"Range: bytes=0-32768"
+		);
+
+		$curl = curl_init($url);
+		curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+		$data = curl_exec($curl);
+		curl_close($curl);
+
+		$im = imagecreatefromstring($data);
+
+		$width = imagesx($im);
+		$height = imagesy($im);
+		return [$width, $height];
 	}
 
 	public function actionForms(){

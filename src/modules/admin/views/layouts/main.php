@@ -1,9 +1,12 @@
 <?php
+use app\modules\admin\assets\AdminAsset;
 use nullref\admin\widgets\Flash;
 use nullref\core\widgets\WidgetContainer;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
+
+AdminAsset::register($this);
 
 ?>
 

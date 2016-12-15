@@ -1,3 +1,7 @@
 .list-cell__static p.form-control-static {
     display: none;
 }
+
+.main-page .list-cell__button {
+    display: none;
+}

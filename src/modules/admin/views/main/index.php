@@ -11,7 +11,7 @@ $this->title = 'Exchange Admin Panel';
 
 $status = ['Отклонен', '', 'Не оплачен', 'Оплачен', 'Проведён'];
 ?>
-<div class="admin-index">
+<div class="admin-index main-page">
     <div class="row">
         <div class="col-lg-12">
             <h2 class="page-header">Заявки "<?= $status[$sts] ?>"</h2>
@@ -76,6 +76,12 @@ $status = ['Отклонен', '', 'Не оплачен', 'Оплачен', 'П�
                   ],
               ],
           ]) : '' ?>
+
+
+            <div class="text-right"><a href="" class="btn btn-primary" id="save-orders">Сохранить</a></div>
+
+
+            <br><br><br><br><br>
 
 
         </div>

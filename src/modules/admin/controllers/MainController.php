@@ -47,7 +47,13 @@ class MainController extends AdminController
         ]);
     }
 
-    public function actionIndex($status = 3)
+	public function afterAction($action, $result)
+	{
+		Yii::$app->getUser()->setReturnUrl(Yii::$app->request->url);
+		return parent::afterAction($action, $result);
+	}
+
+	public function actionIndex($status = 3)
     {
     		$status = $status === false ? ['in','status',[Order::STATUS_IN_WORK,Order::STATUS_PAYED_USER]] : ['status'=>$status];
         $orders = Order::find()->where($status)->orderBy('date DESC')->all();
@@ -57,6 +63,19 @@ class MainController extends AdminController
 						'sts'=>$status['status'],
         ]);
     }
+
+    public function actionSaveOrders(){
+    		Yii::$app->response->format = Response::FORMAT_JSON;
+    		$items = Yii::$app->request->post('items');
+
+				foreach($items as $item){
+					$order = Order::findOne(['id'=>$item['id']]);
+					$order->status = $item['status'];
+					$order->save();
+				}
+
+				return $this->goBack();
+		}
 
     public function actions()
     {

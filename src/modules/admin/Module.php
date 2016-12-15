@@ -15,6 +15,10 @@ class Module extends \nullref\admin\Module implements IAdminModule
         return [
             'label' => 'Панель управления',
             'items'=> [
+								[
+										'label' => 'Управление заявками',
+										'url' => ['/admin/main'],
+								],
                 [
                     'label' => 'Администраторы',
                     'url' => ['/admin/user'],
@@ -26,6 +30,10 @@ class Module extends \nullref\admin\Module implements IAdminModule
 								[
 										'label' => 'Направления обмена',
 										'url' => ['/admin/direction'],
+								],
+								[
+										'label' => 'Баннеры',
+										'url' => ['/admin/banner'],
 								],
 								[
 										'label' => 'Новости',
