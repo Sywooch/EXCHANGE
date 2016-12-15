@@ -28,7 +28,7 @@ $this->title = 'Личный кабинет';
         <?=Html::decode($banner->code)?>
         <div class="ref-container">
                             <textarea id="text-<?=$banner->id?>">
-            <?=$banner->code?>
+            <?=str_replace('<USERID>', Yii::$app->user->id, $banner->code)?>
                             </textarea>
         </div>
         <div id="copy-button-<?=$banner->id?>" data-clipboard-target="#text-<?=$banner->id?>" class="copy">Скопировать в буфер</div>
