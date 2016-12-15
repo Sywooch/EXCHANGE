@@ -101,6 +101,19 @@ class BannerController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+					$file = UploadedFile::getInstance($model, 'image');
+
+					if($file){
+						$path = Yii::getAlias('@webroot').'/images/'.date('U').'.'.$file->extension;
+						$file->saveAs($path);
+						$model->attachImage($path);
+						$imgUrl = Yii::$app->homeUrl.$model->getImage()->getUrl();
+						$link = Yii::$app->homeUrl.'/?rid=<USERID>';
+						$code = '<a href="'.$link.'"><img alt="Обменник" title="Обменять" src="'.$imgUrl.'"></a>';
+						$model->code = $code;
+						$model->image = '/images/'.date('U').'.'.$file->extension;
+						$model->save();
+					}
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
