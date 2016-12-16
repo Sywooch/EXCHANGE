@@ -136,7 +136,7 @@ $user_fields=ArrayHelper::map(Yii::$app->user->identity->getWallets()->all(), 'f
               <?php foreach($currency->fields as $field): ?>
 
                   <span><?=$field->title?></span>
-                    <div class="form-group"><input type="text" name="currency[<?=$currency->id?>][fields][<?=$field->id?>]" value="<?=$user_fields[$currency->id][$field->id]?>"></div>
+                    <div class="form-group"><input type="text" name="currency[<?=$currency->id?>][fields][<?=$field->id?>]" value="<?=!empty($user_fields[$currency->id]) ? $user_fields[$currency->id][$field->id] : ''?>"></div>
 
                 <?php endforeach; ?>
                 <div class="clearfix"></div>
