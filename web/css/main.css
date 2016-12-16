@@ -252,7 +252,7 @@ a {
     font-size: 20px;
 }
 .btcross:hover,.ddArrow:hover,
-.ui-dialog.ui-widget.ui-widget-content .ui-dialog-content form .dd .ddArrow:hover,
+.ui-dialog.ui-widget.ui-widget-content .ui-dialog-content form .dd .ddArrow:hover
 {
   background-color: #2f2f2f;
 }
@@ -1128,20 +1128,20 @@ a {
   margin: 0 auto;
   padding-bottom: 40px;
 }
-.inner-wrapper .lk-main .exchange .form-1 {
+.form-1 {
   width: 249px;
   float: left;
 }
-.inner-wrapper .lk-main .exchange .form-2 {
+.form-2 {
   width: 330px;
   float: right;
 }
-.inner-wrapper .lk-main .exchange .form-wrapper {
+.iframe-form .form-wrapper {
   background: #ffffff;
   border: 1px solid #ababab;
   padding: 15px 15px 28px;
 }
-.inner-wrapper .lk-main .exchange .form-wrapper .f-title {
+.iframe-form .form-wrapper .f-title {
   text-align: center;
   text-transform: uppercase;
   color: #1ead57;
@@ -1149,27 +1149,47 @@ a {
   line-height: 17px;
   font-weight: 600;
 }
-.inner-wrapper .lk-main .exchange .form-wrapper .image {
+.iframe-form .form-wrapper .image {
   text-align: center;
   margin: 15px 0 14px;
 }
-.inner-wrapper .lk-main .exchange .form-wrapper label {
+.iframe-form .form-wrapper label {
   display: block;
   font-size: 14px;
   line-height: 14px;
   margin: 0 0 10px;
 }
-.inner-wrapper .lk-main .exchange .form-wrapper .dd {
+.iframe-form .form-wrapper .dd {
   margin-bottom: 19px;
   float: none;
   width: 100% !important;
 }
-.inner-wrapper .lk-main .exchange .form-wrapper .course {
+.iframe-form .form-wrapper .course {
   text-align: center;
   font-size: 12px;
   line-height: 12px;
   color: #6b6b6b;
   margin: 2px 0 13px;
+}
+.iframe-form a.tosite{
+  width: 100%;
+  border: 1px solid #ff8d00;
+  background-image: -moz-linear-gradient(90deg, #ff8a00 0%, #ffd800 100%);
+  background-image: -webkit-linear-gradient(90deg, #ff8a00 0%, #ffd800 100%);
+  background-image: -ms-linear-gradient(90deg, #ff8a00 0%, #ffd800 100%);
+  box-shadow: 0px 2px 0px 0px rgba(131, 96, 5, 0.8);
+  height: 33px;
+  color: #ffffff;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin: 8px 0 0;
+  text-shadow: 0px 1px 1px rgba(95, 57, 0, 0.75);
+  font-size: 14px;
+  line-height: 14px;
+  font-weight: 700;
+  display: block;
+  text-align: center;
+  padding: 10px 0;
 }
 .inner-wrapper .lk-main .exchange .link {
   border: 1px solid #cacaca;

@@ -1,15 +1,26 @@
 var app = angular.module('ExchangeApp', []);
 
 app.controller('FormController', ['$scope', '$http', '$timeout', function($scope, $http, $timeout){
-    $http.get('currency?_format=json').then(function(response){
+    $http.get('/currency?_format=json').then(function(response){
         $scope.currencies = response.data.filter(function(item){
             return item.directionsCount;
         });
         $scope.activeCurrency = $scope.currencies[0];
+
+        $('#cur_to').data('dd').destroy();
+        $('#cur_to').msDropDown();
+        $('#cur_from').data('dd').destroy();
+        $('#cur_from').msDropDown();
     });
 
-    $http.get('direction?_format=json').then(function(response){
+    $http.get('/direction?_format=json').then(function(response){
         $scope.directions = response.data;
+
+        $('#cur_to').data('dd').destroy();
+        $('#cur_to').msDropDown();
+        $('#cur_from').data('dd').destroy();
+        $('#cur_from').msDropDown();
+
     });
 
     $scope.directionActive = 0;
@@ -43,10 +54,11 @@ app.controller('FormController', ['$scope', '$http', '$timeout', function($scope
 
         $('#cur_from').data('dd').on('change', function(arg){
             var index = $(arg.currentTarget).val();
+
+            console.log(index);
             $scope.activeCurrency = $scope.currencies.find(function(item){
                 return item.id == index;
             });
-
             $scope.directionActive = {};
 
             $scope.$apply();
