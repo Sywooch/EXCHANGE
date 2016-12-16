@@ -18,7 +18,7 @@ use yii\widgets\Breadcrumbs;
 
 AppAsset::register($this);
 
-$user_fields=ArrayHelper::map(Yii::$app->user->identity->getWallets()->all(), 'field_id', 'wallet', 'currency_id');
+$user_fields=Yii::$app->user->identity->getWallets()->all() ? ArrayHelper::map(Yii::$app->user->identity->getWallets()->all(), 'field_id', 'wallet', 'currency_id') : [];
 
 
 
