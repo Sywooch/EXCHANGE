@@ -79,12 +79,30 @@ class User extends BaseUser
 		}
 	}
 
-	public function getCountRefExchanges(){
-		$ids = $this->getReferals()->select(['id'])->all();
-		$count = Order::find()->where(['in', 'user_id', $ids])->count();
-		$sum = Order::find()->where(['in', 'user_id', $ids])->sum('from_value');
+	public function getCountRefExchanges($user_id = false){
+		if($user_id){
+			$ids = [$user_id];
+		} else {
+			$ids = $this->getReferals()->select(['referal_id'])->asArray()->all();
+			$ids = call_user_func_array('array_merge', $ids);
+		}
+		$count = Order::find()->where(['in', 'user_id', $ids])->andWhere(['status'=>4])->count();
+		$orders = Order::find()->where(['in', 'user_id', $ids])->andWhere(['status'=>4])->all();
+		$sumRur = 0;
+		$sumUsd = 0;
+		$courseRur = (float)CourseParser::findOne(['from'=>'RUR'])['value'];
+		$courseUsd = CourseParser::findOne(['from'=>'USD'])['value'];
+		foreach($orders as $order){
+			if($order->exchange->from->type == 'USD') {
+				$sumRur += $order->from_value * $courseUsd;
+				$sumUsd += $order->from_value;
+			} else if($order->exchange->from->type == 'RUR'){
+				$sumRur += $order->from_value;
+				$sumUsd += $order->from_value * $courseRur;
+			}
+		}
 
-		return ['count'=>$count, 'sum'=>$sum];
+		return ['count'=>$count, 'sumRur'=>$sumRur,'sumUsd'=>$sumUsd];
 	}
 
 	public function getOrders() {
@@ -109,6 +127,12 @@ class User extends BaseUser
 	public function getReferer(){
 		return $this->hasOne(Referal::className(), [
 				'referal_id'=>'id'
+		]);
+	}
+
+	public function getReferalOrders(){
+		return $this->hasMany(ReferalOrder::className(), [
+				'user_id'=>'id'
 		]);
 	}
 

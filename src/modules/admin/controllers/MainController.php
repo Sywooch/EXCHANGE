@@ -6,6 +6,7 @@ use app\models\Currency;
 use app\models\ExchangeDirection;
 use app\models\Order;
 use app\models\Referal;
+use app\models\ReferalOrder;
 use nullref\admin\components\AdminController;
 use nullref\admin\models\Admin;
 use nullref\admin\models\LoginForm;
@@ -56,9 +57,19 @@ class MainController extends AdminController
 
 	public function actionIndex($status = 3)
     {
-    		$status = $status === false ? ['in','status',[Order::STATUS_IN_WORK,Order::STATUS_PAYED_USER]] : ['status'=>$status];
-        $orders = Order::find()->where($status)->orderBy('date DESC')->all();
-        
+
+    	if($status == 'referals'){
+				$orders = ReferalOrder::find()->where(['!=','status',4])->orderBy('date DESC')->all();
+				$status = ['status'=>'referals'];
+				return $this->render('referals', [
+						'orders'=>$orders,
+						'sts'=>$status['status'],
+				]);
+			} else {
+				$status = $status === false ? ['in','status',[Order::STATUS_IN_WORK,Order::STATUS_PAYED_USER]] : ['status'=>$status];
+				$orders = Order::find()->where($status)->orderBy('date DESC')->all();
+			}
+
         return $this->render('index', [
             'orders'=>$orders,
 						'sts'=>$status['status'],
@@ -93,6 +104,24 @@ class MainController extends AdminController
 
 				return $this->goBack();
 		}
+
+
+	public function actionSaveReferalOrders(){
+		Yii::$app->response->format = Response::FORMAT_JSON;
+		$items = Yii::$app->request->post('items');
+
+		foreach($items as $item){
+			$order = ReferalOrder::findOne(['id'=>$item['id']]);
+			$order->status = $item['status'];
+			$order->save();
+		}
+
+		return $this->goBack();
+	}
+
+
+
+
 
     public function actions()
     {

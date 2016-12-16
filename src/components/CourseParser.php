@@ -33,10 +33,14 @@ class CourseParser extends Object
 					]));
 
 					$user_id = $referal;
-					$stat = ReferalStatistic::findOne(['user_id'=>$user_id]);
+					$stat = ReferalStatistic::find()->where(['user_id'=>$user_id])->all();
+
 					if(!$stat){
 						$stat = new ReferalStatistic();
 						$stat->user_id = $user_id;
+						$stat->incoming = $stat->incoming+1;
+						$stat->save();
+					} else {
 						$stat->incoming = $stat->incoming+1;
 						$stat->save();
 					}

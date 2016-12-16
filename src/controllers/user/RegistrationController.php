@@ -28,6 +28,7 @@ class RegistrationController extends BaseRegistrationController
 		$referer = false;
 		if (isset($cookies['referer'])) {
 			$referer = $cookies['referer']->value;
+			$cookies->remove('referer');
 		}
 
 		/** @var RegistrationForm $model */

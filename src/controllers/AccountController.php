@@ -13,9 +13,11 @@ use app\models\Banner;
 use app\models\Currency;
 use app\models\Order;
 use app\models\Referal;
+use app\models\ReferalOrder;
 use app\models\UserWallet;
 use yii\filters\AccessControl;
 use yii\web\Controller;
+use yii\web\ForbiddenHttpException;
 use yii\web\Response;
 
 class AccountController extends Controller
@@ -32,7 +34,7 @@ class AccountController extends Controller
 								['allow' => true, 'actions' => ['index','security','autofill','referer','materials','forms'], 'roles' => ['@']],
 								[
 										'allow' => true,
-										'actions' => ['order-history'],
+										'actions' => ['order-history','referal-order'],
 										'roles' => ['@'],
 								],
 						],
@@ -89,11 +91,13 @@ class AccountController extends Controller
 		//var_dump($referal, \Yii::$app->user->id);die;
 
 		$exchanges = \Yii::$app->user->identity->getCountRefExchanges();
-		$incoming = $referal->statistic->incoming;
+		$incoming = $referal ? $referal->statistic->incoming : 0;
+		$currencies = Currency::find()->all();
 
 		return $this->render('referer',[
 				'exchanges'=>$exchanges,
-				'incoming'=>$incoming
+				'incoming'=>$incoming,
+				'currencies'=>$currencies
 		]);
 	}
 
@@ -114,5 +118,28 @@ class AccountController extends Controller
 	public function actionForms(){
 		return $this->render('forms');
 	}
+
+	public function actionReferalOrder(){
+		$post = \Yii::$app->request->post();
+		if(!$post || \Yii::$app->user->isGuest){
+			throw new ForbiddenHttpException();
+		}
+		$model = new ReferalOrder();
+		$model->setAttributes($post);
+		$model->status = 2;
+		$model->user_id = \Yii::$app->user->id;
+		$model->date = date('Y-m-d H:i:s');
+		$exchanges = \Yii::$app->user->identity->getCountRefExchanges();
+		$model->sum = $model->currency->type == 'USD' ? $exchanges['sumUsd']*.006 : $exchanges['sumRur']*.006;
+
+		return $model->save() ? $this->goBack() : $model->getErrors();
+	}
+
+	public function afterAction($action, $result)
+	{
+		\Yii::$app->getUser()->setReturnUrl(\Yii::$app->request->url);
+		return parent::afterAction($action, $result);
+	}
+
 
 }

@@ -18,7 +18,7 @@ $status = ['Отклонен', '', 'Не оплачен', 'Оплачен', 'П�
             <div class="btn-group">
                 <p><?php foreach ($status as $k => $item) {
                     if ($item) {
-                      echo Html::a($item, Url::to(['main/index', 'status' => $k]), ['class' => $sts == $k ? 'btn btn-default' : 'btn btn-info']);
+                      echo Html::a($item, Url::to(['main/index', 'status' => $k]), ['class' => $sts === $k ? 'btn btn-default' : 'btn btn-info']);
                     }
                   } ?></p>
             </div>
@@ -32,15 +32,11 @@ $status = ['Отклонен', '', 'Не оплачен', 'Оплачен', 'П�
                       'type' => 'static'
                   ],
                   [
-                      'name' => 'from_to',
-                      'title' => 'Инфо',
+                      'name' => 'user_id',
+                      'title' => 'Пользователь',
                       'type' => 'static',
                       'value' => function ($order) {
-                        return Html::tag('span',
-                            $order->exchange->from->title . ' 
-                                                    ' . $order->from_value . ' 
-                                                    ' . $order->exchange->from->type . ' => ' . $order->exchange->to->title . ' 
-                                                    ' . $order->to_value . ' ' . $order->exchange->to->type);
+                        return Html::tag('span', $order->user->username);
                       }
                   ],
                   [
@@ -49,18 +45,20 @@ $status = ['Отклонен', '', 'Не оплачен', 'Оплачен', 'П�
                       'type' => 'static'
                   ],
                   [
-                      'name' => 'fields',
-                      'title' => 'Поля',
+                      'name' => 'wallet',
+                      'title' => 'Кошелек',
                       'type' => 'static',
                       'value' => function ($order) {
-                        $f = array_map(function ($item) {
-                          return Html::tag('div', $item->field->title . ': ' . $item->value);
-                        }, $order->fields);
-                        return implode(' ', $f) . Html::tag('div', $order->card) .
-                            Html::tag('div', $order->bank) .
-                            Html::tag('div', $order->fio) .
-                            Html::tag('div', $order->wallet) .
-                            Html::tag('div', $order->email);
+                        return Html::tag('span', $order->wallet);
+                      }
+                  ],
+
+                  [
+                      'name' => 'currency_id',
+                      'title' => 'Валюта',
+                      'type' => 'static',
+                      'value' => function ($order) {
+                        return Html::tag('span', $order->currency->title.' '.$order->currency->type);
                       }
                   ],
                   [
@@ -69,8 +67,6 @@ $status = ['Отклонен', '', 'Не оплачен', 'Оплачен', 'П�
                       'type' => 'dropDownList',
                       'items' => [
                           0 => 'Отклонить',
-                          2 => 'Не оплачен',
-                          3 => 'Оплачен',
                           4 => 'Проведён'
                       ]
                   ],
@@ -78,7 +74,7 @@ $status = ['Отклонен', '', 'Не оплачен', 'Оплачен', 'П�
           ]) : '' ?>
 
 
-            <div class="text-right"><a href="" class="btn btn-primary" id="save-orders">Сохранить</a></div>
+            <div class="text-right"><a href="" class="btn btn-primary" id="save-referal-orders">Сохранить</a></div>
 
 
             <br><br><br><br><br>
