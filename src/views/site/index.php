@@ -1,6 +1,7 @@
 <?php
 use app\assets\NgAppAsset;
 use app\models\User;
+use yii\helpers\Json;
 use yii\helpers\Url;
 use yii\helpers\Html;
 /* @var $this yii\web\View */
@@ -16,6 +17,15 @@ if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
 }
 
 NgAppAsset::register($this); ?>
+
+
+<?php if(!Yii::$app->user->isGuest): ?>
+<script>
+    var user = <?=Json::encode(Yii::$app->user->identity);?>;
+    user.fields = <?=Json::encode(Yii::$app->user->identity->wallets);?>;
+</script>
+<?php endif; ?>
+
 <style>
     .bid {
         transition: all .5s;
@@ -127,7 +137,6 @@ NgAppAsset::register($this); ?>
                     </div>
                     <div class="row">
                         <input required type="text" name="fio" placeholder="ФИО отправителя" class="full" />
-                        <?php if(Yii::$app->user->id): ?><button class="btcross">+</button><?php endif; ?>
                     </div>
                     <div class="row">
                         <input required type="text" name="email" placeholder="Ваш Email" class="full" />

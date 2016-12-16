@@ -28,7 +28,7 @@ class UserWallet extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['currency_id', 'user_id'], 'integer'],
+            [['currency_id', 'user_id', 'field_id'], 'integer'],
             [['wallet'], 'string', 'max' => 255],
         ];
     }

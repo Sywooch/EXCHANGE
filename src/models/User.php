@@ -6,6 +6,7 @@ namespace app\models;
 use dektrium\user\helpers\Password;
 use dektrium\user\models\Token;
 use dektrium\user\models\User as BaseUser;
+use yii\helpers\ArrayHelper;
 
 class User extends BaseUser
 {
@@ -84,7 +85,7 @@ class User extends BaseUser
 			$ids = [$user_id];
 		} else {
 			$ids = $this->getReferals()->select(['referal_id'])->asArray()->all();
-			$ids = call_user_func_array('array_merge', $ids);
+			$ids = iterator_to_array(new \RecursiveIteratorIterator(new \RecursiveArrayIterator($ids)), 0);
 		}
 		$count = Order::find()->where(['in', 'user_id', $ids])->andWhere(['status'=>4])->count();
 		$orders = Order::find()->where(['in', 'user_id', $ids])->andWhere(['status'=>4])->all();

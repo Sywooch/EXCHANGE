@@ -68,15 +68,18 @@ class AccountController extends Controller
 		if(\Yii::$app->request->post()){
 
 			foreach(\Yii::$app->request->post()['currency'] as $id => $wallet){
-				if($wallet){
-					$model = UserWallet::findOne(['currency_id'=>$id, 'user_id'=>\Yii::$app->user->id]);
-					if(!$model){
-						$model = new UserWallet();
-						$model->user_id = \Yii::$app->user->id;
-						$model->currency_id = $id;
+				foreach($wallet['fields'] as $fid => $field){
+					if($field){
+						$model = UserWallet::findOne(['currency_id'=>$id, 'user_id'=>\Yii::$app->user->id, 'field_id'=>$fid]);
+						if(!$model){
+							$model = new UserWallet();
+							$model->user_id = \Yii::$app->user->id;
+							$model->currency_id = $id;
+							$model->field_id = $fid;
+						}
+						$model->wallet = $field;
+						$model->save();
 					}
-					$model->wallet = $wallet;
-					$model->save();
 				}
 			}
 

@@ -70,17 +70,7 @@
         });
     });
 
-    $('.firms .firm').click(function(e){
-       e.preventDefault();
-       $(this).parents('.firms').find('input').hide();
-        $(this).parents('.firms').find('span').show();
-       $(this).find('span').hide();
-        $(this).find('input').show();
-    });
-    $('.firms .firm input').change(function(e){
-        $('.btn-save-firm').removeClass('hidden')
-       $(this).parents('.firm').find('span').text($(this).val());
-    });
+
 
     $("#tot_dialog").dialog({
         'autoOpen': false,
@@ -107,6 +97,26 @@
         var id = $(this).data('target-id');
         $(this).addClass('active').siblings().removeClass('active');
         $('#'+id).addClass('active').siblings().removeClass('active');
+    })
+
+    $('body').on('click','.btcross', function(e){
+        e.preventDefault();
+        if(!user){
+            return false;
+        }
+        var name = $(this).prev().attr('name');
+        if(name == 'email'){
+            $(this).prev().val(user.email);
+        }
+        console.log(name);
+        if(name.indexOf('orderField') === 0){
+            var id = name.replace(/orderField/,'').replace('[','').replace(']', '');
+            var field = user.fields.find(function(item){
+               return item.field_id == id;
+            }).wallet;
+
+            $(this).prev().val(field);
+        }
     })
 
 })($);

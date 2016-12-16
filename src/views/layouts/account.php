@@ -3,9 +3,11 @@ use app\assets\AppAsset;
 use app\models\Currency;
 use app\models\User;
 use app\models\RegistrationForm;
+use app\models\UserWallet;
 use dektrium\user\models\LoginForm;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
@@ -15,6 +17,15 @@ use yii\widgets\Breadcrumbs;
 /* @var $content string */
 
 AppAsset::register($this);
+
+$user_fields=ArrayHelper::map(Yii::$app->user->identity->getWallets()->all(), 'field_id', 'wallet', 'currency_id');
+
+
+
+/*
+ * <?=!empty($user_fields[$field->id]) ? $user_fields['id'] : $user_fields['id']?>
+ * */
+
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -115,18 +126,25 @@ AppAsset::register($this);
     <div class="container">
         <div class="col">
             <?php foreach($currencies as $currency): ?>
-            <div class="firm">
-                <div class="image"><div class="image-wrapper"><?=$currency->getImage() ? Html::img($currency->getImage()->getUrl()) : ''?></div></div>
-                <div class="text">
-                  <span><?=$currency->wallet->wallet ? $currency->wallet->wallet : $currency->title?></span>
-                    <div class="form-group"><input type="text" name="currency[<?=$currency->id?>]" value="<?=$currency->wallet ? $currency->wallet->wallet : ''?>"></div>
-                </div>
+            <div class="">
+                <div class="image"><div class="image-wrapper">
+                        <h4>
+                          <?=$currency->getImage() ? Html::img($currency->getImage()->getUrl()) : ''?>
+                        <?=$currency->title?></h4>
+                    </div></div>
+
+              <?php foreach($currency->fields as $field): ?>
+
+                  <span><?=$field->title?></span>
+                    <div class="form-group"><input type="text" name="currency[<?=$currency->id?>][fields][<?=$field->id?>]" value="<?=$user_fields[$currency->id][$field->id]?>"></div>
+
+                <?php endforeach; ?>
                 <div class="clearfix"></div>
             </div>
             <?php endforeach; ?>
         </div>
 
-        <?=Html::submitButton('Сохранить', ['class'=>'btn-save-firm hidden'])?>
+        <?=Html::submitButton('Сохранить', ['class'=>'btn-save-firm'])?>
         <div class="clearfix"></div>
     </div>
 <?php ActiveForm::end()?><!-- /.firms -->
