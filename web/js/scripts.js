@@ -102,4 +102,11 @@
 
     new Clipboard('.copy');
 
+    $('.stat-data .tab').click(function(e){
+        e.preventDefault();
+        var id = $(this).data('target-id');
+        $(this).addClass('active').siblings().removeClass('active');
+        $('#'+id).addClass('active').siblings().removeClass('active');
+    })
+
 })($);

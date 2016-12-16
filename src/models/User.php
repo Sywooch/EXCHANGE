@@ -79,7 +79,13 @@ class User extends BaseUser
 		}
 	}
 
+	public function getCountRefExchanges(){
+		$ids = $this->getReferals()->select(['id'])->all();
+		$count = Order::find()->where(['in', 'user_id', $ids])->count();
+		$sum = Order::find()->where(['in', 'user_id', $ids])->sum('from_value');
 
+		return ['count'=>$count, 'sum'=>$sum];
+	}
 
 	public function getOrders() {
 		return $this->hasMany(Order::className(), [
@@ -91,6 +97,18 @@ class User extends BaseUser
 	public function getWallets(){
 		return $this->hasMany(UserWallet::className(), [
 				'user_id'=>'id'
+		]);
+	}
+
+	public function getReferals(){
+		return $this->hasMany(Referal::className(), [
+				'user_id'=>'id'
+		]);
+	}
+
+	public function getReferer(){
+		return $this->hasOne(Referal::className(), [
+				'referal_id'=>'id'
 		]);
 	}
 

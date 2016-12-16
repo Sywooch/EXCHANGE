@@ -6,6 +6,7 @@ use app\models\Currency;
 use app\models\ExchangeDirection;
 use app\models\Order;
 use app\models\OrderFields;
+use app\models\Referal;
 use app\models\RegistrationForm;
 use app\models\Testimonial;
 use Yii;

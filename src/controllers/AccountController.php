@@ -12,6 +12,7 @@ namespace app\controllers;
 use app\models\Banner;
 use app\models\Currency;
 use app\models\Order;
+use app\models\Referal;
 use app\models\UserWallet;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -83,7 +84,17 @@ class AccountController extends Controller
 	}
 
 	public function actionReferer(){
-		return $this->render('referer');
+
+		$referal = Referal::findOne(['user_id'=>\Yii::$app->user->id]);
+		//var_dump($referal, \Yii::$app->user->id);die;
+
+		$exchanges = \Yii::$app->user->identity->getCountRefExchanges();
+		$incoming = $referal->statistic->incoming;
+
+		return $this->render('referer',[
+				'exchanges'=>$exchanges,
+				'incoming'=>$incoming
+		]);
 	}
 
 	public function actionMaterials(){

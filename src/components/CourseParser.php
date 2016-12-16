@@ -11,6 +11,8 @@ namespace app\components;
 use app\models\Currency;
 use app\models\ExchangeDirection;
 use app\models\Order;
+use app\models\Referal;
+use app\models\ReferalStatistic;
 use Yii;
 use yii\base\Object;
 
@@ -21,6 +23,24 @@ class CourseParser extends Object
     public $cbrDaily = 'http://www.cbr.ru/scripts/XML_daily.asp';
 
     public function init() {
+				$cookies = Yii::$app->response->cookies;
+				$referal = Yii::$app->request->get('rid');
+
+				if ($referal) {
+					$cookies->add(new \yii\web\Cookie([
+							'name' => 'referer',
+							'value' => $referal,
+					]));
+
+					$user_id = $referal;
+					$stat = ReferalStatistic::findOne(['user_id'=>$user_id]);
+					if(!$stat){
+						$stat = new ReferalStatistic();
+						$stat->user_id = $user_id;
+						$stat->incoming = $stat->incoming+1;
+						$stat->save();
+					}
+				}
 
         if(!$this->check('RUR', 'USD')){
             $this->usd();

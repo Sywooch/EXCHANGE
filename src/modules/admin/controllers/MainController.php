@@ -5,6 +5,7 @@ namespace app\modules\admin\controllers;
 use app\models\Currency;
 use app\models\ExchangeDirection;
 use app\models\Order;
+use app\models\Referal;
 use nullref\admin\components\AdminController;
 use nullref\admin\models\Admin;
 use nullref\admin\models\LoginForm;
@@ -71,6 +72,22 @@ class MainController extends AdminController
 				foreach($items as $item){
 					$order = Order::findOne(['id'=>$item['id']]);
 					$order->status = $item['status'];
+
+
+					if($item['status'] == Order::STATUS_ACCEPTED){
+
+						if(Yii::$app->user->identity->referer){
+							$ref = Referal::findOne(['user_id'=>Yii::$app->user->identity->referer->id]);
+							if(!$ref){
+								$ref = new Referal();
+								$ref->user_id = Yii::$app->user->identity->referer->id;
+							}
+							$ref->exchanges = $ref->exchanges+1;
+							$ref->save();
+						}
+
+					}
+
 					$order->save();
 				}
 

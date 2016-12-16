@@ -27,6 +27,10 @@ class SecurityController extends \dektrium\user\controllers\SecurityController
 
 		if ($model->load(\Yii::$app->getRequest()->post()) && $model->login()) {
 			$this->trigger(self::EVENT_AFTER_LOGIN, $event);
+
+			$cookies = \Yii::$app->response->cookies;
+			$cookies->remove('referer');
+
 			return $this->refresh();
 		}
 
