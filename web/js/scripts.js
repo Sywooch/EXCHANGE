@@ -54,6 +54,10 @@
 
         var dialogs = [$("#question_dialog"),$("#comment_dialog"),$("#reg_dialog"),$("#reset_dialog"),$("#auth_dialog")];
 
+        $.each(dialogs, function(){
+            $(this).dialog('close');
+        });
+
         $.ajax({
             url: action,
             data: formData,
@@ -62,9 +66,7 @@
             type: 'POST',
             success: function(data){
                 console.log(data);
-                $.each(dialogs, function(){
-                    $(this).dialog('close');
-                })
+
 
             }
         });
