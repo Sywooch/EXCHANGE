@@ -36,6 +36,10 @@ class Module extends \nullref\admin\Module implements IAdminModule
 										'url' => ['/admin/banner'],
 								],
 								[
+										'label' => 'Рефералы',
+										'url' => ['/admin/referal'],
+								],
+								[
 										'label' => 'Новости',
 										'url' => ['/admin/news'],
 								],
