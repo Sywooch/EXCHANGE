@@ -56,4 +56,10 @@ class Referal extends \yii\db\ActiveRecord
 					'id'=>'referal_id'
 			]);
 		}
+
+	public function getReferer(){
+		return $this->hasOne(User::className(), [
+				'id'=>'user_id'
+		]);
+	}
 }
