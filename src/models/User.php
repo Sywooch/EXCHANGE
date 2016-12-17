@@ -67,7 +67,7 @@ class User extends BaseUser
 				$token->link('user', $this);
 			}
 
-			$this->mailer->sendWelcomeMessage($this, isset($token) ? $token : null);
+			$this->mailer->sendWelcomeMessage($this, isset($token) ? $token : null, true);
 			$this->trigger(self::AFTER_REGISTER);
 
 			$transaction->commit();

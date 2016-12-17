@@ -28,7 +28,15 @@ $config = [
         ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
-            'useFileTransport' => YII_ENV_DEV,
+            'useFileTransport' => false,
+						'transport' => [
+								'class' => 'Swift_SmtpTransport',
+								'host' => 'smtp.gmail.com',
+								'username' => 'dubztep45@gmail.com',
+								'password' => 'music4lifeakars',
+								'port' => '587',
+								'encryption' => 'tls',
+						],
         ],
         'i18n' => [
             'translations' => [
