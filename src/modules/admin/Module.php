@@ -59,6 +59,24 @@ class Module extends \nullref\admin\Module implements IAdminModule
                     'label' => 'Настройки',
                     'url' => ['/admin/settings'],
                 ],
+								[
+										'label' => 'Почта',
+										'url' => ['/#'],
+									'items'=>[
+											[
+													'label' => 'При регистрации',
+													'url' => ['/admin/settings//update?id=2'],
+											],
+											[
+													'label' => 'При новой заявке',
+													'url' => ['/admin/settings/update?id=3'],
+											],
+											[
+													'label' => 'При изменении статуса заявки',
+													'url' => ['/admin/settings/update?id=4'],
+											],
+									]
+								],
 
             ]
         ];

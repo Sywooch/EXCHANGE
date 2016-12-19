@@ -3,6 +3,7 @@
 
 namespace app\models;
 
+use app\components\MailInformer;
 use dektrium\user\helpers\Password;
 use dektrium\user\models\Token;
 use dektrium\user\models\User as BaseUser;
@@ -67,7 +68,9 @@ class User extends BaseUser
 				$token->link('user', $this);
 			}
 
-			$this->mailer->sendWelcomeMessage($this, isset($token) ? $token : null, true);
+			//$this->mailer->sendWelcomeMessage($this, isset($token) ? $token : null, true);
+			MailInformer::send(MailInformer::TEMPLATE_REGISTER, 'Вы зарегистрировались на сайте '.\Yii::$app->name,
+					$this->email, $this);
 			$this->trigger(self::AFTER_REGISTER);
 
 			$transaction->commit();
