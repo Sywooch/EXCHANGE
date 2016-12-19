@@ -60,11 +60,11 @@ class MailInformer extends Object
 			<tr><td>Направление обмена: </td>
 				<td>'.$order->exchange->from->title.' '
 						.$order->from_value.' '
-						.$order->direction->from->type.' => '
+						.$order->exchange->from->type.' => '
 						.$order->exchange->to->title.' '
 						.$order->to_value.' '
-						.$order->direction->to->type.' курс '
-						.$order->direction->course
+						.$order->exchange->to->type.' курс '
+						.$order->exchange->course
 						.'</td></tr>
 			<tr><td>Дата: </td><td>'.\Yii::$app->formatter->asDate($order->date, 'php:d.m.Y H:i:s').'</td></tr>
 			</table>';
