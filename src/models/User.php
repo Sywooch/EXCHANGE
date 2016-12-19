@@ -78,7 +78,7 @@ class User extends BaseUser
 			return true;
 		} catch (\Exception $e) {
 			$transaction->rollBack();
-			\Yii::warning($e->getMessage());
+			var_dump($e->getMessage());die;
 			return false;
 		}
 	}

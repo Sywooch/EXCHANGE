@@ -25,20 +25,25 @@ class MailInformer extends Object
 	const TEMPLATE_STATUS = 4;
 
 
-	public static function send($template, $subject = 'Информер', $receiver, $type, $param = false){
+	public static function send($template, $subject = 'Информер', $receiver, $param = false){
 		$mailer = \Yii::$app->mailer;
 		$sender = isset(\Yii::$app->params['adminEmail']) ? \Yii::$app->params['adminEmail'] : 'no-reply@example.com';
-		return $mailer->compose(['html' => self::parseTemplate($template, $param)])
+		return $mailer->compose()
 				->setTo($receiver)
 				->setFrom($sender)
 				->setSubject($subject)
+				->setHtmlBody(self::parseTemplate($template, $param))
 				->send();
 	}
 
 	protected function parseTemplate($id, $param = false){
-		$template = Settings::findOne(['id'=>$id]);
+		$template = htmlspecialchars_decode(Settings::findOne(['id'=>$id])->content);
+
+		//var_dump($template);die;
 
 		$template = str_replace(self::TAG_SITEURL, \Yii::$app->urlManager->createAbsoluteUrl(['site/index']), $template);
+
+
 
 		if($id == self::TEMPLATE_REGISTER){
 			$credentials = '<table>
