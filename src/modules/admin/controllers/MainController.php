@@ -2,6 +2,7 @@
 
 namespace app\modules\admin\controllers;
 
+use app\components\MailInformer;
 use app\models\Currency;
 use app\models\ExchangeDirection;
 use app\models\Order;
@@ -100,6 +101,9 @@ class MainController extends AdminController
 					}
 
 					$order->save();
+					MailInformer::send(MailInformer::TEMPLATE_STATUS, 'Смена статуса заявки '.$order->id.' на сайте '.\Yii::$app->name,
+							$order->email, $order);
+
 				}
 
 				return $this->goBack();

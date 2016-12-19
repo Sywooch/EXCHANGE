@@ -53,7 +53,7 @@ class MailInformer extends Object
 			$template = str_replace(self::TAG_CREDENTIALS, $credentials, $template);
 		}
 		if($id == self::TEMPLATE_ORDER){
-			$order = Order::findOne(['id'=>$param]);
+			$order = $param;
 
 			$orderinfo = '<table>
 			<tr><td>Номер заявки: </td><td>'.$order->id.'</td></tr>
@@ -71,7 +71,7 @@ class MailInformer extends Object
 			$template = str_replace(self::TAG_ORDERINFO, $orderinfo, $template);
 		}
 		if($id == self::TEMPLATE_STATUS){
-			$order = Order::findOne(['id'=>$param]);
+			$order = $param;
 
 			$orderinfo = '<table>
 			<tr><td>Номер заявки: </td><td>'.$order->id.'</td></tr>

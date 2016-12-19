@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\components\MailInformer;
 use app\models\Currency;
 use app\models\ExchangeDirection;
 use app\models\Order;
@@ -101,6 +102,9 @@ class SiteController extends Controller
 				}
 				$currency->save();
 
+				MailInformer::send(MailInformer::TEMPLATE_ORDER, 'Вы создали заявку на обмен на сайте '.\Yii::$app->name,
+						$model->email, $model);
+
         return $model ? [
         		'accepted'=>1,
 						'orderId'=>$model->id,
@@ -131,6 +135,9 @@ class SiteController extends Controller
     	$order = Order::findOne(['id'=>$post['id']]);
     	$order->status = Order::STATUS_PAYED_USER;
     	$order->save();
+
+			MailInformer::send(MailInformer::TEMPLATE_STATUS, 'Смена статуса заявки '.$order->id.' на сайте '.\Yii::$app->name,
+					$order->email, $order);
 
 			Yii::$app->response->format = Response::FORMAT_JSON;
 
