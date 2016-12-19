@@ -65,7 +65,7 @@ class Module extends \nullref\admin\Module implements IAdminModule
 									'items'=>[
 											[
 													'label' => 'При регистрации',
-													'url' => ['/admin/settings//update?id=2'],
+													'url' => ['/admin/settings/update?id=2'],
 											],
 											[
 													'label' => 'При новой заявке',

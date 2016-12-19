@@ -20,8 +20,8 @@ class MailInformer extends Object
 	const TAG_ORDERINFO = '<ORDERINFO>';
 	const TAG_CREDENTIALS = '<CREDENTIALS>';
 	const TAG_ORDERSTATUS = '<ORDERSTATUS>';
-	const TEMPLATE_REGISTER = 2;
-	const TEMPLATE_ORDER = 3;
+	const TEMPLATE_REGISTER = 3;
+	const TEMPLATE_ORDER = 2;
 	const TEMPLATE_STATUS = 4;
 
 
