@@ -59,10 +59,10 @@ class MailInformer extends Object
 			<tr><td>Номер заявки: </td><td>'.$order->id.'</td></tr>
 			<tr><td>Направление обмена: </td>
 				<td>'.$order->exchange->from->title.' '
-						.$order->exchange->from_value.' '
+						.$order->from_value.' '
 						.$order->direction->from->type.' => '
 						.$order->exchange->to->title.' '
-						.$order->exchange->to_value.' '
+						.$order->to_value.' '
 						.$order->direction->to->type.' курс '
 						.$order->direction->course
 						.'</td></tr>
