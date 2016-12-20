@@ -72,7 +72,7 @@ class MailInformer extends Object
 		}
 		if($id == self::TEMPLATE_STATUS){
 			$order = $param;
-
+			$voucher = (bool)$order->voucher ? '<tr><td>Ваучер: </td><td>'.$order->voucher.'</td></tr>' : '';
 			$orderinfo = '<table>
 			<tr><td>Номер заявки: </td><td>'.$order->id.'</td></tr>
 			<tr><td>Направление обмена: </td>
@@ -82,9 +82,11 @@ class MailInformer extends Object
 					.$order->exchange->to->title.' '
 					.$order->to_value.' '
 					.$order->exchange->to->type.' курс '
-					.$order->exchange->course
-					.'</td></tr>
-			<tr><td>Дата: </td><td>'.\Yii::$app->formatter->asDate($order->date, 'php:d.m.Y H:i:s').'</td></tr>
+					.
+					round((float)$order->exchange->course - ((float)$order->exchange->course * (float)$order->exchange->exchange_percent / 100), 4)
+					.'</td></tr>'.
+					$voucher
+			.'<tr><td>Дата: </td><td>'.\Yii::$app->formatter->asDate($order->date, 'php:d.m.Y H:i:s').'</td></tr>
 			</table>';
 			if($order->status == Order::STATUS_INACTIVE){
 				$status = 'Отклонено';

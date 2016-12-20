@@ -137,6 +137,9 @@ class SiteController extends Controller
 
     	$order = Order::findOne(['id'=>$post['id']]);
     	$order->status = Order::STATUS_PAYED_USER;
+    	if(!empty($post['voucher'])){
+				$order->voucher = $post['voucher'];
+			}
     	$order->save();
 
 			MailInformer::send(MailInformer::TEMPLATE_STATUS, 'Смена статуса заявки '.$order->id.' на сайте '.\Yii::$app->name,

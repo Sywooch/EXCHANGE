@@ -83,22 +83,24 @@ class MainController extends AdminController
 
 				foreach($items as $item){
 					$order = Order::findOne(['id'=>$item['id']]);
-					if($order->status != $item->status){
+					if($order->status != $item['status']){
 						MailInformer::send(MailInformer::TEMPLATE_STATUS, 'Смена статуса заявки '.$order->id.' на сайте '.\Yii::$app->name,
 								$order->email, $order);
 					}
 					$order->status = $item['status'];
+					$order->voucher = !empty($item['voucher']) ? $item['voucher'] : '';
 
 					if($item['status'] == Order::STATUS_ACCEPTED){
-
-						if(Yii::$app->user->identity->referer){
-							$ref = Referal::findOne(['user_id'=>Yii::$app->user->identity->referer->id]);
-							if(!$ref){
-								$ref = new Referal();
-								$ref->user_id = Yii::$app->user->identity->referer->id;
+						if($order->user){
+							if($order->user->referer){
+								$ref = Referal::findOne(['user_id'=>$order->user->referer->id]);
+								if(!$ref){
+									$ref = new Referal();
+									$ref->user_id = $order->user->referer->id;
+								}
+								$ref->exchanges = $ref->exchanges+1;
+								$ref->save();
 							}
-							$ref->exchanges = $ref->exchanges+1;
-							$ref->save();
 						}
 
 					}

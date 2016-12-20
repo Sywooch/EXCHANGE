@@ -29,7 +29,8 @@
         e.preventDefault();
         $.post('site/change-order-status', {
             id:$(this).data('id'),
-            status:3
+            status:3,
+            voucher: $('#voucher_input').val()
         }, function(response){
             console.log(response);
             $('#tot_dialog').dialog('close');

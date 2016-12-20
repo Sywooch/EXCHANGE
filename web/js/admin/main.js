@@ -11,9 +11,11 @@ $('#save-orders').click(function(e){
     $('.main-page .multiple-input-list__item').each(function(){
        var id = parseInt($(this).find('.list-cell__id p').text());
        var status = parseInt($(this).find('.list-cell__status select').val());
+       var voucher = $(this).find('.list-cell__voucher input[type="text"]').val();
        items.push({
             id:id,
-            status:status
+            status:status,
+            voucher:voucher
         });
     });
 

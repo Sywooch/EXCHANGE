@@ -56,10 +56,9 @@ $status = ['Отклонен', '', 'Не оплачен', 'Оплачен', 'П�
                         $f = array_map(function ($item) {
                           return Html::tag('div', $item->field->title . ': ' . $item->value);
                         }, $order->fields);
-                        return implode(' ', $f) . Html::tag('div', $order->card) .
-                            Html::tag('div', $order->bank) .
+                        $voucher = $order->voucher ? Html::tag('div', Html::tag('b', $order->exchange->from->voucher_title.': '.$order->voucher)) : "";
+                        return implode(' ', $f) . Html::tag('div', $order->card) . $voucher .
                             Html::tag('div', $order->fio) .
-                            Html::tag('div', $order->wallet) .
                             Html::tag('div', $order->email);
                       }
                   ],
@@ -73,6 +72,10 @@ $status = ['Отклонен', '', 'Не оплачен', 'Оплачен', 'П�
                           3 => 'Оплачен',
                           4 => 'Проведён'
                       ]
+                  ],
+                  [
+                      'name' => 'voucher',
+                      'title' => 'Введите ваучер (если необходимо)',
                   ],
               ],
           ]) : '' ?>
