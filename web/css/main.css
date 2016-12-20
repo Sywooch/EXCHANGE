@@ -274,7 +274,8 @@ a {
 .bid .bid-block .form .fields .control {
   text-align: center;
 }
-.bid .bid-block .form .fields .control button {
+.bid .bid-block .form .fields .control button,
+form.firms button.btn-save-firm{
   text-transform: uppercase;
   text-align: center;
   font-size: 14px;
@@ -301,7 +302,9 @@ a {
 .ui-dialog.ui-widget.ui-widget-content .ui-dialog-content form input[type="submit"]:hover,
 .ui-dialog.ui-widget.ui-widget-content .ui-dialog-content form input[type="submit"]:active,
 .inner-wrapper .lk-main input[type="submit"]:hover,
-.inner-wrapper .lk-main input[type="submit"]:active{
+.inner-wrapper .lk-main input[type="submit"]:active,
+form.firms button.btn-save-firm:hover,
+form.firms button.btn-save-firm:active{
   
     box-shadow: inset 3px 3px 17px rgb(183, 133, 24);
     cursor: pointer;
@@ -1341,6 +1344,69 @@ a {
 .firms .col .firm {
   height: 38px;
 }
+#firms-form div.payway{
+    float: left;
+    min-width: 240px;
+    margin: 15px 0;
+}
+#firms-form div.payway h4{
+  margin: 0;
+  cursor: pointer;
+}
+#firms-form div.payway h4 img{
+  height: 30px;
+  width: 30px;
+  vertical-align: middle;
+  margin: -3px 19px 0 0;
+}
+#firms-form div.form-group{
+    display: none;
+    position: fixed;
+    top: 35%;
+    left: 39%;
+    z-index: 11;
+    width: 407px;
+    height: 230px;
+    background: white;
+    padding: 28px 60px 0 60px;
+}
+#firms-form div.form-group img.close{
+    position: absolute;
+    right: 1.5%;
+    top: 3%;
+    cursor: pointer;
+    border: 1px solid;
+    padding: 1%;
+}
+#firms-form div.form-group p{
+    color: gray;
+    font-weight: 600;
+    text-align: center;
+    margin: 0;
+    font-size: 1.25em;
+    line-height: 1.1em;
+    
+}
+#firms-form div.form-group input{
+  width: 100%;
+  margin-top: 20px;
+  font-size: 75%;
+  padding: 2%;
+}
+#firms-form div.form-group button{
+  width: 100%;
+  margin-top: 20px;
+}
+#shadow{
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.7);
+  z-index: 10;
+}
 .firms .col .firm .image {
   width: 38px;
   float: left;
@@ -2040,6 +2106,11 @@ a {
 .ui-dialog.ui-widget.ui-widget-content .ui-dialog-content form .chkbx .forgot a:hover {
   text-decoration: none;
 }
+@media (max-width: 1367px){
+  #firms-form div.form-group {
+    left: 33%;
+  }
+}
 @media (max-width: 1199px) {
   .container {
     width: 970px;
@@ -2168,6 +2239,7 @@ a {
     width: 130px;
   }
 }
+
 @media (max-width: 991px) {
   .container {
     width: 750px;
@@ -2382,6 +2454,9 @@ a {
   }
   .article-page .right-content {
     display: none;
+  }
+  #firms-form div.form-group {
+    left: 29%;
   }
 }
 @media (max-width: 767px) {
@@ -2690,4 +2765,23 @@ a {
   .ui-dialog.ui-widget.ui-widget-content {
     width: 90% !important;
   }
+  
+  #firms-form div.form-group {
+    left: 23%;
+  }
+}
+@media (max-width: 560px) {
+  #firms-form div.form-group {
+    left: 18%;
+    width: 72%;
+  }
+
+}
+@media (max-width: 360px) {
+  #firms-form div.form-group {
+    left: 0;
+    width: 100%;
+    padding: 5%;
+  }
+
 }

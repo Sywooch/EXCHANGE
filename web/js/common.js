@@ -17,4 +17,15 @@ $(document).ready(function() {
         //анимируем переход на расстояние - top за 850 мс
         $('body,html').animate({scrollTop: top}, 850);
     });
+	
+	$('#firms-form > div.container > div.col').on('click', 'div.payway', function(){
+		$('#shadow').show();
+		$('#firms-form div.form-group').show();
+	});
+	$('#firms-form div.form-group > img.close').on('click', function(){
+		$('#shadow').hide();
+		$('#firms-form div.form-group').hide();
+	});
+	
+	//#firms-form > div > div.col > div:nth-child(3)
 });

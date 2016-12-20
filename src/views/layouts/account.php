@@ -124,27 +124,35 @@ $user_fields=Yii::$app->user->identity->getWallets()->all() ? ArrayHelper::map(Y
       'options'=>['class'=>'firms'],
     ])?>
     <div class="container">
+        <div id="shadow"></div>
         <div class="col">
             <?php foreach($currencies as $currency): ?>
-            <div class="">
-                <div class="image"><div class="image-wrapper">
+            <div class="payway">
+                <div class="image">
+                    <div class="image-wrapper">
                         <h4>
-                          <?=$currency->getImage() ? Html::img($currency->getImage()->getUrl()) : ''?>
-                        <?=$currency->title?></h4>
-                    </div></div>
-
-              <?php foreach($currency->fields as $field): ?>
-
-                  <span><?=$field->title?></span>
-                    <div class="form-group"><input type="text" name="currency[<?=$currency->id?>][fields][<?=$field->id?>]" <?php if($user_fields){?>value="<?=!empty($user_fields[$currency->id]) ? $user_fields[$currency->id][$field->id] : ''?>" <?php } ?>></div>
-
-                <?php endforeach; ?>
+                            <?=$currency->getImage() ? Html::img($currency->getImage()->getUrl()) : ''?>
+                            <?=$currency->title?>
+                        </h4>
+                    </div>
+                </div>
                 <div class="clearfix"></div>
             </div>
+                <?php foreach($currency->fields as $field): ?>
+
+                  
+                    <div class="form-group">
+                        <img src="../img/dialog-close-ico.png" alt="close" width="20" height="20" class="close"/>
+                        <p>Создать шаблон автозаполнения <?=$field->title?></p>
+                        <input type="text" placeholder="Кошелёк для получения" name="currency[<?=$currency->id?>][fields][<?=$field->id?>]" <?php if($user_fields){?>value="<?=!empty($user_fields[$currency->id]) ? $user_fields[$currency->id][$field->id] : ''?>" <?php } ?>>
+                    <?=Html::submitButton('Сохранить', ['class'=>'btn-save-firm'])?>
+                    </div>
+
+                <?php endforeach; ?>
             <?php endforeach; ?>
         </div>
 
-        <?=Html::submitButton('Сохранить', ['class'=>'btn-save-firm'])?>
+        
         <div class="clearfix"></div>
     </div>
 <?php ActiveForm::end()?><!-- /.firms -->
