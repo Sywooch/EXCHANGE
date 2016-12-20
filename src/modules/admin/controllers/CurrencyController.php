@@ -153,10 +153,12 @@ class CurrencyController extends Controller
 
     	CurrencyFields::deleteAll(['currency_id'=>$model->id]);
     	foreach($fields['title'] as $fieldd){
-    		$field = new CurrencyFields();
-    		$field->currency_id = $model->id;
-    		$field->title = $fieldd;
-    		$field->save();
+    		if($fieldd){
+					$field = new CurrencyFields();
+					$field->currency_id = $model->id;
+					$field->title = $fieldd;
+					$field->save();
+				}
 			}
 		}
 }

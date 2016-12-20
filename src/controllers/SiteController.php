@@ -86,12 +86,14 @@ class SiteController extends Controller
 						$form->register();
 				}
 
-				foreach($data['orderField'] as $id => $value){
-					$orderField = new OrderFields();
-					$orderField->value = $value;
-					$orderField->field_id = $id;
-					$orderField->order_id = $model->id;
-					$orderField->save();
+				if(!empty($data['orderField'])){
+					foreach($data['orderField'] as $id => $value){
+						$orderField = new OrderFields();
+						$orderField->value = $value;
+						$orderField->field_id = $id;
+						$orderField->order_id = $model->id;
+						$orderField->save();
+					}
 				}
 
         //reserve

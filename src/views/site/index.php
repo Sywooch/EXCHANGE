@@ -241,7 +241,9 @@ NgAppAsset::register($this); ?>
 </div>
 
 <div id="tot_dialog">
+    <form action="">
     <h5>Мы зарезервировали для вас средства на 30 минут. Переведите <div id="total"></div></h5>
-    <div id="voucher" class="hidden"><input type="text" id="voucher_input" name="voucher_code" placeholder=""></div>
+    <div id="voucher" class="hidden"><input type="text" id="voucher_input" name="voucher_code" placeholder="" required></div>
     <button id="totalBut" data-id="0">Я оплатил(а) заявку</button>
+    </form>
 </div>
