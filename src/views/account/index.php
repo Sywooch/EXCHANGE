@@ -24,7 +24,7 @@ $this->title = 'Личный кабинет';
 						<?php if($order->status == 0): ?><div class="b-status">Отклонено</div><?php endif; ?>
                         <?php if($order->status == 2): ?><div class="b-status">Оплата не подтверждена</div><?php endif; ?>
                         <?php if($order->status == 3): ?><div class="b-status">Оплата подтверждена</div><?php endif; ?>
-                        <?php if($order->status == 4): ?><div class="b-status">Выполнено</div><?php endif; ?>
+                        <?php if($order->status == 4): ?><div class="b-status">Выполнено <?=$order->voucher?'(ваучер: '.$order->voucher.')':''?></div><?php endif; ?>
 						<div class="b-time">
 							<span class="date"><?=Yii::$app->formatter->asDate($order->date, 'php:d.m.Y')?></span>
 							<span class="time"><?=Yii::$app->formatter->asDate($order->date, 'php:H:i:s')?></span>
@@ -43,7 +43,9 @@ $this->title = 'Личный кабинет';
 							<div class="image"><?=$order->exchange->to->getImage() ? Html::img($order->exchange->to->getImage()->getUrl()) : ''?></div>
 							<div class="to-info">
 								<div class="name"><?=$order->exchange->to->title?></div>
-								<div class="wallet">Кошелек: <?=$order->wallet?></div>
+                                <?php foreach($order->fields as $field): ?>
+								<div class="wallet"><?=$field->field->title?>: <?=$field->value?></div>
+                                <?php endforeach; ?>
 							</div>
 							<div class="clearfix"></div>
 						</div>

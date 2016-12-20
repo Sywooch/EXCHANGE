@@ -247,3 +247,8 @@ NgAppAsset::register($this); ?>
     <button id="totalBut" data-id="0">Я оплатил(а) заявку</button>
     </form>
 </div>
+
+
+<div id="success_modal">
+        <h5>Ваша заявка принята в обработку</h5>
+</div>

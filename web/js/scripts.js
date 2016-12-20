@@ -19,6 +19,7 @@
                     $('#voucher_input').attr('placeholder', response.voucher);
                 } else {
                     $('#voucher').addClass('hidden');
+                    $('#voucher_input').val('');
                 }
                 $('#tot_dialog').dialog('open');
             }
@@ -27,6 +28,8 @@
 
     $('#totalBut').click(function(e){
         e.preventDefault();
+        $('#tot_dialog').dialog('close');
+        $('#success_modal').dialog('open');
         $.post('site/change-order-status', {
             id:$(this).data('id'),
             status:3,
@@ -65,6 +68,13 @@
             $(this).dialog('close');
         });
 
+        if($(this).attr('id') == 'registration-form') {
+            $('#success_modal h5').text('Вы успешно зарегистрированы! Данные для входа отправлены на почту.')
+            $('#success_modal').dialog('show');
+        } else {
+            $('#success_modal h5').text('Ваша заявка принята в обработку.')
+        }
+
         $.ajax({
             url: action,
             data: formData,
@@ -77,7 +87,7 @@
 
             },
             error: function(error){
-                alert('Ошибка');
+                console.log(error);
             }
         });
     });
