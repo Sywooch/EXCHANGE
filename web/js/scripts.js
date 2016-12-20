@@ -70,7 +70,7 @@
 
         if($(this).attr('id') == 'registration-form') {
             $('#success_modal h5').text('Вы успешно зарегистрированы! Данные для входа отправлены на почту.')
-            $('#success_modal').dialog('show');
+            $('#success_modal').dialog('open');
         } else {
             $('#success_modal h5').text('Ваша заявка принята в обработку.')
         }
