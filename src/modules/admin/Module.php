@@ -56,7 +56,7 @@ class Module extends \nullref\admin\Module implements IAdminModule
                     'url' => ['/admin/testimonial'],
                 ],
 								[
-										'label' => 'Отзывы',
+										'label' => 'Пользователи',
 										'url' => ['/admin/site-user'],
 								],
                 [
