@@ -55,6 +55,10 @@ class Module extends \nullref\admin\Module implements IAdminModule
                     'label' => 'Отзывы',
                     'url' => ['/admin/testimonial'],
                 ],
+								[
+										'label' => 'Отзывы',
+										'url' => ['/admin/site-user'],
+								],
                 [
                     'label' => 'Настройки',
                     'url' => ['/admin/settings'],
