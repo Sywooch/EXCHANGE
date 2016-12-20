@@ -138,17 +138,20 @@ $user_fields=Yii::$app->user->identity->getWallets()->all() ? ArrayHelper::map(Y
                 </div>
                 <div class="clearfix"></div>
             </div>
-                <?php foreach($currency->fields as $field): ?>
+
 
                   
                     <div class="form-group">
                         <img src="../img/dialog-close-ico.png" alt="close" width="20" height="20" class="close"/>
-                        <p>Создать шаблон автозаполнения <?=$field->title?></p>
-                        <input type="text" placeholder="Кошелёк для получения" name="currency[<?=$currency->id?>][fields][<?=$field->id?>]" <?php if($user_fields){?>value="<?=!empty($user_fields[$currency->id]) ? $user_fields[$currency->id][$field->id] : ''?>" <?php } ?>>
+
+                        <p>Создать шаблон автозаполнения</p>
+							<?php foreach($currency->fields as $field): ?>
+                            <input type="text" placeholder="<?=$field->title?>" name="currency[<?=$field->currency_id?>][fields][<?=$field->id?>]" <?php if($user_fields){?>value="<?=!empty($user_fields[$field->currency_id][$field->id]) ? $user_fields[$field->currency_id][$field->id] : ''?>" <?php } ?>>
+							<?php endforeach; ?>
                     <?=Html::submitButton('Сохранить', ['class'=>'btn-save-firm'])?>
                     </div>
 
-                <?php endforeach; ?>
+
             <?php endforeach; ?>
         </div>
 

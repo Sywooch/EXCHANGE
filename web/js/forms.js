@@ -8,8 +8,16 @@ $( function() {
 		'draggable': false,
 		'resizable': false
 	});
-	
-	$("#comment_dialog").dialog({
+
+    $("#success_modal").dialog({
+        'autoOpen': false,
+        'modal': true,
+        'draggable': false,
+        'resizable': false
+    });
+
+
+    $("#comment_dialog").dialog({
 		'autoOpen': false,
 		'modal': true,
 		'draggable': false,

@@ -20,7 +20,7 @@ $(document).ready(function() {
 	
 	$('#firms-form > div.container > div.col').on('click', 'div.payway', function(){
 		$('#shadow').show();
-		$('#firms-form div.form-group').show();
+		$(this).next('div.form-group').show();
 	});
 	$('#firms-form div.form-group > img.close').on('click', function(){
 		$('#shadow').hide();
