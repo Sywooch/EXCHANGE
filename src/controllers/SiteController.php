@@ -107,6 +107,15 @@ class SiteController extends Controller
 				MailInformer::send(MailInformer::TEMPLATE_ORDER, 'Вы создали заявку на обмен на сайте '.\Yii::$app->name,
 						$model->email, $model);
 
+				if(!Yii::$app->user->isGuest){
+					$sum = Yii::$app->user->identity->getCountOrders()['sumUsd'];
+					$bonus = $model->exchange->course * (Yii::$app->user->identity->getBonus($sum)/100);
+					$model->to_value = round((float)$model->to_value+(float)$bonus, 4);
+					$model->save();
+				} else {
+					$bonus = 0;
+				}
+
         return $model ? [
         		'accepted'=>1,
 						'orderId'=>$model->id,
@@ -116,7 +125,8 @@ class SiteController extends Controller
 							'sum'=>$model->from_value,
 							'valute'=>$direction->getFrom()->one()->type
 						],
-						'voucher'=>$direction->from->is_voucher ? $direction->from->voucher_title : false
+						'voucher'=>$direction->from->is_voucher ? $direction->from->voucher_title : false,
+						'bonus'=>$bonus
 				] : $model->getErrors();
     }
 

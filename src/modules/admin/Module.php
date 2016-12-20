@@ -59,6 +59,10 @@ class Module extends \nullref\admin\Module implements IAdminModule
 										'label' => 'Пользователи',
 										'url' => ['/admin/site-user'],
 								],
+								[
+										'label' => 'Система скидок',
+										'url' => ['/admin/bonus'],
+								],
                 [
                     'label' => 'Настройки',
                     'url' => ['/admin/settings'],

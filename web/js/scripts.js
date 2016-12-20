@@ -12,7 +12,7 @@
             console.log(response);
             $(form).find('.row input').val('');
             if(response){
-                $('#total').text(response.info.sum+' '+response.info.currency+' '+response.info.valute+' по данным реквизитам: '+response.info.wallet);
+                $('#total').text(response.info.sum+' '+response.info.currency+' '+response.info.valute+' по данным реквизитам: '+response.info.wallet+'. Ваш бонус: '+response.bonus);
                 $('#totalBut').data('id', response.orderId);
                 if(response.voucher){
                     $('#voucher').removeClass('hidden');

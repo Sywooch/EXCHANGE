@@ -17,6 +17,13 @@ $this->title = 'Личный кабинет';
 
 		<div class="lk-main">
 			<div class="bids-list">
+<?php
+$sum = Yii::$app->user->identity->getCountOrders()['sumUsd'];
+$bonus = Yii::$app->user->identity->getBonus($sum);
+?>
+                <h3><?='Сумма: '.$sum?>$</h3>
+                <h3><?='Ваш бонус: '.$bonus?>%</h3>
+
                 <?php foreach($orders as $order): ?>
 				<div class="bid-item">
 					<div class="b-head">

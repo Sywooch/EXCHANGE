@@ -109,6 +109,32 @@ class User extends BaseUser
 		return ['count'=>$count, 'sumRur'=>$sumRur,'sumUsd'=>$sumUsd];
 	}
 
+	public function getBonus($sum){
+		return Bonus::find()->where(['>', 'to', $sum])->andWhere(['<', 'from', $sum])->one() ?
+				Bonus::find()->where(['>', 'to', $sum])->andWhere(['<', 'from', $sum])->one()->percent : 0;
+	}
+
+	public function getCountOrders(){
+		$count = $this->getOrders()->where(['status'=>Order::STATUS_ACCEPTED])->count();
+		$orders = $this->getOrders()->where(['status'=>Order::STATUS_ACCEPTED])->all();
+
+		$sumRur = 0;
+		$sumUsd = 0;
+		$courseRur = (float)CourseParser::findOne(['from'=>'RUR'])['value'];
+		$courseUsd = CourseParser::findOne(['from'=>'USD'])['value'];
+		foreach($orders as $order){
+			if($order->exchange->from->type == 'USD') {
+				$sumRur += $order->from_value * $courseUsd;
+				$sumUsd += $order->from_value;
+			} else if($order->exchange->from->type == 'RUR'){
+				$sumRur += $order->from_value;
+				$sumUsd += $order->from_value * $courseRur;
+			}
+		}
+
+		return ['count'=>$count, 'sumRur'=>$sumRur,'sumUsd'=>$sumUsd];
+	}
+
 	public function getOrders() {
 		return $this->hasMany(Order::className(), [
 				'user_id'=>'id'
