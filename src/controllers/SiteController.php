@@ -113,7 +113,8 @@ class SiteController extends Controller
 							'wallet'=>$direction->getFrom()->one()->wallet,
 							'sum'=>$model->from_value,
 							'valute'=>$direction->getFrom()->one()->type
-						]
+						],
+						'voucher'=>$direction->from->is_voucher ? $direction->from->voucher_title : false
 				] : $model->getErrors();
     }
 

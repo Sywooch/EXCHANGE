@@ -14,6 +14,12 @@
             if(response){
                 $('#total').text(response.info.sum+' '+response.info.currency+' '+response.info.valute+' по данным реквизитам: '+response.info.wallet);
                 $('#totalBut').data('id', response.orderId);
+                if(response.voucher){
+                    $('#voucher').removeClass('hidden');
+                    $('#voucher_input').attr('placeholder', response.voucher);
+                } else {
+                    $('#voucher').addClass('hidden');
+                }
                 $('#tot_dialog').dialog('open');
             }
         });
