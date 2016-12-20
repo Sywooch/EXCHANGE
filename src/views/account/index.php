@@ -44,7 +44,7 @@ $this->title = 'Личный кабинет';
 							<div class="to-info">
 								<div class="name"><?=$order->exchange->to->title?></div>
                                 <?php foreach($order->fields as $field): ?>
-								<div class="wallet"><?=$field? $field->field->title:''?>: <?=$field?$field->value:''?></div>
+								<div class="wallet"><?=$field->field? $field->field->title:''?>: <?=$field?$field->value:''?></div>
                                 <?php endforeach; ?>
 							</div>
 							<div class="clearfix"></div>
