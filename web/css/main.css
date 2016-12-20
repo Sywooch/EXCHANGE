@@ -275,7 +275,8 @@ a {
   text-align: center;
 }
 .bid .bid-block .form .fields .control button,
-form.firms button.btn-save-firm{
+form.firms button.btn-save-firm,
+#totalBut{
   text-transform: uppercase;
   text-align: center;
   font-size: 14px;
@@ -304,7 +305,9 @@ form.firms button.btn-save-firm{
 .inner-wrapper .lk-main input[type="submit"]:hover,
 .inner-wrapper .lk-main input[type="submit"]:active,
 form.firms button.btn-save-firm:hover,
-form.firms button.btn-save-firm:active{
+form.firms button.btn-save-firm:active,
+#totalBut:hover,
+#totalBut:active{
   
     box-shadow: inset 3px 3px 17px rgb(183, 133, 24);
     cursor: pointer;
@@ -1378,15 +1381,17 @@ form.firms button.btn-save-firm:active{
     border: 1px solid;
     padding: 1%;
 }
-#firms-form div.form-group p{
+#firms-form div.form-group p,
+#tot_dialog form h5{
     color: gray;
     font-weight: 600;
     text-align: center;
     margin: 0;
     font-size: 1.25em;
     line-height: 1.1em;
-    
+    margin-bottom: 5%;
 }
+
 #firms-form div.form-group input{
   width: 100%;
   margin-top: 20px;
