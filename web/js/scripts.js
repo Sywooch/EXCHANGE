@@ -68,6 +68,9 @@
                 console.log(data);
 
 
+            },
+            error: function(error){
+                alert('Ошибка');
             }
         });
     });

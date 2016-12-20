@@ -83,8 +83,11 @@ class MainController extends AdminController
 
 				foreach($items as $item){
 					$order = Order::findOne(['id'=>$item['id']]);
+					if($order->status != $item->status){
+						MailInformer::send(MailInformer::TEMPLATE_STATUS, 'Смена статуса заявки '.$order->id.' на сайте '.\Yii::$app->name,
+								$order->email, $order);
+					}
 					$order->status = $item['status'];
-
 
 					if($item['status'] == Order::STATUS_ACCEPTED){
 
@@ -101,8 +104,7 @@ class MainController extends AdminController
 					}
 
 					$order->save();
-					MailInformer::send(MailInformer::TEMPLATE_STATUS, 'Смена статуса заявки '.$order->id.' на сайте '.\Yii::$app->name,
-							$order->email, $order);
+
 
 				}
 
