@@ -26,6 +26,4 @@ $(document).ready(function() {
 		$('#shadow').hide();
 		$('#firms-form div.form-group').hide();
 	});
-	
-	//#firms-form > div > div.col > div:nth-child(3)
 });

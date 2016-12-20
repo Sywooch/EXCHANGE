@@ -6,14 +6,16 @@ $( function() {
 		'autoOpen': false,
 		'modal': true,
 		'draggable': false,
-		'resizable': false
+		'resizable': false,
+		'closeText': ''
 	});
 
     $("#success_modal").dialog({
         'autoOpen': false,
         'modal': true,
         'draggable': false,
-        'resizable': false
+        'resizable': false,
+		'closeText': ''
     });
 
 
@@ -21,28 +23,32 @@ $( function() {
 		'autoOpen': false,
 		'modal': true,
 		'draggable': false,
-		'resizable': false
+		'resizable': false,
+		'closeText': ''
 	});
 	
 	$("#reg_dialog").dialog({
 		'autoOpen': false,
 		'modal': true,
 		'draggable': false,
-		'resizable': false
+		'resizable': false,
+		'closeText': ''
 	});
 	
 	$("#reset_dialog").dialog({
 		'autoOpen': false,
 		'modal': true,
 		'draggable': false,
-		'resizable': false
+		'resizable': false,
+		'closeText': ''
 	});
 	
 	$("#auth_dialog").dialog({
 		'autoOpen': false,
 		'modal': true,
 		'draggable': false,
-		'resizable': false
+		'resizable': false,
+		'closeText': ''
 	});
 	
 	$('#question_dialog_btn').click(function(e){

@@ -98,7 +98,8 @@
         'autoOpen': false,
         'modal': true,
         'draggable': false,
-        'resizable': false
+        'resizable': false,
+        'closeText': ''
     });
 
     $('.ref-link:not(:first-child)').hide();

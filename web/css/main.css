@@ -137,6 +137,8 @@ a {
 .bid .bid-block .info .rows {
   padding: 15px 0 7px;
   background: #ffffff;
+  overflow-y: auto;
+  height: 451px;
 }
 .bid .bid-block .info .rows .row {
   background: #ffffff;
@@ -712,6 +714,7 @@ form.firms button.btn-save-firm:active,
 }
 .inner-wrapper.inner-wrapper-auto {
   min-height: 0;
+      min-height: 718px;
   padding-bottom: 16px;
 }
 .inner-wrapper .title {
@@ -1382,14 +1385,19 @@ form.firms button.btn-save-firm:active,
     padding: 1%;
 }
 #firms-form div.form-group p,
-#tot_dialog form h5{
+#tot_dialog form h5,
+#success_modal h5{
     color: gray;
     font-weight: 600;
     text-align: center;
     margin: 0;
     font-size: 1.25em;
     line-height: 1.1em;
-    margin-bottom: 5%;
+    margin: 5% 0 5% 0;
+}
+#success_modal h5{
+    
+    margin-bottom: -2%;
 }
 
 #firms-form div.form-group input{
@@ -1942,11 +1950,15 @@ form.firms button.btn-save-firm:active,
   left: 0;
   top: 0;
   width: 100%;
-  height: 100%;*/
+  height: 100%;
   left: 2px;
-  top: 3px;
-  height: 21px;
-  width: 20px;
+  top: 3px;*/
+  right: 1%;
+  top: 1%;
+  cursor: pointer;
+  border: 1px solid;
+  height: 27px;
+  width: 27px;
   position: absolute;
   background: url(../img/dialog-close-ico.png) no-repeat center center;
   
@@ -1954,6 +1966,9 @@ form.firms button.btn-save-firm:active,
 }
 .ui-dialog.ui-widget.ui-widget-content .ui-dialog-content {
   padding: 15px 16.58536585% 56px;
+}
+#succes_modal div.ui-dialog.ui-widget.ui-widget-content .ui-dialog-content{
+      padding: 2% 2% 24% 4%;
 }
 .ui-dialog.ui-widget.ui-widget-content .ui-dialog-content .d-title {
   text-transform: uppercase;
@@ -2115,6 +2130,12 @@ form.firms button.btn-save-firm:active,
   #firms-form div.form-group {
     left: 33%;
   }
+  div.ui-dialog.ui-corner-all.ui-widget.ui-widget-content.ui-front{
+    position: fixed;
+    top: 45%;
+    left: 35%
+  }
+  
 }
 @media (max-width: 1199px) {
   .container {
@@ -2245,6 +2266,11 @@ form.firms button.btn-save-firm:active,
   }
 }
 
+@media (max-width: 1024px) {
+  div.ui-dialog ui-corner-all ui-widget ui-widget-content ui-front{
+    left: 29%
+  }
+}
 @media (max-width: 991px) {
   .container {
     width: 750px;
@@ -2774,13 +2800,30 @@ form.firms button.btn-save-firm:active,
   #firms-form div.form-group {
     left: 23%;
   }
+  div.ui-dialog.ui-corner-all.ui-widget.ui-widget-content.ui-front{
+    top: 30% !important;
+    left: 21% !important;
+    width: 60% !important;
+  }
+  
 }
 @media (max-width: 560px) {
   #firms-form div.form-group {
     left: 18%;
     width: 72%;
   }
-
+  div.ui-dialog.ui-corner-all.ui-widget.ui-widget-content.ui-front{
+    left: 3% !important;
+    width: 95% !important;
+  }
+  #totalBut{
+    margin-left: 10%;
+  }
+}
+@media (max-width: 480px) {
+  #totalBut{
+    margin-left: 5%;
+  }
 }
 @media (max-width: 360px) {
   #firms-form div.form-group {
@@ -2788,5 +2831,17 @@ form.firms button.btn-save-firm:active,
     width: 100%;
     padding: 5%;
   }
-
+  
+  div.ui-dialog.ui-corner-all.ui-widget.ui-widget-content.ui-front{
+    left: 0% !important;
+    width: 100% !important;
+  }
+  #totalBut{
+    margin-left: -9%;
+  }
+}
+@media (max-width: 320px){
+  #totalBut{
+    margin-left: -15%;
+  }
 }
