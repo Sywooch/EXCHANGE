@@ -40,8 +40,9 @@ class Currency extends \yii\db\ActiveRecord
     {
         return [
             [['reserve'], 'number'],
-            [['title', 'type', 'wallet'], 'string', 'max' => 255],
+            [['title', 'type', 'wallet', 'voucher_title'], 'string', 'max' => 255],
             [['icon'], 'file'],
+						[['is_voucher'], 'boolean'],
         ];
     }
 

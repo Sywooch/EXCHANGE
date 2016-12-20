@@ -43,6 +43,8 @@ use yii\widgets\ActiveForm;
 
 						]
 				]);?>
+	<?= $form->field($model, 'is_voucher')->checkbox()->label('Показывать поле для ввода ваучера?') ?>
+	<?= $form->field($model, 'voucher_title')->textInput(['maxlength' => true])->label('Подсказка для поля кода ваучера') ?>
 
 
     <div class="form-group">

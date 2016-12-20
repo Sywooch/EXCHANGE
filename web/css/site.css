@@ -111,3 +111,7 @@ cursor: default;
 .info-block .block .last-changes {
     height: 260px;
 }
+
+.hidden {
+    display: none !important;
+}
