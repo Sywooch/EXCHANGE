@@ -19,12 +19,12 @@ $this->title = 'Личный кабинет';
 			<div class="param">Статистика на дату: <span class="value">За все время</span></div>
 			<div class="param">Переходов по реферальной ссылке: <span class="value"><?=$incoming?></span></div>
 			<div class="param">Зарегистрировалось: <span class="value"><?=Yii::$app->user->identity->getReferals()->count()?></span></div>
-			<div class="param">Эффективность переходов: <span class="value"><?=$incoming ? Yii::$app->user->identity->getReferals()->count()/$incoming*100 : 0?>%</span></div>
+
 		</div>
 		<div class="col-2">
 			<div class="param">Обмены с вознаграждением: <span class="value"><?=(int)$exchanges['count']?></span></div>
 			<div class="param">Всего обменов: <span class="value"><?=(int)$exchanges['count']?></span></div>
-			<div class="param">Эффективность обменов: <span class="value"><?=(int)$exchanges['count'] ? (int)$exchanges['count']/(int)$exchanges['count']*100 : 0?>%</span></div>
+
 		</div>
 		<div class="clearfix"></div>
 	</div>

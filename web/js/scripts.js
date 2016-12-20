@@ -75,6 +75,12 @@
             $('#success_modal h5').text('Ваша заявка принята в обработку.')
         }
 
+        if($(this).attr('id') == 'login-form'){
+            $('#login-form button').text('Подождите...')
+        } else {
+            $('#login-form button').text('Войти')
+        }
+
         $.ajax({
             url: action,
             data: formData,
@@ -83,8 +89,7 @@
             type: 'POST',
             success: function(data){
                 console.log(data);
-
-
+                $('#login-form button').text('Войти')
             },
             error: function(error){
                 console.log(error);
@@ -140,6 +145,6 @@
 
             $(this).prev().val(field);
         }
-    })
+    });
 
 })($);

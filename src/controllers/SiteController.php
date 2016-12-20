@@ -53,7 +53,7 @@ class SiteController extends Controller
             return $item->directions;
         });
 
-        $orders = Order::find()->orderBy('date DESC')->all();
+        $orders = Order::find()->orderBy('date DESC')->limit(15)->all();
 
         $testimonials = Testimonial::findAll(['enabled'=>1]);
 

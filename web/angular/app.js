@@ -11,6 +11,10 @@ app.controller('FormController', ['$scope', '$http', '$timeout', function($scope
         $('#cur_to').msDropDown();
         $('#cur_from').data('dd').destroy();
         $('#cur_from').msDropDown();
+
+        $timeout(function(){
+            $('.rows').scrollbar();
+        }, 500);
     });
 
     $http.get('/direction?_format=json').then(function(response){

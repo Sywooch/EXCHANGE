@@ -57,7 +57,7 @@ NgAppAsset::register($this); ?>
                     </div>
                     <div class="col-1">
                         <div class="head">У Вас есть</div>
-                        <div class="rows scrollbar">
+                        <div class="rows">
 
                             <div ng-repeat="item in currencies" class="row value" ng-class="{active: activeCurrency.id == item.id}" ng-mouseenter="changeCurrency(item)">
                                 <div class="image"><div><img ng-src="{{item.ajaxIcon}}" alt=""></div></div>
@@ -70,7 +70,7 @@ NgAppAsset::register($this); ?>
 
                     <div class="col-2">
                         <div class="head">Вы можете получить</div>
-                        <div class="rows scrollbar">
+                        <div class="rows">
 
                             <div class="row" ng-repeat="direction in filteredDirections = (directions | filter:{'currency_from': activeCurrency.id}:true)" ng-class="{active:directionActive.id == direction.id}" ng-mouseenter="changeDirection(direction)">
                                 <div class="image"><div><img ng-src="{{direction.ajaxIcon}}" alt=""></div></div>
@@ -82,7 +82,7 @@ NgAppAsset::register($this); ?>
                     </div>
                         <div class="col-3">
                             <div class="head">Получаете Резерв</div>
-                            <div class="rows scrollbar">
+                            <div class="rows">
                                 <div class="row" ng-repeat="reserve in filteredDirections" ng-class="{active:directionActive.id == reserve.id}" ng-mouseenter="changeDirection(reserve)">
                                     <div class="reserve">{{reserve.currencyReserve}}</div>
                                 </div>
