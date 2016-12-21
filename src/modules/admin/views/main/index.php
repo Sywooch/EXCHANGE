@@ -36,11 +36,13 @@ $status = ['Отклонен', '', 'Не оплачен', 'Оплачен', 'П�
                       'title' => 'Инфо',
                       'type' => 'static',
                       'value' => function ($order) {
+              if($order->exchange):
                         return Html::tag('span',
                             $order->exchange->from->title . ' 
                                                     ' . $order->from_value . ' 
                                                     ' . $order->exchange->from->type . ' => ' . $order->exchange->to->title . ' 
                                                     ' . $order->to_value . ' ' . $order->exchange->to->type);
+              endif;
                       }
                   ],
                   [
