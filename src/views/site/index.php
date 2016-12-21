@@ -168,7 +168,7 @@ NgAppAsset::register($this); ?>
                 <?php
                 $placeholder =  Yii::getAlias('@webroot').'/images/placeholder.png';
                 foreach($orders as $order):
-                  if($order):
+                  if($order->exchange):
                   ?>
                 <div class="last-change">
                     <div class="transaction">
