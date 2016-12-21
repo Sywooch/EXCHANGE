@@ -82,7 +82,7 @@ NgAppAsset::register($this); ?>
                     </div>
                         <div class="col-3">
                             <div class="head">Получаете Резерв</div>
-                            <div class="rows-">
+                            <div class="rows">
                                 <div class="row" ng-repeat="reserve in filteredDirections" ng-class="{active:directionActive.id == reserve.id}" ng-mouseenter="changeDirection(reserve)">
                                     <div class="reserve">{{reserve.currencyReserve}}</div>
                                 </div>
