@@ -172,7 +172,7 @@ NgAppAsset::register($this); ?>
                 <div class="last-change">
                     <div class="transaction">
                         <div>
-                            <div class="image"><?=@$order->exchange->from->getImage() ? Html::img($order->exchange->from->getImage()->getUrl()) : Html::img($placeholder)?></div>
+                            <div class="image"><?=!is_null($order->exchange->from) ? Html::img($order->exchange->from->getImage()->getUrl()) : Html::img($placeholder)?></div>
                             <div class="name"><?=$order->exchange->from->title?></div>
                             <div class="clearfix"></div>
                         </div>
