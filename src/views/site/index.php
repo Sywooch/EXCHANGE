@@ -82,7 +82,7 @@ NgAppAsset::register($this); ?>
                     </div>
                         <div class="col-3">
                             <div class="head">Получаете Резерв</div>
-                            <div class="rows">
+                            <div class="rows-">
                                 <div class="row" ng-repeat="reserve in filteredDirections" ng-class="{active:directionActive.id == reserve.id}" ng-mouseenter="changeDirection(reserve)">
                                     <div class="reserve">{{reserve.currencyReserve}}</div>
                                 </div>
@@ -165,11 +165,14 @@ NgAppAsset::register($this); ?>
         <div class="block">
             <div class="title">Последние обмены</div>
             <div class="last-changes scrollbar">
-                <?php foreach($orders as $order): ?>
+                <?php
+                $placeholder =  Yii::getAlias('@webroot').'/images/placeholder.png';
+                foreach($orders as $order):
+                  ?>
                 <div class="last-change">
                     <div class="transaction">
                         <div>
-                            <div class="image"><?=$order->exchange->from->getImage() ? Html::img($order->exchange->from->getImage()->getUrl()) : ''?></div>
+                            <div class="image"><?=@$order->exchange->from->getImage() ? Html::img($order->exchange->from->getImage()->getUrl()) : Html::img($placeholder)?></div>
                             <div class="name"><?=$order->exchange->from->title?></div>
                             <div class="clearfix"></div>
                         </div>
