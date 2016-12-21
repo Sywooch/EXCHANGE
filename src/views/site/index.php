@@ -168,6 +168,7 @@ NgAppAsset::register($this); ?>
                 <?php
                 $placeholder =  Yii::getAlias('@webroot').'/images/placeholder.png';
                 foreach($orders as $order):
+                  if($order):
                   ?>
                 <div class="last-change">
                     <div class="transaction">
@@ -184,7 +185,8 @@ NgAppAsset::register($this); ?>
                     </div>
                     <div class="info"><?=$order->getLocation('img')?> <?=$order->getLocation('name')?>, <?=Yii::$app->formatter->asRelativeTime($order->date)?></div>
                 </div>
-                <?php endforeach; ?>
+                <?php endif;
+                endforeach; ?>
             </div>
         </div>
         <div class="block">
