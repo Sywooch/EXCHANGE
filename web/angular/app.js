@@ -44,6 +44,10 @@ app.controller('FormController', ['$scope', '$http', '$timeout', function($scope
             $('#cur_to').msDropDown();
         }
 
+        $timeout(function(){
+            $('.rows').scrollbar('resize');
+        }, 500);
+
         $scope.exchange_from = 0;
         $scope.exchange_to = 0;
     });
