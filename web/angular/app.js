@@ -33,6 +33,9 @@ app.controller('FormController', ['$scope', '$http', '$timeout', function($scope
         $('#cur_to').data('dd').destroy();
         $('#cur_to').msDropDown();
         $scope.directionActive = 0;
+        $timeout(function(){
+            $('.rows').scrollbar();
+        }, 500);
     });
 
     $scope.$watch('directionActive', function(newval){
