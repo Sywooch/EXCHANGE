@@ -121,6 +121,6 @@ cursor: default;
 }
 .bid .bid-block .info .rows .row .amount{
     white-space: nowrap;
-    max-width: 160px;
+    max-width: 140px;
     text-overflow: ellipsis;
 }
