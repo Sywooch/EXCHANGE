@@ -119,3 +119,8 @@ cursor: default;
 .rows .fs-scrollbar-content {
     padding: 0;
 }
+.bid .bid-block .info .rows .row .amount{
+    white-space: nowrap;
+    max-width: 160px;
+    text-overflow: ellipsis;
+}
