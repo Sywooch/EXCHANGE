@@ -193,4 +193,11 @@ class SiteController extends Controller
         }
         return false;
     }
+
+	public function actionLogout()
+	{
+		\Yii::$app->getUser()->logout();
+
+		return $this->goHome();
+	}
 }

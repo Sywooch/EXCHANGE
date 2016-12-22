@@ -1,6 +1,7 @@
 <?php
 namespace app\controllers\user;
 
+use Yii;
 use dektrium\user\models\LoginForm;
 
 /**
@@ -38,6 +39,13 @@ class SecurityController extends \dektrium\user\controllers\SecurityController
 				'model'  => $model,
 				'module' => $this->module,
 		]);
+	}
+
+	public function actionLogout()
+	{
+		\Yii::$app->getUser()->logout();
+
+		return $this->goHome();
 	}
 
 }

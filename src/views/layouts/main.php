@@ -54,10 +54,10 @@ AppAsset::register($this);
                         <?php if(!Yii::$app->user->isGuest): ?>
                         <div>
                             <div class="login">
-                                <a href="<?=Url::to(['account/index'])?>">Личный кабинет</a>
+                                <a href="<?=Url::to(['/account/index'])?>"><?=Yii::$app->user->identity->username?></a>
                             </div>
                             <div class="reg logout">
-                                <a href="<?=Url::to(['/user/security/logout'])?>"  data-method="post">Выйти</a>
+                                <a href="<?=Url::to(['/site/logout'])?>"  data-method="post">Выйти</a>
                             </div>
                         </div>
                         <?php else: ?>
