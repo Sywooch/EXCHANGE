@@ -13,6 +13,7 @@ use app\models\ExchangeDirection;
 use app\models\Order;
 use app\models\Referal;
 use app\models\ReferalStatistic;
+use app\models\User;
 use Yii;
 use yii\base\Object;
 
@@ -33,9 +34,10 @@ class CourseParser extends Object
 					]));
 
 					$user_id = $referal;
+					$user = User::findOne(['id'=>$user_id]);
 					$stat = ReferalStatistic::find()->where(['user_id'=>$user_id])->one();
 
-					if(!$stat){
+					if(!$stat && $user){
 						$stat = new ReferalStatistic();
 						$stat->user_id = $user_id;
 						$stat->incoming = $stat->incoming+1;

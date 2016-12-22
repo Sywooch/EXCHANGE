@@ -63,15 +63,15 @@ $user_fields=Yii::$app->user->identity->getWallets()->all() ? ArrayHelper::map(Y
                     </div>
                     <div class="l-clearfix"></div>
                     <div class="rl-block">
-                        <?php if(!Yii::$app->user->isGuest): ?>
-                        <div>
-                            <div class="login">
-                                <a href="<?=Url::to(['account/index'])?>">Личный кабинет</a>
-                            </div>
-                            <div class="reg logout">
-                                <a href="<?=Url::to(['/user/security/logout'])?>"  data-method="post">Выйти</a>
-                            </div>
-                        </div>
+						<?php if(!Yii::$app->user->isGuest): ?>
+                          <div>
+                              <div class="login">
+                                  <a href="<?=Url::to(['/account/index'])?>"><?=Yii::$app->user->identity->username?></a>
+                              </div>
+                              <div class="reg logout">
+                                  <a href="<?=Url::to(['/site/logout'])?>"  data-method="post">Выйти</a>
+                              </div>
+                          </div>
                         <?php else: ?>
                             <div>
                                 <div class="login">
