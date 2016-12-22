@@ -101,7 +101,9 @@ cursor: default;
     vertical-align: top;
     width: 32%;
 }
-
+.bid .bid-block .info .col-2 .rows .row .image {
+    margin-left: 15px;
+}
 .firms .col .firm input {
     display: none;
 }
