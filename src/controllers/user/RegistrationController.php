@@ -28,7 +28,7 @@ class RegistrationController extends BaseRegistrationController
 		$referer = false;
 		if (isset($cookies['referer'])) {
 			$referer = $cookies['referer']->value;
-			Yii::$app->response->cookies->remove('referer');
+//			Yii::$app->response->cookies->remove('referer');
 		}
 
 		/** @var RegistrationForm $model */

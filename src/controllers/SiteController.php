@@ -107,13 +107,36 @@ class SiteController extends Controller
 				MailInformer::send(MailInformer::TEMPLATE_ORDER, 'Вы создали заявку на обмен на сайте '.\Yii::$app->name,
 						$model->email, $model);
 
+				$cookies = Yii::$app->request->cookies;
+				$referer = false;
+				if (isset($cookies['referer'])) {
+					$referer = $cookies['referer']->value;
+				}
+
 				if(!Yii::$app->user->isGuest){
 					$sum = Yii::$app->user->identity->getCountOrders()['sumUsd'];
 					$bonus = $model->exchange->course * (Yii::$app->user->identity->getBonus($sum)/100);
 					$model->to_value = round((float)$model->to_value+(float)$bonus, 4);
 					$model->save();
+					$user = Yii::$app->user->identity;
+
+					if(!$user->referer && $referer){
+						$referal = new Referal();
+						$referal->user_id = $referer;
+						$referal->referal_id = $user->id;
+						$referal->save();
+					}
+
 				} else {
 					$bonus = 0;
+
+					if($referer){
+						/*$referal = new Referal();
+						$referal->user_id = $referer;
+						$referal->referal_id = 0;
+						$referal->save();*/
+					}
+
 				}
 
         return $model ? [

@@ -91,17 +91,18 @@ class MainController extends AdminController
 					$order->voucher = !empty($item['voucher']) ? $item['voucher'] : '';
 
 					if($item['status'] == Order::STATUS_ACCEPTED){
-						if($order->user){
+						/*if($order->user){
 							if($order->user->referer){
 								$ref = Referal::findOne(['user_id'=>$order->user->referer->id]);
 								if(!$ref){
 									$ref = new Referal();
 									$ref->user_id = $order->user->referer->id;
+									$ref->referal_id = $order->user->id;
 								}
 								$ref->exchanges = $ref->exchanges+1;
 								$ref->save();
 							}
-						}
+						}*/
 
 					}
 
