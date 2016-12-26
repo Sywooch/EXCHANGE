@@ -59,7 +59,10 @@ $bonus = Yii::$app->user->identity->getBonus($sum);
 						<div class="to-amount"><?=round($order->to_value, 2)?> <?=$order->exchange->to->type?></div>
 						<div class="clearfix"></div>
 					</div>
-					<div class="action"><a href="" class="history-remove" data-id="<?=$order->id?>">Удалить из истории</a></div>
+                  <?php if($order->status == 2): ?>
+                      <div class="action"><a href="" class="history-remove" data-id="<?=$order->id?>">Удалить из истории</a></div>
+                      <div class="action">
+                      <a href="" class="i-pay" data-id="<?=$order->id?>">Я оплатил</a></div><?php endif; ?>
 				</div>
 				<?php endforeach; ?>
 			</div><!-- /.bids -->
