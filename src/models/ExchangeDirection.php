@@ -65,22 +65,22 @@ class ExchangeDirection extends \yii\db\ActiveRecord
 						}
             },
             'currencyTitle' => function($model){
-                return $model->to->title;
+                return $model->to ? $model->to->title : '';
             },
             'currencyType' => function($model){
-                return $model->to->type;
+                return $model->to ? $model->to->type : "";
             },
             'currencyId' => function($model){
-                return $model->to->id;
+                return $model->to ? $model->to->id : '';
             },
 						'currencyReserve' => function($model){
-							return $model->to->reserve.' '.$model->to->type;
+							return $model->to ? $model->to->reserve.' '.$model->to->type : '';
 						},
 						'to' => function($model){
-							return $model->to;
+							return $model->to ? $model->to : "";
 						},
 						'from' => function($model){
-							return $model->from;
+							return $model->from ? $model->from : '';
 						},
 						'courseCounted' => function($model){
 							return round((float)$model->course - ((float)$model->course * (float)$model->exchange_percent / 100), 4);
