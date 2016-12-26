@@ -54,7 +54,8 @@ AppAsset::register($this);
                         <?php if(!Yii::$app->user->isGuest): ?>
                         <div>
                             <div class="login">
-                                <a href="<?=Url::to(['/account/index'])?>"><?=Yii::$app->user->identity->username?></a>
+                                <a href="<?=Url::to(['/account/index'])?>"><div>Личный кабинет</div><div>
+                                  <?=Yii::$app->user->identity->username?></div></a>
                             </div>
                             <div class="reg logout">
                                 <a href="<?=Url::to(['/site/logout'])?>"  data-method="post">Выйти</a>
