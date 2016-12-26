@@ -43,11 +43,11 @@ AppAsset::register($this);
                 </div>
                 <div class="links">
                     <div class="email">
-                        <span><a href="#">stomonet.net@gmail.com</a></span>
+                        <span><a href="#">web-obmen.net@gmail.com</a></span>
                     </div>
-                    <div class="icq"><span>ICQ -------</span></div>
+                    <div class="icq"><span>ICQ 641432</span></div>
                     <div class="jabber">
-                        <span><a href="#">r0und.h0und@jabber.ru</a></span>
+                        <span><a href="#">web-obmen@exploit.im</a></span>
                     </div>
                     <div class="l-clearfix"></div>
                     <div class="rl-block">
