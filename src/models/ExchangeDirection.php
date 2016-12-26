@@ -60,7 +60,9 @@ class ExchangeDirection extends \yii\db\ActiveRecord
     public function fields() {
         return ArrayHelper::merge(parent::fields(), [
             'ajaxIcon' => function($model){
-                return $model->to->getImage() ? $model->to->getImage()->getUrl() : '';
+        		if($model->to){
+							return $model->to->getImage() ? $model->to->getImage()->getUrl() : '';
+						}
             },
             'currencyTitle' => function($model){
                 return $model->to->title;
