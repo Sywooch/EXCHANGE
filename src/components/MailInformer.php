@@ -72,7 +72,7 @@ class MailInformer extends Object
 		}
 		if($id == self::TEMPLATE_STATUS){
 			$order = $param;
-			if($order) {
+			if($order->exchange->from) {
 				$voucher = (bool)$order->voucher ? '<tr><td>Ваучер: </td><td>' . $order->voucher . '</td></tr>' : '';
 				$orderinfo = '<table>
 			<tr><td>Номер заявки: </td><td>' . $order->id . '</td></tr>
