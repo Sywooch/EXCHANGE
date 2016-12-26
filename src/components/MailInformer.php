@@ -72,36 +72,38 @@ class MailInformer extends Object
 		}
 		if($id == self::TEMPLATE_STATUS){
 			$order = $param;
-			$voucher = (bool)$order->voucher ? '<tr><td>Ваучер: </td><td>'.$order->voucher.'</td></tr>' : '';
-			$orderinfo = '<table>
-			<tr><td>Номер заявки: </td><td>'.$order->id.'</td></tr>
+			if($order) {
+				$voucher = (bool)$order->voucher ? '<tr><td>Ваучер: </td><td>' . $order->voucher . '</td></tr>' : '';
+				$orderinfo = '<table>
+			<tr><td>Номер заявки: </td><td>' . $order->id . '</td></tr>
 			<tr><td>Направление обмена: </td>
-				<td>'.$order->exchange->from->title.' '
-					.$order->from_value.' '
-					.$order->exchange->from->type.' => '
-					.$order->exchange->to->title.' '
-					.$order->to_value.' '
-					.$order->exchange->to->type.' курс '
-					.
-					round((float)$order->exchange->course - ((float)$order->exchange->course * (float)$order->exchange->exchange_percent / 100), 4)
-					.'</td></tr>'.
-					$voucher
-			.'<tr><td>Дата: </td><td>'.\Yii::$app->formatter->asDate($order->date, 'php:d.m.Y H:i:s').'</td></tr>
+				<td>' . $order->exchange->from->title . ' '
+						. $order->from_value . ' '
+						. $order->exchange->from->type . ' => '
+						. $order->exchange->to->title . ' '
+						. $order->to_value . ' '
+						. $order->exchange->to->type . ' курс '
+						.
+						round((float)$order->exchange->course - ((float)$order->exchange->course * (float)$order->exchange->exchange_percent / 100), 4)
+						. '</td></tr>' .
+						$voucher
+						. '<tr><td>Дата: </td><td>' . \Yii::$app->formatter->asDate($order->date, 'php:d.m.Y H:i:s') . '</td></tr>
 			</table>';
-			if($order->status == Order::STATUS_INACTIVE){
-				$status = 'Отклонено';
+				if ($order->status == Order::STATUS_INACTIVE) {
+					$status = 'Отклонено';
+				}
+				if ($order->status == Order::STATUS_ACCEPTED) {
+					$status = 'Проведено';
+				}
+				if ($order->status == Order::STATUS_PAYED_USER) {
+					$status = 'Оплачено';
+				}
+				if ($order->status == Order::STATUS_IN_WORK) {
+					$status = 'В процессе обработки';
+				}
+				$template = str_replace(self::TAG_ORDERINFO, $orderinfo, $template);
+				$template = str_replace(self::TAG_ORDERSTATUS, $status, $template);
 			}
-			if($order->status == Order::STATUS_ACCEPTED){
-				$status = 'Проведено';
-			}
-			if($order->status == Order::STATUS_PAYED_USER){
-				$status = 'Оплачено';
-			}
-			if($order->status == Order::STATUS_IN_WORK){
-				$status = 'В процессе обработки';
-			}
-			$template = str_replace(self::TAG_ORDERINFO, $orderinfo, $template);
-			$template = str_replace(self::TAG_ORDERSTATUS, $status, $template);
 		}
 
 
