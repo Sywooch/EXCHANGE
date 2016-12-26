@@ -113,6 +113,7 @@ class CourseParser extends Object
     }
 
     public function returnReserve(Order $order){
+    	if($order->exchange):
     		$currency = $order->exchange->getTo()->one();
     		$currency->reserve = round((float)$currency->reserve + (float)$order->to_value, 2);
 
@@ -121,6 +122,8 @@ class CourseParser extends Object
 				}
 				$order->status = Order::STATUS_INACTIVE;
 				return $order->save();
+			endif;
+			return false;
 		}
 
     protected function check($from, $to){
