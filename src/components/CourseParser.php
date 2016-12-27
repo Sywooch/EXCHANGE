@@ -30,7 +30,7 @@ class CourseParser extends Object
 				//var_dump($this->process());
 				//$BTCeAPI->getPairDepth('btc_usd');
 
-				if(!$this->check('btc', 'USD')){
+				/*if(!$this->check('btc', 'USD')){
 					$this->coin('btc', 'USD');
 				}
 				if(!$this->check('btc', 'RUR')){
@@ -42,7 +42,7 @@ class CourseParser extends Object
 				}
 				if(!$this->check('RUR', 'btc')){
 					$this->coin('RUR', 'btc');
-				}
+				}*/
 
 				$cookies = Yii::$app->response->cookies;
 				$referal = Yii::$app->request->get('rid');
