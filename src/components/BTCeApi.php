@@ -21,7 +21,7 @@ class BTCeAPI extends Object
 {
 
 
-	public static function process($url = 'https://btc-e.com/api/3/ticker/btc_usd-btc_rur'){
+	public static function process($url = 'https://btc-e.nz/api/3/ticker/btc_usd-btc_rur'){
 		return json_decode(file_get_contents($url));
 	}
 
