@@ -1,11 +1,32 @@
 (function(){
+    function openAlert(text){
+        $('#alertModal .cont').text(text)
+        $('#alertModal').dialog('open')
+    }
     $('.order-form').submit(function(e){
         e.preventDefault();
+        var data = $(this).data();
+        var input = $('#from_value_input').val();
+        var output = $('#to_value_input').val();
+
+        var comision_count = parseInt(input) * data.comission / 100;
+        if(comision_count.toFixed(4) < data.comission.toFixed(4)){
+            comision_count = data.comission;
+            var priceOut = parseInt(input)+comision_count;
+            $('#from_value_input').val(priceOut);
+        }
+
+        if(parseInt(input) < data.min || parseInt(input) > data.max){
+            openAlert('Недопустимое значение для обмена. Минимальное значение: '+data.min+', максимальное: '+data.max);
+            return false;
+        }
+
         $(this).find('input').each(function(){
            if(!$(this).val()){
                return false;
            }
         });
+
         var data = $(this).serialize();
         var form = this;
         $.post($(this).attr('action'), data, function(response){
@@ -30,7 +51,7 @@
         e.preventDefault();
         $('#tot_dialog').dialog('close');
         $('#success_modal').dialog('open');
-        $.post('site/change-order-status', {
+        $.post('/site/change-order-status', {
             id:$(this).data('id'),
             status:3,
             voucher: $('#voucher_input').val()

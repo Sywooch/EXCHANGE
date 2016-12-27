@@ -278,7 +278,8 @@ a {
 }
 .bid .bid-block .form .fields .control button,
 form.firms button.btn-save-firm,
-#totalBut{
+#totalBut,
+.recovery-button{
   text-transform: uppercase;
   text-align: center;
   font-size: 14px;
@@ -309,7 +310,8 @@ form.firms button.btn-save-firm,
 form.firms button.btn-save-firm:hover,
 form.firms button.btn-save-firm:active,
 #totalBut:hover,
-#totalBut:active{
+#totalBut:active,
+.recovery-button:hover{
   
     box-shadow: inset 3px 3px 17px rgb(183, 133, 24);
     cursor: pointer;

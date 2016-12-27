@@ -10,6 +10,14 @@ $( function() {
 		'closeText': ''
 	});
 
+    $("#alertModal").dialog({
+        'autoOpen': false,
+        'modal': true,
+        'draggable': false,
+        'resizable': false,
+        'closeText': ''
+    });
+
     $("#success_modal").dialog({
         'autoOpen': false,
         'modal': true,

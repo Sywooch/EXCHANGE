@@ -81,7 +81,7 @@ NgAppAsset::register($this); ?>
                         </div>
                     </div>
                         <div class="col-3">
-                            <div class="head">Получаете Резерв</div>
+                            <div class="head">Резерв</div>
                             <div class="rows">
                                 <div class="row" ng-repeat="reserve in filteredDirections" ng-class="{active:directionActive.id == reserve.id}" ng-mouseenter="changeDirection(reserve)">
                                     <div class="reserve">{{reserve.currencyReserve}}</div>
@@ -91,7 +91,12 @@ NgAppAsset::register($this); ?>
                     <div class="clearfix"></div>
                 </div>
             </div><!-- /.info -->
-            <form class="form order-form" action="<?=Url::to(['site/process-order'])?>">
+            <form class="form order-form" action="<?=Url::to(['site/process-order'])?>"
+                  data-course="{{directionActive.course}}"
+                  data-course-counted="{{directionActive.courseCounted}}"
+                  data-min="{{directionActive.min}}"
+                  data-max="{{directionActive.max}}"
+                  data-comission="{{directionActive.min_comission}}">
                 <input id="form-token" type="hidden" name="<?=Yii::$app->request->csrfParam?>" value="<?=Yii::$app->request->csrfToken?>"/>
                 <div class="head">Оформить заявку</div>
                 <div class="fields">

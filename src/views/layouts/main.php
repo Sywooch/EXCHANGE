@@ -3,6 +3,7 @@ use app\assets\AppAsset;
 use app\models\User;
 use app\models\RegistrationForm;
 use dektrium\user\models\LoginForm;
+use dektrium\user\models\RecoveryForm;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\helpers\Html;
@@ -141,12 +142,31 @@ AppAsset::register($this);
 	<?php ActiveForm::end(); ?>
 </div>
 
+<div id="alertModal">
+    <div class="d-title">Ошибка</div>
+
+    <div class="cont"></div>
+</div>
+
 <div id="reset_dialog">
     <div class="d-title">Восстановление</div>
-    <form>
-        <input type="text" placeholder="Email" />
-        <input type="submit" value="Отправить" />
-    </form>
+    <?php
+		$reset = \Yii::createObject([
+				'class'    => RecoveryForm::className(),
+				'scenario' => RecoveryForm::SCENARIO_REQUEST,
+		]);
+    $form = ActiveForm::begin([
+        'action'=>Url::to(['/user/recovery/request']),
+        'id'                     => 'password-recovery-form',
+        'enableAjaxValidation'   => true,
+        'enableClientValidation' => false,
+        'options'=>[
+          /*'class'=>'ajax-form'*/
+        ]
+    ]);
+    echo $form->field($reset, 'email')->textInput(['placeholder'=>'Email'])->label(false);
+    echo Html::submitInput('Отправить');
+    ActiveForm::end(); ?>
 </div>
 
 <div id="auth_dialog">

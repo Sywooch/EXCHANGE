@@ -123,10 +123,10 @@ class User extends BaseUser
 		$courseRur = (float)CourseParser::findOne(['from'=>'RUR'])['value'];
 		$courseUsd = CourseParser::findOne(['from'=>'USD'])['value'];
 		foreach($orders as $order){
-			if($order->exchange->from->type == 'USD') {
+			if(@$order->exchange->from->type == 'USD') {
 				$sumRur += $order->from_value * $courseUsd;
 				$sumUsd += $order->from_value;
-			} else if($order->exchange->from->type == 'RUR'){
+			} else if(@$order->exchange->from->type == 'RUR'){
 				$sumRur += $order->from_value;
 				$sumUsd += $order->from_value * $courseRur;
 			}

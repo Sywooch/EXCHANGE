@@ -27,6 +27,7 @@ use yii\widgets\ActiveForm;
         'USD'=>'USD',
         'RUR'=>'RUR',
         'UAH'=>'UAH',
+        'btc'=>'BITCOIN',
         ''=>'Другое'
     ]) ?>
 

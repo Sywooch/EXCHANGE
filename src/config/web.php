@@ -29,14 +29,14 @@ $config = [
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
             'useFileTransport' => false,
-						/*'transport' => [
+						'transport' => [
 								'class' => 'Swift_SmtpTransport',
 								'host' => 'smtp.gmail.com',
 								'username' => 'dubztep45@gmail.com',
 								'password' => 'posqjxbbcdklapng',
 								'port' => '587',
 								'encryption' => 'tls',
-						],*/
+						],
         ],
         'i18n' => [
             'translations' => [
