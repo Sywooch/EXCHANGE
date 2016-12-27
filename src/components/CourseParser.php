@@ -31,6 +31,7 @@ class CourseParser extends Object
 				//$BTCeAPI->getPairDepth('btc_usd');
 
 				if(!$this->check('btc', 'USD')){
+
 					$this->coin('btc', 'USD');
 				}
 				if(!$this->check('btc', 'RUR')){
