@@ -22,7 +22,7 @@ class CourseParser extends Object
     public $usdId = 'R01235';
     public $cbrDaily = 'http://www.cbr.ru/scripts/XML_daily.asp';
 
-		protected function process($url = 'https://btc-e.com/api/3/ticker/btc_usd-btc_rur'){
+		protected function process($url = 'https://btc-e.nz/api/3/ticker/btc_usd-btc_rur'){
 			return json_decode(file_get_contents($url));
 		}
 
