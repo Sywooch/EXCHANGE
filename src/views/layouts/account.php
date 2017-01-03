@@ -93,11 +93,11 @@ $user_fields=Yii::$app->user->identity->getWallets()->all() ? ArrayHelper::map(Y
                 <div class="close"></div>
                 <ul class="nav">
                     <li><a href="/">Обмен валют</a></li>
-                    <li><a href="<?=Url::to(['page/index', 'slug'=>'o-servise'])?>">О сервисе</a></li>
+
                     <li><a href="<?=Url::to(['page/index', 'slug'=>'pravila'])?>">Правила</a></li>
                     <li><a href="<?=Url::to(['page/help'])?>">Помощь</a></li>
                     <li><a href="<?=Url::to(['page/index', 'slug'=>'partneram'])?>">Партнерам</a></li>
-                    <li><a href="<?=Url::to(['article/index'])?>">Блог</a></li>
+
                     <li><a href="<?=Url::to(['news/index'])?>">Новости</a></li>
                     <li><a href="<?=Url::to(['page/index', 'slug'=>'kontakty'])?>">Контакты</a></li>
                 </ul>
