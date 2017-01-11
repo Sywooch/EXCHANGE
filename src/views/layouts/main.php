@@ -40,7 +40,7 @@ AppAsset::register($this);
         <div class="top">
             <div class="container">
                 <div class="logo">
-                    <a href="/"><span>Web-</span>obmen.net</a>
+                    <a href="/"><img src="/img/logo.png" alt=""></a>
                 </div>
                 <div class="links">
                     <div class="email">
@@ -127,7 +127,7 @@ AppAsset::register($this);
 	    <?= $form->field($user, 'email')->textInput(['placeholder'=>'Email'])->label(false) ?>
 	    <?= $form->field($user, 'username')->hiddenInput()->label(false) ?>
         <?= $form->field($user, 'password')->passwordInput(['placeholder'=>'Пароль'])->label(false) ?>
-	    <?= $form->field($user, 'source')->textInput(['maxlength' => 255,'placeholder'=>'Источник информации о сайте'])->label(false) ?>
+	    <?= $form->field($user, 'source')->hiddenInput()->label(false) ?>
         <div class="chkbx">
             <input type="checkbox" id="acc" /> <label for="acc">Я принимаю <a href="#">условия соглашения</a> </label>
             <div class="clearfix"></div>
