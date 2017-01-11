@@ -61,6 +61,9 @@ $user_fields=Yii::$app->user->identity->getWallets()->all() ? ArrayHelper::map(Y
                     <div class="jabber">
                         <span><a href="#">web-obmen@exploit.im</a></span>
                     </div>
+                    <div class="email phone">
+                        <span><a href="#">+71234567890</a></span>
+                    </div>
                     <div class="l-clearfix"></div>
                     <div class="rl-block">
 						<?php if(!Yii::$app->user->isGuest): ?>

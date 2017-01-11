@@ -28,8 +28,9 @@ img {
 }
 
 .bid .bid-block .info .rows .row .amount {
-    margin: 0 0 0 5px;
+    margin: 0 0 0 2px;
     font-size: 11px;
+    color: #000;
 }
 
 .ui-dialog.ui-widget.ui-widget-content {
@@ -125,4 +126,18 @@ cursor: default;
     white-space: nowrap;
     max-width: 140px;
     text-overflow: ellipsis;
+}
+
+.two-cols {
+    float: left;
+    width: 650px;
+    padding-top: 10px;
+}
+
+.two-cols > * {
+    display: inline-block!important;
+    width: 49%!important;
+    vertical-align: top!important;
+    padding: 10px 0px 10px 60px!important;
+    margin: 0!important;
 }

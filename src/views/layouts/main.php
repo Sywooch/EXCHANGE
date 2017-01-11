@@ -43,12 +43,17 @@ AppAsset::register($this);
                     <a href="/"><img src="/img/logo.png" alt=""></a>
                 </div>
                 <div class="links">
-                    <div class="email">
-                        <span><a href="#">web-obmen.net@gmail.com</a></span>
-                    </div>
-                    <div class="icq"><span>ICQ 641432</span></div>
-                    <div class="jabber">
-                        <span><a href="#">web-obmen@exploit.im</a></span>
+                    <div class="two-cols">
+                        <div class="email">
+                            <span><a href="#">web-obmen.net@gmail.com</a></span>
+                        </div>
+                        <div class="icq"><span>ICQ 641432</span></div>
+                        <div class="jabber">
+                            <span><a href="#">web-obmen@exploit.im</a></span>
+                        </div>
+                        <div class="email phone">
+                            <span><a href="#">+71234567890</a></span>
+                        </div>
                     </div>
                     <div class="l-clearfix"></div>
                     <div class="rl-block">
