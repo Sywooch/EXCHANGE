@@ -5,7 +5,7 @@ $modules = require(__DIR__ . '/modules.php');
 
 $config = [
     'id' => 'app',
-    'name' => 'Application',
+    'name' => 'Выгодный обмен Bitcoin, Perfect Money, VISA, Яндекс деньги, QIWI, Privat24 и др.',
     'basePath' => dirname(__DIR__),
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'runtimePath' => dirname(dirname(__DIR__)) . '/runtime',

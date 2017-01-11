@@ -28,9 +28,10 @@ img {
 }
 
 .bid .bid-block .info .rows .row .amount {
-    margin: 0 0 0 2px;
-    font-size: 11px;
+    margin: 0 0 0 5px;
+    font-size: 13px;
     color: #000;
+    font-family: Tahoma, Geneva, sans-serif;
 }
 
 .ui-dialog.ui-widget.ui-widget-content {
@@ -140,4 +141,14 @@ cursor: default;
     vertical-align: top!important;
     padding: 10px 0px 10px 60px!important;
     margin: 0!important;
+}
+
+.bid .bid-block .info .col-3 {
+    width: 140px;
+}
+.bid .bid-block .info .col-1 {
+    width: 258px;
+}
+.dd .ddChild li img {
+    max-width: 40px;
 }
