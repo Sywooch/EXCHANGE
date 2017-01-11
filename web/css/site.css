@@ -152,3 +152,8 @@ cursor: default;
 .dd .ddChild li img {
     max-width: 40px;
 }
+
+.header .top .links .email.phone span {
+    padding: 0 0 0 52px;
+    background: url(../img/viber.png) no-repeat left top 4px, url(../img/watsup.png) no-repeat left 25px top 4px;
+}
