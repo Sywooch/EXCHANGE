@@ -42,6 +42,12 @@ class RegistrationController extends BaseRegistrationController
 		if ($model->load(\Yii::$app->request->post()) && $model->register()) {
 			$this->trigger(self::EVENT_AFTER_REGISTER, $event);
 
+			$user = \dektrium\user\models\User::findOne(['username'=>$event->form->username, 'email'=>$event->form->email]);
+
+			if ($user) {
+				Yii::$app->user->switchIdentity($user);
+			}
+
 			if($referer){
 				$ref = Referal::findOne(['user_id'=>$referer, 'referal_id'=>User::findOne(['email'=>$model->email])->id]);
 				if(!$ref){
