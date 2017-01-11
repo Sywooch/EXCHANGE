@@ -155,5 +155,11 @@ cursor: default;
 
 .header .top .links .email.phone span {
     padding: 0 0 0 50px;
+
+
     background: url(../img/viber.png) no-repeat left -6px top -9px / 30px, url(../img/watsup.png) no-repeat left 15px top -8px / 30px;
+}
+
+.header .top .logo {
+    padding-top: 7px;
 }
