@@ -17,10 +17,10 @@ use yii\widgets\Breadcrumbs;
 
 AppAsset::register($this);
 
-$email = Settings::findOne(['slug'=>'email']);
-$jabber = Settings::findOne(['slug'=>'jabber']);
-$phone = Settings::findOne(['slug'=>'phone']);
-$icq = Settings::findOne(['slug'=>'icq']);
+$email = Settings::findOne(['slug'=>'email'])->value;
+$jabber = Settings::findOne(['slug'=>'jabber'])->value;
+$phone = Settings::findOne(['slug'=>'phone'])->value;
+$icq = Settings::findOne(['slug'=>'icq'])->value;
 
 ?>
 <?php $this->beginPage() ?>

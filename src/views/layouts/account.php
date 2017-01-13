@@ -20,7 +20,10 @@ AppAsset::register($this);
 
 $user_fields=Yii::$app->user->identity->getWallets()->all() ? ArrayHelper::map(Yii::$app->user->identity->getWallets()->all(), 'field_id', 'wallet', 'currency_id') : [];
 
-
+$email = Settings::findOne(['slug'=>'email'])->value;
+$jabber = Settings::findOne(['slug'=>'jabber'])->value;
+$phone = Settings::findOne(['slug'=>'phone'])->value;
+$icq = Settings::findOne(['slug'=>'icq'])->value;
 
 /*
  * <?=!empty($user_fields[$field->id]) ? $user_fields['id'] : $user_fields['id']?>
