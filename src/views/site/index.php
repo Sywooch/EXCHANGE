@@ -59,7 +59,7 @@ NgAppAsset::register($this); ?>
                         <div class="head">У Вас есть</div>
                         <div class="rows">
 
-                            <div ng-repeat="item in currencies" class="row value" ng-class="{active: activeCurrency.id == item.id}" ng-mouseenter="changeCurrency(item)">
+                            <div ng-repeat="item in currencies" class="row value" ng-class="{active: activeCurrency.id == item.id}" ng-click="changeCurrency(item)">
                                 <div class="image"><div><img ng-src="{{item.ajaxIcon}}" alt=""></div></div>
                                 <div class="amount">1.0000 {{item.title}} {{item.type}}</div>
                                 <div class="clearfix"></div>
