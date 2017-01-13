@@ -1,5 +1,6 @@
 <?php
 use app\assets\AppAsset;
+use app\models\Settings;
 use app\models\User;
 use app\models\RegistrationForm;
 use dektrium\user\models\LoginForm;
@@ -15,6 +16,12 @@ use yii\widgets\Breadcrumbs;
 /* @var $content string */
 
 AppAsset::register($this);
+
+$email = Settings::findOne(['slug'=>'email']);
+$jabber = Settings::findOne(['slug'=>'jabber']);
+$phone = Settings::findOne(['slug'=>'phone']);
+$icq = Settings::findOne(['slug'=>'icq']);
+
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -46,14 +53,14 @@ AppAsset::register($this);
                 <div class="links">
                     <div class="two-cols">
                         <div class="email">
-                            <span><a href="#">web-obmen.net@gmail.com</a></span>
+                            <span><a href="#"><?=$email?></a></span>
                         </div>
-                        <div class="icq"><span>ICQ 641432</span></div>
+                        <div class="icq"><span><?=$icq?></span></div>
                         <div class="jabber">
-                            <span><a href="#">web-obmen@exploit.im</a></span>
+                            <span><a href="#"><?=$jabber?></a></span>
                         </div>
                         <div class="email phone">
-                            <span><a href="#">+71234567890</a></span>
+                            <span><a href="#"><?=$phone?></a></span>
                         </div>
                     </div>
                     <div class="l-clearfix"></div>
