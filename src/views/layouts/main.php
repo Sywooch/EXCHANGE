@@ -1,5 +1,6 @@
 <?php
 use app\assets\AppAsset;
+use app\models\Credential;
 use app\models\Settings;
 use app\models\User;
 use app\models\RegistrationForm;
@@ -17,10 +18,10 @@ use yii\widgets\Breadcrumbs;
 
 AppAsset::register($this);
 
-$email = Settings::findOne(['slug'=>'email'])->value;
-$jabber = Settings::findOne(['slug'=>'jabber'])->value;
-$phone = Settings::findOne(['slug'=>'phone'])->value;
-$icq = Settings::findOne(['slug'=>'icq'])->value;
+$email = Credential::findOne(['slug'=>'email'])->value;
+$jabber = Credential::findOne(['slug'=>'jabber'])->value;
+$phone = Credential::findOne(['slug'=>'phone'])->value;
+$icq = Credential::findOne(['slug'=>'icq'])->value;
 
 ?>
 <?php $this->beginPage() ?>

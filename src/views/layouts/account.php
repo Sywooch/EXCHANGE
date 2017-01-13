@@ -1,5 +1,6 @@
 <?php
 use app\assets\AppAsset;
+use app\models\Credential;
 use app\models\Currency;
 use app\models\User;
 use app\models\RegistrationForm;
@@ -20,10 +21,10 @@ AppAsset::register($this);
 
 $user_fields=Yii::$app->user->identity->getWallets()->all() ? ArrayHelper::map(Yii::$app->user->identity->getWallets()->all(), 'field_id', 'wallet', 'currency_id') : [];
 
-$email = Settings::findOne(['slug'=>'email'])->value;
-$jabber = Settings::findOne(['slug'=>'jabber'])->value;
-$phone = Settings::findOne(['slug'=>'phone'])->value;
-$icq = Settings::findOne(['slug'=>'icq'])->value;
+$email = Credential::findOne(['slug'=>'email'])->value;
+$jabber = Credential::findOne(['slug'=>'jabber'])->value;
+$phone = Credential::findOne(['slug'=>'phone'])->value;
+$icq = Credential::findOne(['slug'=>'icq'])->value;
 
 /*
  * <?=!empty($user_fields[$field->id]) ? $user_fields['id'] : $user_fields['id']?>
