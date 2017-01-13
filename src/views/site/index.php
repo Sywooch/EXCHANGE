@@ -72,7 +72,7 @@ NgAppAsset::register($this); ?>
                         <div class="head">Вы можете получить</div>
                         <div class="rows">
 
-                            <div class="row" ng-repeat="direction in filteredDirections = (directions | filter:{'currency_from': activeCurrency.id}:true)" ng-class="{active:directionActive.id == direction.id}" ng-mouseenter="changeDirection(direction)">
+                            <div class="row" ng-repeat="direction in filteredDirections = (directions | filter:{'currency_from': activeCurrency.id}:true)" ng-class="{active:directionActive.id == direction.id}" ng-click="changeDirection(direction)">
                                 <div class="image"><div><img ng-src="{{direction.ajaxIcon}}" alt=""></div></div>
                                 <div class="amount">{{direction.courseCounted}} {{direction.currencyTitle}} {{direction.currencyType}}</div>
                                 <div class="clearfix"></div>
@@ -83,7 +83,7 @@ NgAppAsset::register($this); ?>
                         <div class="col-3">
                             <div class="head">Резерв</div>
                             <div class="rows">
-                                <div class="row" ng-repeat="reserve in filteredDirections" ng-class="{active:directionActive.id == reserve.id}" ng-mouseenter="changeDirection(reserve)">
+                                <div class="row" ng-repeat="reserve in filteredDirections" ng-class="{active:directionActive.id == reserve.id}" ng-click="changeDirection(reserve)">
                                     <div class="reserve">{{reserve.currencyReserve}}</div>
                                 </div>
                             </div>
