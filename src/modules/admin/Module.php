@@ -68,6 +68,27 @@ class Module extends \nullref\admin\Module implements IAdminModule
                     'url' => ['/admin/settings'],
                 ],
 								[
+										'label' => 'Контакты',
+										'items'=>[
+												[
+														'label' => 'Email',
+														'url' => ['/admin/credential/update?id=1'],
+												],
+												[
+														'label' => 'Jabber',
+														'url' => ['/admin/credential/update?id=2'],
+												],
+												[
+														'label' => 'ICQ',
+														'url' => ['/admin/credential/update?id=3'],
+												],
+												[
+														'label' => 'Phone',
+														'url' => ['/admin/credential/update?id=4'],
+												],
+										]
+								],
+								[
 										'label' => 'Почта',
 										'url' => ['/#'],
 									'items'=>[
