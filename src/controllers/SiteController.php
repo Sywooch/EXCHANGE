@@ -205,13 +205,15 @@ class SiteController extends Controller
         $file = UploadedFile::getInstanceByName('avatar');
         Yii::$app->response->format = Response::FORMAT_JSON;
 
-        if($post && $file){
+        if($post){
             $model = new Testimonial();
             $model->setAttributes($post);
             $model->save();
-            $path = Yii::getAlias('@webroot').'/images/'. $imageName = rand(1000,100000).'.'.$file->extension;
-            $file->saveAs($path);
-            $model->attachImage($path);
+						if($file){
+							$path = Yii::getAlias('@webroot').'/images/'. $imageName = rand(1000,100000).'.'.$file->extension;
+							$file->saveAs($path);
+							$model->attachImage($path);
+						}
             return $model->id;
         }
         return false;
