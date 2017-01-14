@@ -102,6 +102,7 @@ NgAppAsset::register($this); ?>
                 <div class="fields">
                     <div class="row">
                         <select id="cur_from" name="exchange_from_id">
+                                <option value="">Выберите валюту</option>
                             <?php foreach($currency as $item): ?>
                                 <option value="<?=$item->id?>" data-image="<?=$item->getImage()?$item->getImage()->getUrl():''?>"><?=$item->title?></option>
                             <?php endforeach; ?>
@@ -114,6 +115,7 @@ NgAppAsset::register($this); ?>
                     </div>
                     <div class="row">
                         <select id="cur_to" name="exchange_to_id">
+                            <option value="">Выберите валюту</option>
                             <option ng-repeat="curr in directions | filter:{'currency_from': activeCurrency.id}:true" value="{{curr.currency_to}}" data-image="{{curr.ajaxIcon}}">{{curr.currencyTitle}}</option>
                         </select>
                         <div class="amount">
