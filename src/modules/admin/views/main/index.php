@@ -61,7 +61,9 @@ $status = ['Отклонен', '', 'Не оплачен', 'Оплачен', 'П�
                         $voucher = $order->voucher ? Html::tag('div', Html::tag('b', $order->exchange->from->voucher_title.': '.$order->voucher)) : "";
                         return implode(' ', $f) . Html::tag('div', $order->card) . $voucher .
                             Html::tag('div', $order->fio) .
-                            Html::tag('div', $order->email);
+                            Html::tag('div', $order->email).
+                            Html::tag('div', $order->phone).
+                            Html::tag('div', $order->wallet);
                       }
                   ],
                   [
