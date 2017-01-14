@@ -44,7 +44,7 @@ class Order extends \yii\db\ActiveRecord
             [['exchange_id', 'status', 'user_id', 'history'], 'integer'],
             [['from_value', 'to_value'], 'number'],
             [['date'], 'safe'],
-            [['card', 'bank', 'fio', 'wallet', 'email', 'ip','voucher'], 'string', 'max' => 255],
+            [['card', 'bank', 'fio', 'wallet', 'email', 'ip','voucher', 'phone'], 'string', 'max' => 255],
         ];
     }
 
