@@ -109,6 +109,7 @@ $icq = Credential::findOne(['slug'=>'icq'])->value;
     </div><!-- /.header -->
     <?=$content?>
 
+<!--
 <div class="footer">
     <div class="container">
         <div class="info">
@@ -125,7 +126,7 @@ $icq = Credential::findOne(['slug'=>'icq'])->value;
         </div>
         <div class="clearfix"></div>
     </div>
-</div><!-- /.footer -->
+</div> /.footer -->
 
 <div id="reg_dialog">
     <div class="d-title">Регистрация</div>
