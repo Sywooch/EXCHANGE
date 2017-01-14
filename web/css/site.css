@@ -164,3 +164,8 @@ cursor: default;
 .bid .bid-block .info .rows .row .reserve {
     color: #000;
 }
+.bid .bid-block .form .fields {
+    height: auto;
+    min-height: 423px;
+    padding-bottom:20px;
+}

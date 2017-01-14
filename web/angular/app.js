@@ -18,7 +18,9 @@ app.controller('FormController', ['$scope', '$http', '$timeout', function($scope
     });
 
     $http.get('/direction?_format=json').then(function(response){
-        $scope.directions = response.data;
+        $scope.directions = response.data.filter(function(item){
+            return item.enabled;
+        });
 
         $('#cur_to').data('dd').destroy();
         $('#cur_to').msDropDown();
