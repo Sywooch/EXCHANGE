@@ -160,3 +160,7 @@ cursor: default;
 .header .top .logo {
     padding-top: 7px;
 }
+
+.bid .bid-block .info .rows .row .reserve {
+    color: #000;
+}
