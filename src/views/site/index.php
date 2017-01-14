@@ -244,7 +244,7 @@ NgAppAsset::register($this); ?>
         <p>
 			<label for="avatar">Ваше фото</label>
 			<div class="btadd">Выберите файл
-				<input required type="file" name="avatar" id="avatar">
+				<input type="file" name="avatar" id="avatar">
 			</div>
         </p>
         <input required type="text" placeholder="Как Вас зовут" name="name" />
