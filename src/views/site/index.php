@@ -141,6 +141,12 @@ NgAppAsset::register($this); ?>
                         <?php if(Yii::$app->user->id): ?><button class="btcross">+</button><?php endif; ?>
                     </div>
                     <div class="row">
+                        <input required type="text" name="phone" placeholder="Контактный номер тел" class="full" />
+                    </div>
+                    <div class="row">
+                        <input required type="text" name="wallet" placeholder="Куда отправить деньги" class="full" />
+                    </div>
+                    <div class="row">
                         <input required type="text" name="fio" placeholder="ФИО отправителя" class="full" />
                     </div>
                     <div class="row">
