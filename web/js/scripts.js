@@ -111,6 +111,9 @@
             success: function(data){
                 console.log(data);
                 $('#login-form button').text('Войти')
+                if(data == 'testimonial'){
+                    window.location.href = window.location.href;
+                }
             },
             error: function(error){
                 console.log(error);

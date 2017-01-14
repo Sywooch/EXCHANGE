@@ -214,7 +214,7 @@ class SiteController extends Controller
 							$file->saveAs($path);
 							$model->attachImage($path);
 						}
-            return $model->id;
+            return 'testimonial';
         }
         return false;
     }
