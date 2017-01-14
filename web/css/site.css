@@ -169,3 +169,11 @@ cursor: default;
     min-height: 423px;
     padding-bottom:20px;
 }
+.how-work .text {
+    height: auto;
+    max-height:546px;
+}
+.how-work {
+    height: auto;
+    padding-bottom: 50px;
+}
