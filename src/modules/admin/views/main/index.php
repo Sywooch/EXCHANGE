@@ -36,7 +36,7 @@ $status = ['Отклонен', '', 'Не оплачен', 'Оплачен', 'П�
                       'title' => 'Инфо',
                       'type' => 'static',
                       'value' => function ($order) {
-              if($order->exchange):
+              if($order->exchange && $order->exchange->from && $order->exchange->to):
                         return Html::tag('span',
                             $order->exchange->from->title . ' 
                                                     ' . $order->from_value . ' 
