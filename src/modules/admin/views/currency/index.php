@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute'=>'icon',
                 'format'=>'image',
                 'value'=>function($model){
-                    return $model->getImage() ? $model->getImage()->getUrl('x50') : '';
+                    return $model->getImage() ? $model->getImage()->getUrl('50x') : '';
                 }
             ],
             'title',
