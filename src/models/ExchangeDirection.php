@@ -34,8 +34,8 @@ class ExchangeDirection extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['currency_from', 'currency_to', 'min', 'max', 'min_comission', 'enabled'], 'integer'],
-            [['course', 'exchange_percent'], 'number'],
+            [['currency_from', 'currency_to', 'max', 'min_comission', 'enabled'], 'integer'],
+            [['course', 'exchange_percent', 'min'], 'number'],
         ];
     }
 
