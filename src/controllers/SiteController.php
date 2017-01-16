@@ -143,6 +143,7 @@ class SiteController extends Controller
 						'orderId'=>$model->id,
 						'info'=>$this->renderAjax('ajax-order', ['order'=>$model]),
 						'voucher'=>$direction->from->is_voucher ? $direction->from->voucher_title : false,
+						'cash'=>$direction->to->id == 25,
 						'bonus'=>$bonus
 				] : $model->getErrors();
     }
@@ -167,10 +168,12 @@ class SiteController extends Controller
     	if(!empty($post['voucher'])){
 				$order->voucher = $post['voucher'];
 			}
+			if(!empty($post['cash'])){
+				$order->card = $post['cash'];
+			}
     	$order->save();
 
-			MailInformer::send(MailInformer::TEMPLATE_STATUS, 'Смена статуса заявки '.$order->id.' на сайте '.\Yii::$app->name,
-					$order->email, $order);
+			MailInformer::send(MailInformer::TEMPLATE_STATUS, 'Смена статуса заявки '.$order->id.' на сайте '.\Yii::$app->name, $order->email, $order);
 
 			Yii::$app->response->format = Response::FORMAT_JSON;
 

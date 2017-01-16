@@ -269,8 +269,15 @@ NgAppAsset::register($this); ?>
 <div id="tot_dialog">
     <form action="">
         <h5>Подтвердите обмен</h5>
-        <div id="total"></div>
         <div id="voucher" class="hidden"><input type="text" id="voucher_input" name="voucher_code" placeholder="" required></div>
+        <div id="cash" class="hidden"><select name="cash" id="">
+                <option value="">Выберите город</option>
+                <option value="Харьков">Харьков</option>
+                <option value="Киев">Киев</option>
+                <option value="Днепропетровск">Днепропетровск</option>
+                <option value="Москва">Москва</option>
+            </select></div>
+        <div id="total"></div>
     </form>
 </div>
 

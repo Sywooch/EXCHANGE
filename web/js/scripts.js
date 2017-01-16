@@ -42,7 +42,18 @@
                     $('#voucher').addClass('hidden');
                     $('#voucher_input').val('');
                 }
+
+                if(response.cash){
+                    $('#cash').removeClass('hidden');
+                } else {
+                    $('#cash').addClass('hidden');
+                    $('#cash').val('');
+                }
+
                 $('#tot_dialog').dialog('open');
+
+                $('#cash select').data('dd').destroy();
+                $('#cash select').msDropDown();
             }
         });
     });
@@ -58,7 +69,8 @@
         $.post('/site/change-order-status', {
             id:$(this).data('id'),
             status:3,
-            voucher: $('#voucher_input').val()
+            voucher: $('#voucher_input').val(),
+            cash: $('#cash select').val()
         }, function(response){
             console.log(response);
             $('#tot_dialog').dialog('close');
