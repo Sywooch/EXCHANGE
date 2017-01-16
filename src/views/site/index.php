@@ -173,8 +173,6 @@ NgAppAsset::register($this); ?>
     </div>
 </div>
 
-<a href="#tot_dialog" id="tot_dialog_btn">show dialog</a>
-
 <div id="second" class="info-block">
     <div class="container">
         <div class="block">
