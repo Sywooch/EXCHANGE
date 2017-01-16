@@ -33,7 +33,7 @@
             console.log(response);
             $(form).find('.row input').val('');
             if(response){
-                $('#total').text(response.info.sum+' '+response.info.currency+' '+response.info.valute+' по данным реквизитам: '+response.info.wallet+'. Ваш бонус: '+response.bonus);
+                $('#total').html(response.info);
                 $('#totalBut').data('id', response.orderId);
                 if(response.voucher){
                     $('#voucher').removeClass('hidden');
@@ -45,6 +45,10 @@
                 $('#tot_dialog').dialog('open');
             }
         });
+    });
+
+    $('body').on('click', '#closeTotDialog', function(){
+        $('#tot_dialog').dialog('close');
     });
 
     $('#totalBut').click(function(e){

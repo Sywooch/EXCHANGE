@@ -83,4 +83,9 @@ $( function() {
 		e.preventDefault();
 		$("#auth_dialog").dialog('open');
 	});
+
+    $('#tot_dialog_btn').click(function(e){
+        e.preventDefault();
+        $("#tot_dialog").dialog('open');
+    });
 });

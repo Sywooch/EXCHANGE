@@ -177,3 +177,63 @@ cursor: default;
     height: auto;
     padding-bottom: 50px;
 }
+
+.ui-dialog.ui-widget.ui-widget-content[aria-describedby="tot_dialog"] {
+    width: 650px!important;
+}
+#total h6 {
+    font-size: 17px;
+    margin: 0;
+    margin-bottom: 15px;
+    text-align: center;
+    font-weight: 300;
+}
+div#tot_dialog {
+    padding: 0 40px;
+}
+div#tot_dialog .sides:after {
+    content:'';
+    clear: both;
+    display: table;
+}
+div#tot_dialog .sides .left {
+    width: 50%;
+    float: left;
+    margin-bottom: 5px;
+}
+div#tot_dialog .sides b {
+    font-size: 12px;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+    display:block;
+}
+div#tot_dialog .sides div {
+    font-size: 12px;
+    margin-bottom: 5px;
+    display:block;
+}
+div#tot_dialog .sides img {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+div#tot_dialog .sides small {
+    display: block;
+}
+
+
+#closeTotDialog{
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 700;
+    border: solid 1px #cecece;
+    color: #666;
+    width: 272px;
+    height: 33px;
+    cursor: pointer;
+    box-shadow: 0px 2px 0px 0px rgba(160, 154, 139, 0.8);
+    margin-bottom: 40px;
+    margin-top: 20px;
+}

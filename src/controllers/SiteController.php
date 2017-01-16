@@ -104,8 +104,7 @@ class SiteController extends Controller
 				}
 				$currency->save();
 
-				MailInformer::send(MailInformer::TEMPLATE_ORDER, 'Вы создали заявку на обмен на сайте '.\Yii::$app->name,
-						$model->email, $model);
+				MailInformer::send(MailInformer::TEMPLATE_ORDER, 'Вы создали заявку на обмен на сайте '.\Yii::$app->name, $model->email, $model);
 
 				$cookies = Yii::$app->request->cookies;
 				$referer = false;
@@ -142,12 +141,7 @@ class SiteController extends Controller
         return $model ? [
         		'accepted'=>1,
 						'orderId'=>$model->id,
-						'info'=>[
-							'currency'=>$direction->getFrom()->one()->title,
-							'wallet'=>$direction->getFrom()->one()->wallet,
-							'sum'=>$model->from_value,
-							'valute'=>$direction->getFrom()->one()->type
-						],
+						'info'=>$this->renderAjax('ajax-order', ['order'=>$model]),
 						'voucher'=>$direction->from->is_voucher ? $direction->from->voucher_title : false,
 						'bonus'=>$bonus
 				] : $model->getErrors();

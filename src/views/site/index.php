@@ -173,6 +173,8 @@ NgAppAsset::register($this); ?>
     </div>
 </div>
 
+<a href="#tot_dialog" id="tot_dialog_btn">show dialog</a>
+
 <div id="second" class="info-block">
     <div class="container">
         <div class="block">
@@ -258,14 +260,21 @@ NgAppAsset::register($this); ?>
     </form>
 </div>
 
-<div id="tot_dialog">
+<!--<div id="tot_dialog">
     <form action="">
     <h5>Мы зарезервировали для вас средства на 30 минут. Переведите <div id="total"></div></h5>
     <div id="voucher" class="hidden"><input type="text" id="voucher_input" name="voucher_code" placeholder="" required></div>
     <button id="totalBut" data-id="0">Я оплатил(а) заявку</button>
     </form>
-</div>
+</div>-->
 
+<div id="tot_dialog">
+    <form action="">
+        <h5>Подтвердите обмен</h5>
+        <div id="total"></div>
+        <div id="voucher" class="hidden"><input type="text" id="voucher_input" name="voucher_code" placeholder="" required></div>
+    </form>
+</div>
 
 <div id="success_modal">
         <h5>Ваша заявка принята в обработку</h5>
