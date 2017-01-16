@@ -51,7 +51,7 @@
         $('#tot_dialog').dialog('close');
     });
 
-    $('#totalBut').click(function(e){
+    $('body').on('click', '#totalBut',function(e){
         e.preventDefault();
         $('#tot_dialog').dialog('close');
         $('#success_modal').dialog('open');
