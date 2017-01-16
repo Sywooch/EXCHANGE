@@ -94,5 +94,8 @@ app.controller('FormController', ['$scope', '$http', '$timeout', function($scope
 
     $scope.countExchangeResult = function(){
         return $scope.exchange_from ? (parseFloat($scope.exchange_from) * parseFloat($scope.directionActive.courseCounted)).toFixed(2) : 0
+    };
+    $scope.countExchangeFrom = function(){
+        return $scope.exchange_to ? (parseFloat($scope.exchange_to) / parseFloat($scope.directionActive.courseCounted)).toFixed(2) : 0
     }
 }]);

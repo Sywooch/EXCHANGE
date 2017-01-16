@@ -119,7 +119,7 @@ NgAppAsset::register($this); ?>
                             <option ng-repeat="curr in directions | filter:{'currency_from': activeCurrency.id}:true" value="{{curr.currency_to}}" data-image="{{curr.ajaxIcon}}">{{curr.currencyTitle}}</option>
                         </select>
                         <div class="amount">
-                            <input required type="text" name="to_value" id="to_value_input" ng-model="exchange_to" placeholder="0" />
+                            <input required type="text" name="to_value" id="to_value_input" ng-model="exchange_to" ng-change="exchange_from = countExchangeFrom()" placeholder="0" />
                             <div class="currency">{{directionActive.to.type}}</div>
                         </div>
                         <div class="clearfix"></div>
