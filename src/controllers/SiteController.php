@@ -55,7 +55,7 @@ class SiteController extends Controller
 
         $orders = Order::find()->orderBy('date DESC')->limit(15)->all();
 
-        $testimonials = Testimonial::findAll(['enabled'=>1]);
+        $testimonials = Testimonial::find()->where(['enabled'=>1])->orderBy('date DESC')->all();
 
         return $this->render('index', [
             'currency'=>$currency,
