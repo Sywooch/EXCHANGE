@@ -104,7 +104,7 @@ class CurrencyController extends Controller
                 if($model->getImage()){
                     $model->removeImage($model->getImage());
                 }
-                $path = Yii::getAlias('@webroot').'images/';
+                $path = Yii::getAlias('@webroot').'/images/';
                 $file->saveAs($path . $file->baseName . '.' . $file->extension);
                 $model->attachImage($path . $file->baseName . '.' . $file->extension);
             }
