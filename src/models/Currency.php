@@ -56,7 +56,7 @@ class Currency extends \yii\db\ActiveRecord
 						return $model->getDirections()->asArray()->all();
 					}*/
 					'directionsCount' => function($model){
-						return (int)$model->getDirections()->count();
+						return (int)$model->getDirections()->where(['enabled'=>1])->count();
 					},
 					'fields'=> function($model){
 						return $model->getFields()->asArray()->all();
