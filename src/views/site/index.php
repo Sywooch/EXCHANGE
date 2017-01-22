@@ -139,7 +139,7 @@ NgAppAsset::register($this); ?>
                         <button class="btcross">+</button>
                     </div>-->
                     <div class="city" ng-show="directionActive.to.id == 25">
-                        <select name="cash" id="">
+                        <select name="cash" id="citySelect">
                             <option value="">Выберите город</option>
                             <option value="Харьков">Харьков</option>
                             <option value="Киев">Киев</option>

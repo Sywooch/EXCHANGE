@@ -52,6 +52,9 @@ app.controller('FormController', ['$scope', '$http', '$timeout', function($scope
 
         $scope.exchange_from = 0;
         $scope.exchange_to = 0;
+
+        $('#citySelect').data('dd').destroy();
+        $('#citySelect').msDropDown();
     });
 
     $timeout(function(){

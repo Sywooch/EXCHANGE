@@ -237,3 +237,8 @@ div#tot_dialog .sides small {
     margin-bottom: 40px;
     margin-top: 20px;
 }
+
+#citySelect {
+    width: 100%;
+    margin-bottom: 20px;
+}
