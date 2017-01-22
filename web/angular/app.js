@@ -100,7 +100,7 @@ app.controller('FormController', ['$scope', '$http', '$timeout', function($scope
         var res_wo_comission = $scope.exchange_from ? (parseFloat($scope.exchange_from) * parseFloat($scope.directionActive.course)).toFixed(6) : 0;
 
         var comission = result - res_wo_comission;
-        if(comission > $scope.directionActive.min_comission) {
+        if(comission < $scope.directionActive.min_comission) {
             return res_wo_comission + $scope.directionActive.min_comission;
         }
         return result;
