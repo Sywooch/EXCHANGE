@@ -138,13 +138,15 @@ NgAppAsset::register($this); ?>
                         <input required type="text" name="wallet" placeholder="Кошелек для получения" class="full" />
                         <button class="btcross">+</button>
                     </div>-->
-                    <select name="cash" id="" ng-show="directionActive.to.id == 25">
-                        <option value="">Выберите город</option>
-                        <option value="Харьков">Харьков</option>
-                        <option value="Киев">Киев</option>
-                        <option value="Днепропетровск">Днепропетровск</option>
-                        <option value="Москва">Москва</option>
-                    </select>
+                    <div class="city" ng-show="directionActive.to.id == 25">
+                        <select name="cash" id="">
+                            <option value="">Выберите город</option>
+                            <option value="Харьков">Харьков</option>
+                            <option value="Киев">Киев</option>
+                            <option value="Днепропетровск">Днепропетровск</option>
+                            <option value="Москва">Москва</option>
+                        </select>
+                    </div>
                     <div class="row" ng-repeat="field in directionActive.to.fields.concat(directionActive.from.fields)">
                         <input required type="text" name="orderField[{{field.id}}]" placeholder="{{field.title}}" class="full" />
                         <?php if(Yii::$app->user->id): ?><button class="btcross">+</button><?php endif; ?>
