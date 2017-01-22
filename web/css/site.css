@@ -238,7 +238,7 @@ div#tot_dialog .sides small {
     margin-top: 20px;
 }
 
-#citySelect {
-    width: 100%;
-    margin-bottom: 20px;
+#citySelect_msdd {
+    width: 100%!important;
+    margin-bottom: 13px;
 }
