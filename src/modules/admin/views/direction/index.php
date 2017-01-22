@@ -18,7 +18,7 @@ use yii\widgets\ActiveForm;
 
 	<nav>
 		<?php foreach($currency as $item): ?>
-			<a class="btn btn-sm btn-<?=$item->id == $cur->id ? 'info':'default'?>" href="<?=\yii\helpers\Url::to(['direction/index', 'currency_from'=>$item->id])?>"><?=$item->title?></a>
+			<a class="btn btn-sm btn-<?=$item->id == $cur->id ? 'info':'default'?>" href="<?=\yii\helpers\Url::to(['direction/index', 'currency_from'=>$item->id])?>"><?=$item->title?> <?=$item->type?></a>
 		<?php endforeach; ?>
 	</nav>
 
