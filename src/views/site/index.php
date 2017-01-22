@@ -138,6 +138,13 @@ NgAppAsset::register($this); ?>
                         <input required type="text" name="wallet" placeholder="Кошелек для получения" class="full" />
                         <button class="btcross">+</button>
                     </div>-->
+                    <select name="cash" id="" ng-show="directionActive.to.id == 25">
+                        <option value="">Выберите город</option>
+                        <option value="Харьков">Харьков</option>
+                        <option value="Киев">Киев</option>
+                        <option value="Днепропетровск">Днепропетровск</option>
+                        <option value="Москва">Москва</option>
+                    </select>
                     <div class="row" ng-repeat="field in directionActive.to.fields.concat(directionActive.from.fields)">
                         <input required type="text" name="orderField[{{field.id}}]" placeholder="{{field.title}}" class="full" />
                         <?php if(Yii::$app->user->id): ?><button class="btcross">+</button><?php endif; ?>
@@ -270,13 +277,6 @@ NgAppAsset::register($this); ?>
     <form action="">
         <h5>Подтвердите обмен</h5>
         <div id="voucher" class="hidden"><input type="text" id="voucher_input" name="voucher_code" placeholder="" required></div>
-        <div id="cash" class="hidden"><select name="cash" id="">
-                <option value="">Выберите город</option>
-                <option value="Харьков">Харьков</option>
-                <option value="Киев">Киев</option>
-                <option value="Днепропетровск">Днепропетровск</option>
-                <option value="Москва">Москва</option>
-            </select></div>
         <div id="total"></div>
     </form>
 </div>
