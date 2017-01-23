@@ -96,7 +96,7 @@ app.controller('FormController', ['$scope', '$http', '$timeout', function($scope
     };
 
     $scope.countExchangeResult = function(){
-        var result = $scope.exchange_from ? (parseFloat($scope.exchange_from) * parseFloat($scope.directionActive.courseCounted)).toFixed(2) : 0;
+        var result = $scope.exchange_from ? (parseFloat($scope.exchange_from) * parseFloat($scope.directionActive.course)).toFixed(2) : 0;
 
         if($scope.exchange_from < $scope.directionActive.min){
             return 0;
@@ -105,7 +105,9 @@ app.controller('FormController', ['$scope', '$http', '$timeout', function($scope
         var comission = parseFloat($scope.exchange_from) * $scope.directionActive.exchange_percent / 100;
 
         if(comission < $scope.directionActive.min_comission){
-            result = ((parseFloat($scope.exchange_from) * parseFloat($scope.directionActive.course))-$scope.directionActive.min_comission).toFixed(2);
+            result = result - $scope.directionActive.min_comission;
+        } else {
+            result = result - comission;
         }
 
         /*if((parseFloat($scope.exchange_from) * parseFloat($scope.directionActive.exchange_percent) / 100) < $scope.directionActive.min_comission) {
