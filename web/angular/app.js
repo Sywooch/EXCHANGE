@@ -98,7 +98,7 @@ app.controller('FormController', ['$scope', '$http', '$timeout', function($scope
     $scope.countExchangeResult = function(){
         var result = $scope.exchange_from ? (parseFloat($scope.exchange_from) * parseFloat($scope.directionActive.course)).toFixed(2) : 0;
 
-        if($scope.exchange_from < $scope.directionActive.min){
+        if(parseFloat($scope.exchange_from) < parseFloat($scope.directionActive.min)){
             return 0;
         }
 
