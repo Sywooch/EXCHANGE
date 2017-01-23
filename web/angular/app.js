@@ -44,6 +44,9 @@ app.controller('FormController', ['$scope', '$http', '$timeout', function($scope
         if(newval){
             $('#cur_to').data('dd').destroy();
             $('#cur_to').msDropDown();
+
+            $('#citySelect').data('dd').destroy();
+            $('#citySelect').msDropDown();
         }
 
         $timeout(function(){
@@ -52,9 +55,6 @@ app.controller('FormController', ['$scope', '$http', '$timeout', function($scope
 
         $scope.exchange_from = 0;
         $scope.exchange_to = 0;
-
-        $('#citySelect').data('dd').destroy();
-        $('#citySelect').msDropDown();
     });
 
     $timeout(function(){
