@@ -101,9 +101,14 @@ app.controller('FormController', ['$scope', '$http', '$timeout', function($scope
         if(($scope.exchange_from * parseFloat($scope.directionActive.exchange_percent) / 100) < $scope.directionActive.min_comission) {
             result = $scope.exchange_from ? ((parseFloat($scope.exchange_from) - $scope.directionActive.min_comission) * parseFloat($scope.directionActive.courseCounted)).toFixed(2) : 0;
         }
-        return result;
+        return result > 0 ? result : 0;
     };
     $scope.countExchangeFrom = function(){
-        return $scope.exchange_to ? (parseFloat($scope.exchange_to) / parseFloat($scope.directionActive.courseCounted)).toFixed(2) : 0
+        var result = $scope.exchange_to ? (parseFloat($scope.exchange_to) * parseFloat($scope.directionActive.courseCounted)).toFixed(2) : 0;
+
+        if(($scope.exchange_to * parseFloat($scope.directionActive.exchange_percent) / 100) < $scope.directionActive.min_comission) {
+            result = $scope.exchange_to ? ((parseFloat($scope.exchange_to) - $scope.directionActive.min_comission) * parseFloat($scope.directionActive.courseCounted)).toFixed(2) : 0;
+        }
+        return result > 0 ? result : 0;
     }
 }]);
