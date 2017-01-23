@@ -109,6 +109,9 @@ app.controller('FormController', ['$scope', '$http', '$timeout', function($scope
         } else {
             result = result - comission;
         }
+
+        console.log(comission);
+
         return result > 0 ? result : 0;
     };
     $scope.countExchangeFrom = function(){
@@ -123,6 +126,9 @@ app.controller('FormController', ['$scope', '$http', '$timeout', function($scope
         } else {
             result = parseFloat(result) + parseFloat(comission);
         }
+
+        console.log(comission);
+
         return result > 0 ? result : 0;
     }
 }]);
