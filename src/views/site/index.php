@@ -124,7 +124,7 @@ NgAppAsset::register($this); ?>
                         </div>
                         <div class="clearfix"></div>
                     </div>
-                    <div class="hint">По курсу: <span id="form_course"></span> 1.0000 {{directionActive.from.type}} {{directionActive.from.title}} = {{directionActive.courseCounted}} {{directionActive.to.type}} {{directionActive.to.title}} (мин. комиссия {{directionActive.min_comission}})</div>
+                    <div class="hint">По курсу: <span id="form_course"></span> 1.0000 {{directionActive.from.type}} {{directionActive.from.title}} = {{directionActive.courseCounted}} {{directionActive.to.type}} {{directionActive.to.title}}</div>
                     <!--<div class="row">
                         <input required type="text" name="card" placeholder="Номер карты" class="full" />
 						<button class="btcross">+</button>

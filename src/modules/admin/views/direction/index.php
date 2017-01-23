@@ -22,7 +22,13 @@ use yii\widgets\ActiveForm;
 		<?php endforeach; ?>
 	</nav>
 
-	<?php $form = ActiveForm::begin(); ?>
+	<?php
+    $currencies = [];
+    foreach(\app\models\Currency::find()->all() as $currency){
+        $currencies[$currency->id] = $currency->title.' '.$currency->type;
+    }
+
+    $form = ActiveForm::begin(); ?>
 
 	<?= MultipleInput::widget([
 			'max' => 50,
@@ -41,7 +47,7 @@ use yii\widgets\ActiveForm;
 							'name'  => 'currency_to',
 							'type'  => 'dropDownList',
 							'title' => 'на',
-							'items' => \yii\helpers\ArrayHelper::map(\app\models\Currency::find()->all(), 'id', 'title')
+							'items' => $currencies
 					],
 					[
 							'name'  => 'course',
