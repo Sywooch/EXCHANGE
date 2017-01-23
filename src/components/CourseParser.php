@@ -117,7 +117,7 @@ class CourseParser extends Object
                 'to' => function ($query) {
                     $query->from(Currency::tableName() . ' c2');
                 },
-            ])->where(['c1.type'=>$from])->andWhere(['c2.type'=>$to])->andWhere(['!=', 'id', 25])->all();
+            ])->where(['c1.type'=>$from])->andWhere(['c2.type'=>$to])->andWhere(['!=', 'c1.id', 25])->andWhere(['!=', 'c2.id', 25])->all();
 
         foreach($directions as $direction) {
             // if($direction)
