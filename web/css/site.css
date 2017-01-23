@@ -242,3 +242,7 @@ div#tot_dialog .sides small {
     width: 100%!important;
     margin-bottom: 13px;
 }
+.city {
+    position: relative;
+    z-index: 1;
+}
