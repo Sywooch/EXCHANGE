@@ -116,12 +116,12 @@ app.controller('FormController', ['$scope', '$http', '$timeout', function($scope
         if(result < parseFloat($scope.directionActive.min)){
             return 0;
         }
-        var comission = result * $scope.directionActive.exchange_percent / 100;
+        var comission = parseFloat(result) * parseFloat($scope.directionActive.exchange_percent) / 100;
 
         if(comission < $scope.directionActive.min_comission){
-            result = result + $scope.directionActive.min_comission;
+            result = parseFloat(result) + parseFloat($scope.directionActive.min_comission);
         } else {
-            result = result + comission;
+            result = parseFloat(result) + parseFloat(comission);
         }
         return result > 0 ? result : 0;
     }
