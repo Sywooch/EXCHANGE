@@ -45,8 +45,10 @@ app.controller('FormController', ['$scope', '$http', '$timeout', function($scope
             $('#cur_to').data('dd').destroy();
             $('#cur_to').msDropDown();
 
-            $('#citySelect').data('dd').destroy();
-            $('#citySelect').msDropDown();
+            $timeout(function(){
+                $('#citySelect').data('dd').destroy();
+                $('#citySelect').msDropDown();
+            }, 1000)
         }
 
         $timeout(function(){
@@ -97,11 +99,9 @@ app.controller('FormController', ['$scope', '$http', '$timeout', function($scope
 
     $scope.countExchangeResult = function(){
         var result = $scope.exchange_from ? (parseFloat($scope.exchange_from) * parseFloat($scope.directionActive.course)).toFixed(2) : 0;
-
         if(parseFloat($scope.exchange_from) < parseFloat($scope.directionActive.min)){
             return 0;
         }
-
         var comission = parseFloat($scope.exchange_from) * $scope.directionActive.exchange_percent / 100;
 
         if(comission < $scope.directionActive.min_comission){
@@ -109,18 +109,20 @@ app.controller('FormController', ['$scope', '$http', '$timeout', function($scope
         } else {
             result = result - comission;
         }
-
-        /*if((parseFloat($scope.exchange_from) * parseFloat($scope.directionActive.exchange_percent) / 100) < $scope.directionActive.min_comission) {
-            result = $scope.exchange_from ? ((parseFloat($scope.exchange_from) - $scope.directionActive.min_comission) * parseFloat($scope.directionActive.courseCounted)).toFixed(2) : 0;
-        }*/
         return result > 0 ? result : 0;
     };
     $scope.countExchangeFrom = function(){
-        var result = $scope.exchange_to ? (parseFloat($scope.exchange_to) / parseFloat($scope.directionActive.courseCounted)).toFixed(2) : 0;
+        var result = $scope.exchange_to ? (parseFloat($scope.exchange_to) / parseFloat($scope.directionActive.course)).toFixed(2) : 0;
+        if(parseFloat($scope.exchange_to) < parseFloat($scope.directionActive.min)){
+            return 0;
+        }
+        var comission = parseFloat($scope.exchange_to) * $scope.directionActive.exchange_percent / 100;
 
-        /*if((parseFloat($scope.exchange_to) / parseFloat($scope.directionActive.exchange_percent) / 100) < $scope.directionActive.min_comission) {
-            result = $scope.exchange_to ? ((parseFloat($scope.exchange_to) + $scope.directionActive.min_comission) / parseFloat($scope.directionActive.courseCounted)).toFixed(2) : 0;
-        }*/
+        if(comission < $scope.directionActive.min_comission){
+            result = result - $scope.directionActive.min_comission;
+        } else {
+            result = result - comission;
+        }
         return result > 0 ? result : 0;
     }
 }]);
