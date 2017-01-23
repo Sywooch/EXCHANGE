@@ -105,7 +105,7 @@ app.controller('FormController', ['$scope', '$http', '$timeout', function($scope
         var comission = parseFloat($scope.exchange_from) * $scope.directionActive.exchange_percent / 100;
 
         if(comission < $scope.directionActive.min_comission){
-            result = (parseFloat($scope.exchange_from) * parseFloat($scope.directionActive.course)).toFixed(2) + $scope.directionActive.min_comission;
+            result = ((parseFloat($scope.exchange_from) * parseFloat($scope.directionActive.course))-$scope.directionActive.min_comission).toFixed(2);
         }
 
         /*if((parseFloat($scope.exchange_from) * parseFloat($scope.directionActive.exchange_percent) / 100) < $scope.directionActive.min_comission) {
