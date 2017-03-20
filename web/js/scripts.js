@@ -106,6 +106,20 @@
         });
 
         if($(this).attr('id') == 'registration-form') {
+
+            error = 0;
+            $(this).find('input[type="text"]').each( function(){
+              if(!$(this).val()){
+                
+                error = 1;
+              }
+            });
+
+            if(error){
+              alert('Заполните все поля!');
+              return false;
+            }
+
             $('#success_modal h5').text('Вы успешно зарегистрированы! Данные для входа отправлены на почту.')
             $('#success_modal').dialog('open');
         } else {

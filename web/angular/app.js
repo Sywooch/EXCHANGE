@@ -102,7 +102,7 @@ app.controller('FormController', ['$scope', '$http', '$timeout', function($scope
         if(parseFloat($scope.exchange_from) < parseFloat($scope.directionActive.min)){
             return 0;
         }
-        var comission = parseFloat($scope.exchange_from) * $scope.directionActive.exchange_percent / 100;
+        /*var comission = parseFloat($scope.exchange_from) * $scope.directionActive.exchange_percent / 100;
 
         if(comission < $scope.directionActive.min_comission){
             result = result - $scope.directionActive.min_comission;
@@ -110,13 +110,13 @@ app.controller('FormController', ['$scope', '$http', '$timeout', function($scope
             result = result - comission;
         }
 
-        console.log(comission);
+        console.log(comission);*/
 
         return result > 0 ? result : 0;
     };
     $scope.countExchangeFrom = function(){
         var result = $scope.exchange_to ? (parseFloat($scope.exchange_to) / parseFloat($scope.directionActive.course)).toFixed(2) : 0;
-        var resultComm = $scope.exchange_to ? (parseFloat($scope.exchange_to) / parseFloat($scope.directionActive.courseCounted)).toFixed(2) : 0;
+        /*var resultComm = $scope.exchange_to ? (parseFloat($scope.exchange_to) / parseFloat($scope.directionActive.courseCounted)).toFixed(2) : 0;
         if(result < parseFloat($scope.directionActive.min)){
             return 0;
         }
@@ -128,7 +128,7 @@ app.controller('FormController', ['$scope', '$http', '$timeout', function($scope
             result = parseFloat(result) + parseFloat(comission);
         }
 
-        console.log(comission);
+        console.log(comission);*/
 
         return result > 0 ? result : 0;
     }

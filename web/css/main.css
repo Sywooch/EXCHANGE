@@ -1799,6 +1799,18 @@ form.firms button.btn-save-firm:active,
   line-height: 15px;
   margin: 5px 0;
 }
+
+.ui-dialog.ui-widget.ui-widget-content .ui-dialog-titlebar .ui-dialog-titlebar-close {
+right: 0!important;
+top: 0!important;
+z-index: 9999!important;
+position: absolute!important;
+cursor: pointer!important;
+outline:none;
+width: 27px!important;
+}
+
+
 .article-page .main-content .news-list .big-new .list .item .data .date {
   font-size: 10px;
   line-height: 10px;
