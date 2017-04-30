@@ -18,19 +18,20 @@ class AppAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        "css/normalize.css",
-        "https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,700&subset=cyrillic",
-        "css/dd.css",
-        "css/scrollbar.css",
-        "css/owl.carousel.css",
-        "css/main.css",
-        'css/site.css',
+        "css/styles.css",
+		"css/scrollbar.css",
+		"css/dd.css",
+		"css/normalize.css",
     ];
     public $js = [
-        "https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js",
-				"https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.4.0/clipboard.min.js",
+        //"js/jquery-3.1.1.min.js",		
+		//"js/script.min.js",
+		"js/script.js",
+		"js/events.js",
+		"https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js",
+		"https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.4.0/clipboard.min.js",
         'js/tools.js',
-        'js/scripts.js',
+        'js/scripts.js?d=9028139',
         "js/jquery.dd.js",
         "js/icheck.min.js",
         "js/formstone/core.js",

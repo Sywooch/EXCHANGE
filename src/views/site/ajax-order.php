@@ -5,6 +5,7 @@
 		<div>
 			<img src="<?=$order->exchange->from->getImage()->getUrl('x20')?>" alt="">
 			<?=$order->from_value?> <?=$order->exchange->from->title?> <?=$order->exchange->from->type?>
+            <small>Реквизит: <?=$order->exchange->from->wallet?></small>
 
 		</div>
 	</div>
@@ -21,14 +22,14 @@
             <?=$order->email?>
         </div>
     </div>
-    <div class="chkbx">
+    <div class="chkbx ah-form-check">
         <input type="checkbox" id="acc" checked="checked" /> <label for="acc">Я ознакомился и согласен с <a href="#">правилами обмена</a> </label>
         <div class="clearfix"></div>
     </div>
 
     <div class="btns">
-        <button id="closeTotDialog">Отменить</button>
-        <button id="totalBut" data-id="0">Я оплатил(а) заявку</button>
+        <button id="closeTotDialog" class="ah-button ah-button-green">Отменить</button>
+        <button id="totalBut" data-id="0" class="ah-button ah-button-orange">Я оплатил(а) заявку</button>
     </div>
 
 </div>

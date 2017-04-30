@@ -11,6 +11,7 @@ use yii\helpers\ArrayHelper;
 
 class User extends BaseUser
 {
+
 	public function attributeLabels()
 	{
 		return [
@@ -39,6 +40,7 @@ class User extends BaseUser
 		$rules = parent::rules();
 		// add some rules
 		$rules['sourceLength']   = ['source', 'string', 'max' => 10];
+$rules['last_login_at'] = [['last_login_at'], 'safe'];
 
 		return $rules;
 	}

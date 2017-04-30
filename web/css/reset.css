@@ -1,0 +1,128 @@
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strong, sub, sup, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+
+body {
+    line-height: 1;
+    background-color: #fff;
+    font-family: Roboto;
+    overflow-x:hidden;
+}
+.ah-main-wrapper {
+    display:-webkit-box;
+    display:-webkit-flex;
+    display:-moz-box;
+    display:-ms-flexbox;
+    display:flex;
+    -webkit-box-orient:vertical;
+    -webkit-box-direction:normal;
+    -webkit-flex-direction:column;
+       -moz-box-orient:vertical;
+       -moz-box-direction:normal;
+        -ms-flex-direction:column;
+            flex-direction:column;
+    -webkit-box-pack:justify;
+    -webkit-justify-content:space-between;
+       -moz-box-pack:justify;
+        -ms-flex-pack:justify;
+            justify-content:space-between;
+}
+ol, ul, li {
+    list-style: none !important;
+}
+
+blockquote, q {
+    quotes: none;
+}
+
+    blockquote:before, blockquote:after,
+    q:before, q:after {
+        content: '';
+        content: none;
+    }
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+button, input, textarea, a {
+    background: none;
+    border: none;
+    outline: none;
+    padding: 0;
+    margin: 0;
+}
+textarea {
+    resize:none;
+}
+button {
+    cursor: pointer;
+}
+p,li,span {
+    white-space:normal;
+    max-width:100%;
+}
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    word-break: break-word;
+    -moz-text-size-adjust: none;
+    -webkit-transition: 0.3s ease-in color, 0.3s ease-in background,0.3s ease-in border,0.3s ease-in width,0.3s ease-in height;
+    -o-transition: 0.3s ease-in color, 0.3s ease-in background,0.3s ease-in border,0.3s ease-in width,0.3s ease-in height;
+    -moz-transition: 0.3s ease-in color, 0.3s ease-in background,0.3s ease-in border,0.3s ease-in width,0.3s ease-in height;
+    transition:0.3s ease-in color, 0.3s ease-in background,0.3s ease-in border,0.3s ease-in width,0.3s ease-in height;
+    /*white-space:nowrap;*/
+    outline:none !important;
+}
+*:hover {
+    -webkit-transition: 0.3s ease-in color, 0.3s ease-in background,0.3s ease-in border,0.3s ease-in width,0.3s ease-in height;
+    -o-transition: 0.3s ease-in color, 0.3s ease-in background,0.3s ease-in border,0.3s ease-in width,0.3s ease-in height;
+    -moz-transition: 0.3s ease-in color, 0.3s ease-in background,0.3s ease-in border,0.3s ease-in width,0.3s ease-in height;
+    transition:0.3s ease-in color, 0.3s ease-in background,0.3s ease-in border,0.3s ease-in width,0.3s ease-in height;
+}
+a {
+    text-decoration:none;
+}
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+input[type='number'] {
+    -moz-appearance: textfield;
+}
+.ah-mobile-visible {
+    display:none;
+}
+label {
+    cursor:pointer;
+}
+/*input {
+    -webkit-box-shadow:none !important;
+       -moz-box-shadow:none !important;
+            box-shadow:none !important;
+}*/

@@ -14,9 +14,9 @@ use yii\widgets\LinkPager;
  */
 class CustomPager extends LinkPager
 {
-	public $activePageCssClass = 'current';
-	public $nextPageLabel = ' ';
-	public $prevPageLabel = ' ';
+	public $activePageCssClass = 'ah-active';
+	public $nextPageLabel = 'ДАЛЕЕ';
+	public $prevPageLabel = 'НАЗАД';
 
 	protected function renderPageButton($label, $page, $class, $disabled, $active)
 	{
@@ -26,12 +26,14 @@ class CustomPager extends LinkPager
 		}
 		if ($disabled) {
 			Html::addCssClass($options, $this->disabledPageCssClass);
-			return Html::tag('span', $label, $this->disabledListItemSubTagOptions);
+			//return Html::tag('li', $label, $this->disabledListItemSubTagOptions);
+			return Html::tag('li', Html::a($label, $this->pagination->createUrl($page)), $this->disabledListItemSubTagOptions);
 		}
 		$linkOptions = $this->linkOptions;
 		$linkOptions['data-page'] = $page;
 		$linkOptions['class'] = $options['class'];
 
-		return Html::a($label, $this->pagination->createUrl($page), $linkOptions);
+		//return Html::a($label, $this->pagination->createUrl($page), $linkOptions);
+		return Html::tag('li', Html::a($label, $this->pagination->createUrl($page), $linkOptions), $options);
 	}
 }

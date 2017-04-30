@@ -6,6 +6,7 @@ $(document).ready(function() {
 			$(".stat-data .tab-content").removeClass('active');
 			$('#' + $(this).attr('data-target-id')).addClass('active');
 		}
+		console.log(this);
 	});
 	$("select").msDropDown();
 });

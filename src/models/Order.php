@@ -81,6 +81,7 @@ class Order extends \yii\db\ActiveRecord
 
         $out['name'] = $location['country']['name_ru'];
         $out['img'] = Html::img('/img/country/'.strtolower($location['country']['iso']).'.png');
+		$out['imgUrl'] = '/img/country/'.strtolower($location['country']['iso']).'.png';
 
         return $out[$attribute];
     }

@@ -64,10 +64,8 @@ class RegistrationController extends BaseRegistrationController
 			]);
 		}
 
-		return $this->render('register', [
-				'model'  => $model,
-				'module' => $this->module,
-		]);
+		\Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+		return ["error"=>true];
 	}
 
 }

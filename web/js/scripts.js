@@ -1,3 +1,5 @@
+//105 addClass, 128 removeClass
+
 (function(){
     function openAlert(text){
         $('#alertModal .cont').text(text)
@@ -17,7 +19,9 @@
         }
 
         if(parseInt(input) < data.min || parseInt(input) > data.max){
-            openAlert('Недопустимое значение для обмена. Минимальное значение: '+data.min+', максимальное: '+data.max);
+            $('#alertModal').find('.ah-content.cont').text('Недопустимое значение для обмена. Минимальное значение: '+data.min+', максимальное: '+data.max);
+            $('#alertModal').removeClass('ah-hidden');            
+            //openAlert('Недопустимое значение для обмена. Минимальное значение: '+data.min+', максимальное: '+data.max);
             return false;
         }
 
@@ -28,44 +32,51 @@
         });
 
         var data = $(this).serialize();
+        console.log(data);
         var form = this;
         $.post($(this).attr('action'), data, function(response){
             console.log(response);
-            $(form).find('.row input').val('');
+            $(form).find('input').val('');
             if(response){
                 $('#total').html(response.info);
                 $('#totalBut').data('id', response.orderId);
                 if(response.voucher){
-                    $('#voucher').removeClass('hidden');
+                    $('#voucher').removeClass('ah-hidden');
                     $('#voucher_input').attr('placeholder', response.voucher);
                 } else {
-                    $('#voucher').addClass('hidden');
+                    $('#voucher').addClass('ah-hidden');
                     $('#voucher_input').val('');
                 }
 
                 if(response.cash){
-                    $('#cash').removeClass('hidden');
+                    $('#cash').removeClass('ah-hidden');
                 } else {
-                    $('#cash').addClass('hidden');
+                    $('#cash').addClass('ah-hidden');
                     $('#cash').val('');
                 }
 
-                $('#tot_dialog').dialog('open');
+                $('#tot_dialog').removeClass('ah-hidden');
 
                 $('#cash select').data('dd').destroy();
                 $('#cash select').msDropDown();
             }
-        });
+        }).error(function(response) { /*alert("Ошибка выполнения");*/ console.log(response); });
     });
 
     $('body').on('click', '#closeTotDialog', function(){
-        $('#tot_dialog').dialog('close');
+        //$('#tot_dialog').dialog('close');
+        $('#tot_dialog').addClass('ah-hidden');
     });
 
     $('body').on('click', '#totalBut',function(e){
         e.preventDefault();
-        $('#tot_dialog').dialog('close');
-        $('#success_modal').dialog('open');
+        $('#tot_dialog').hide();
+        $('#success_modal').show();
+
+        setTimeout(function(){
+            $('#success_modal').hide();
+        }, 1000)
+
         $.post('/site/change-order-status', {
             id:$(this).data('id'),
             status:3,
@@ -73,7 +84,7 @@
             cash: $('#cash select').val()
         }, function(response){
             console.log(response);
-            $('#tot_dialog').dialog('close');
+            $('#tot_dialog').hide();
         })
     });
 
@@ -89,7 +100,7 @@
         e.preventDefault();
         var action = $(this).attr('action'),
             fields = $(this).serializeArray(),
-            formData = new FormData();
+            formData = new FormData();           
 
         $(this).find('input[type="file"]').each(function(index){
             formData.append($(this).attr('name'), $(this)[0].files[0])
@@ -102,26 +113,53 @@
         var dialogs = [$("#question_dialog"),$("#comment_dialog"),$("#reg_dialog"),$("#reset_dialog"),$("#auth_dialog")];
 
         $.each(dialogs, function(){
-            $(this).dialog('close');
+            //$(this).dialog('close');
+            $(this).addClass('ah-hidden');
         });
 
         if($(this).attr('id') == 'registration-form') {
-
             error = 0;
             $(this).find('input[type="text"]').each( function(){
-              if(!$(this).val()){
-                
+              if(!$(this).val()){                
                 error = 1;
               }
             });
-
             if(error){
               alert('Заполните все поля!');
               return false;
             }
 
-            $('#success_modal h5').text('Вы успешно зарегистрированы! Данные для входа отправлены на почту.')
-            $('#success_modal').dialog('open');
+            $.ajax({
+                url: action,
+                data: formData,
+                processData: false,
+                contentType: false,
+                type: 'POST',
+                success: function(data){
+                    console.log('data: '+data);
+                    $('#login-form button').text('Войти')
+                    if(data == 'testimonial'){
+                        window.location.href = window.location.href;
+                    }
+
+                    if(data.error){
+                        alert('Введите корректные данные')
+
+                        $("#reg_dialog").removeClass('ah-hidden');
+
+                        return false;
+                    }
+
+                    $('#success_modal h5').text('Вы успешно зарегистрированы! Данные для входа отправлены на почту.')
+                    //$('#success_modal').dialog('open');
+                    $('#success_modal').removeClass('ah-hidden');
+                },
+                error: function(error){
+                    console.log('error: '+error);
+                }
+            });
+
+            return true;
         } else {
             $('#success_modal h5').text('Ваша заявка принята в обработку.')
         }
@@ -139,27 +177,27 @@
             contentType: false,
             type: 'POST',
             success: function(data){
-                console.log(data);
+                console.log('data: '+data);
                 $('#login-form button').text('Войти')
                 if(data == 'testimonial'){
                     window.location.href = window.location.href;
                 }
             },
             error: function(error){
-                console.log(error);
+                console.log('error: '+error);
             }
         });
     });
 
 
 
-    $("#tot_dialog").dialog({
+    /*$("#tot_dialog").dialog({
         'autoOpen': false,
         'modal': true,
         'draggable': false,
         'resizable': false,
         'closeText': ''
-    });
+    });*/
 
     $('.ref-link:not(:first-child)').hide();
 

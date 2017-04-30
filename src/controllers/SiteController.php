@@ -26,7 +26,7 @@ class SiteController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'logout' => ['post'],
+                    'logout' => ['post', 'get'],
                 ],
             ],
         ];
@@ -220,6 +220,6 @@ class SiteController extends Controller
 	{
 		\Yii::$app->getUser()->logout();
 
-		return $this->goHome();
+		return $this->redirect('/');
 	}
 }

@@ -14,6 +14,7 @@ use yii\widgets\Breadcrumbs;
 /* @var $content string */
 
 AppAsset::register($this);
+$bodyStyle = (Url::current() == '/iframe/view?type=small' ? 'style="min-width: 249px;"' : '');
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -23,7 +24,7 @@ AppAsset::register($this);
     <meta charset="<?= Yii::$app->charset ?>">
     <?php $this->head() ?>
 </head>
-<body>
+<body <?=$bodyStyle?>>
 <?php $this->beginBody() ?>
 <?=$content?>
 <?php $this->endBody() ?>

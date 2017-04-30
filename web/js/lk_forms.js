@@ -7,5 +7,5 @@ $(document).ready(function() {
 			$('#' + $(this).attr('data-target-id')).addClass('active');
 		}
 	});
-	$("select").msDropDown();
+	//$("select").msDropDown();
 });

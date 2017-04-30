@@ -1,8 +1,8 @@
 $( function() {
-	$("select").msDropDown();
-	$('input[type="checkbox"]').iCheck({checkboxClass: 'icheckbox_minimal'});	
+	//$("select").msDropDown();
+	//$('input[type="checkbox"]').iCheck({checkboxClass: 'icheckbox_minimal'});	
 	
-	$("#question_dialog").dialog({
+	/*$("#question_dialog").dialog({
 		'autoOpen': false,
 		'modal': true,
 		'draggable': false,
@@ -87,5 +87,5 @@ $( function() {
     $('#tot_dialog_btn').click(function(e){
         e.preventDefault();
         $("#tot_dialog").dialog('open');
-    });
+    });*/
 });

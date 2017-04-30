@@ -1,0 +1,134 @@
+﻿.ah-page-wrapper {
+  background-image: url('../img/bg/bg-2000-2.png'), url('../img/bg/bg-footer-2.png');
+  background-position: top center,bottom center;
+  background-repeat: no-repeat;
+}
+.ah-page-wrapper header .ah-wrapper {
+  padding-top: 27px;
+  padding-bottom: 255px;
+}
+.ah-page-wrapper header .ah-wrapper .ah-header .ah-logo {
+  margin-left: 53px;
+}
+.ah-page-wrapper header .ah-wrapper .ah-header .ah-mail {
+  margin-left: 18px;
+  margin-top: -7px;
+}
+.ah-page-wrapper header .ah-wrapper .ah-header .ah-call {
+  margin-left: 9px;
+  margin-top: -7px;
+}
+.ah-page-wrapper header .ah-wrapper nav {
+  padding-top: 63px;
+  padding-left: 51px;
+  padding-right: 107px;
+}
+.ah-page-wrapper header .ah-wrapper nav ul li {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  text-align: center;
+}
+.ah-page-wrapper header .ah-wrapper nav ul li.ah-active a {
+  color: #bae216;
+}
+.ah-page-wrapper header .ah-wrapper nav ul li a {
+  color: #fff;
+}
+.ah-page-wrapper header .ah-wrapper nav ul li a:hover {
+  color: #bae216;
+}
+.ah-page-wrapper header .ah-wrapper nav ul li:last-child {
+  flex-grow: 0;
+}
+.ah-page-wrapper header .ah-wrapper nav ul li:last-child:after {
+  display: none;
+}
+.ah-page-wrapper header .ah-wrapper nav ul li:after {
+  content: '';
+  display: block;
+  margin: 0 auto;
+  background-image: url('../img/icon/icon-dot.png');
+  width: 6px;
+  height: 5px;
+}
+.ah-page-wrapper header .ah-wrapper button.ah-button {
+  margin-top: 59px;
+  margin-left: 41px;
+}
+.ah-page-wrapper main .ah-wrapper > section {
+  display: flex;
+  flex-direction: row;
+  padding-top: 22px;
+}
+.ah-page-wrapper main .ah-wrapper > section aside {
+  min-width: 370px;
+  margin-left: 40px;
+}
+.ah-page-wrapper main .ah-wrapper .ah-partners > .ah-content > p {
+  padding-top: 18px;
+}
+.ah-page-wrapper main .ah-wrapper .ah-partners > .ah-content > p:first-child {
+  padding-top: 0;
+}
+.ah-page-wrapper main .ah-wrapper .ah-partners > .ah-content blockquote {
+  background-color: rgba(1, 115, 186, 0.1);
+  padding: 25px 45px;
+  color: #30414b;
+  margin-top: 18px;
+}
+.ah-page-wrapper main .ah-wrapper .ah-partners > .ah-content blockquote span {
+  color: #0173ba;
+  font-weight: bold;
+}
+.ah-page-wrapper main .ah-wrapper .ah-hews .ah-content {
+  width: 100%;
+}
+.ah-page-wrapper main .ah-wrapper .ah-hews .ah-content .ah-post {
+  padding: 15px;
+  display: flex;
+  flex-direction: row;
+  max-width: 100%;
+}
+.ah-page-wrapper main .ah-wrapper .ah-hews .ah-content .ah-post .ah-img {
+  padding-right: 15px;
+  min-width: 175px;
+  overflow: auto;
+}
+.ah-page-wrapper main .ah-wrapper .ah-hews .ah-content .ah-post .ah-img img {
+  width: 100%;
+  height: auto;
+}
+.ah-page-wrapper main .ah-wrapper .ah-hews .ah-content .ah-post .ah-text .h2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-bottom: 15px;
+}
+.ah-page-wrapper main .ah-wrapper .ah-hews .ah-content .ah-post .ah-text .h2 h2 {
+  color: #0173ba;
+  font-size: 15px;
+  line-height: normal;
+}
+.ah-page-wrapper main .ah-wrapper .ah-hews .ah-content .ah-post .ah-text .h2 span {
+  color: #787878;
+  font-size: 13px;
+  line-height: normal;
+}
+.ah-page-wrapper main .ah-wrapper .ah-hews .ah-content .ah-post .ah-text p {
+  color: #30414b;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: normal;
+}
+.ah-page-wrapper main .ah-wrapper .ah-hews .ah-content .ah-blockquote {
+  background-color: rgba(1, 115, 186, 0.1);
+}
+h1 {
+  color: #0173ba;
+  font-size: 27px;
+  font-weight: 700;
+  line-height: normal;
+  padding-bottom: 10px;
+}

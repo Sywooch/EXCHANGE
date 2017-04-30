@@ -11,31 +11,39 @@ use yii\helpers\Url;
 
 $this->title = $model->title;
 ?>
-
-<div class="article-page">
-	<div class="container">
-		<h1><?=$this->title?> <div><?=Yii::$app->formatter->asDate($model->date, 'php:d.m.Y'); ?></div></h1>
-
-		<div class="main-content">
-			<div class="full-new">
-				<div class="image"><?=$model->getImage() ? Html::img($model->getImage()->getUrl('417x240')) : ''?></div>
+<main>
+	<div class="ah-wrapper page">
+       <div class="ah-breadcrumbs">
+           <ul>
+               <li><a href="<?=Url::home()?>">главная</a></li>
+			   <li><a href="<?=Url::to(['/news'])?>">новости</a></li>
+               <li><?=$this->title?></li>
+           </ul>
+       </div>
+       
+       <section class="ah-partners news">
+            <div class="ah-content">
+				<h1><?=$this->title?></h1><p class="ah-date">21.07.2017<?//=Yii::$app->formatter->asDate($model->date, 'php:d.m.Y'); ?></p>
+                <div class="ah-image"><?=$model->getImage() ? Html::img($model->getImage()->getUrl('390x200')) : ''?></div>
 				<?=Html::decode($model->content)?>
-			</div>
-		</div>
-		<div class="right-content">
-			<div class="r-title">Популярные статьи</div>
-			<div class="popular">
-              <?php foreach($popular as $model): ?>
-                  <div class="item">
-                      <div class="image">
-												<?=$model->getImage() ? Html::img($model->getImage()->getUrl('136x75')) : ''?>
-                      </div>
-                      <div class="name"><a href="<?=Url::to(['article/view', 'slug'=>$model->slug])?>"><?=$model->title?></a></div>
-                      <div class="clearfix"></div>
-                  </div>
-              <?php endforeach; ?>
-			</div>
-		</div>
-		<div class="clearfix"></div>
-	</div>
-</div><!-- /.article-page -->
+            </div>
+            <aside>
+                <div class="ah-panel ah-panel-green ah-popular">
+                    <div class="ah-header">
+                        <h4 class="ah-arrows">ПОПУЛЯРНЫЕ СТАТЬИ</h4>
+                    </div>
+                    <div class="ah-content">
+                        <?php foreach($popular as $model): ?>
+                        <div class="ah-row">
+                            <div class="ah-img"><?=$model->getImage() ? Html::img($model->getImage()->getUrl('80x80')) : ''?></div>
+                            <div class="ah-text">
+                                <a href="<?=Url::to(['article/view', 'slug'=>$model->slug])?>"><p><?=$model->title?></p></a>
+                            </div>
+                        </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+            </aside>
+       </section>
+   </div>	
+</main>

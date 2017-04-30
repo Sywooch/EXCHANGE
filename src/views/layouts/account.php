@@ -42,217 +42,145 @@ $icq = Credential::findOne(['slug'=>'icq'])->value;
     <?php $this->head() ?>
 </head>
 <body>
-
-<?php $this->beginBody() ?>
-    <div class="header">
-        <div class="mob-control">
-            <button>
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </div>
-        <div class="top">
-            <div class="container">
-                <div class="logo">
-                    <a href="/"><span>Web-</span>obmen.net</a>
-                </div>
-                <div class="links">
-                    <div class="two-cols">
-                        <div class="email">
-                            <span><a href="#"><?=$email?></a></span>
-                        </div>
-                        <div class="icq"><span><?=$icq?></span></div>
-                        <div class="jabber">
-                            <span><a href="#"><?=$jabber?></a></span>
-                        </div>
-                        <div class="email phone">
-                            <span><a href="#"><?=$phone?></a></span>
-                        </div>
+    <?php $this->beginBody() ?>
+    <div class="ah-main-wrapper page">
+        <header>
+            <div class="ah-wrapper">
+                <div class="ah-header">
+                    <div class="ah-logo">
+                        <a href="<?=Url::Home();?>">
+                            <img src="/img/logo.png" />
+                        </a>
                     </div>
-                    <div class="l-clearfix"></div>
-                    <div class="rl-block">
-						<?php if(!Yii::$app->user->isGuest): ?>
-                          <div>
-                              <div class="login">
-                                  <a href="<?=Url::to(['/account/index'])?>"><?=Yii::$app->user->identity->username?></a>
-                              </div>
-                              <div class="reg logout">
-                                  <a href="<?=Url::to(['/site/logout'])?>"  data-method="post">Выйти</a>
-                              </div>
-                          </div>
+                    <div class="ah-mail">
+                        <a href="mailto:<?=$email?>"><?=$email?></a>
+                        <a href="mailto:<?=$jabber?>"><?=$jabber?></a>
+                    </div>
+                    <div class="ah-call">
+                        <span class="ah-icq"><?=$icq?></span>
+                        <span class="ah-tel"><?=$phone?></span>
+                    </div>
+                    <div class="ah-auth">
+                        <?php if(!Yii::$app->user->isGuest): ?>                        
+                            <a class="ah-login" href="<?=Url::to(['/account/index'])?>">Личный кабинет<br>[<?=Yii::$app->user->identity->username?>]</a>
+                            <a class="ah-register" href="<?=Url::to(['/site/logout'])?>">Выйти</a>
                         <?php else: ?>
-                            <div>
-                                <div class="login">
-                                    <a href="#" id="auth_dialog_btn">Войти</a>
-                                </div>
-                                <div class="reg">
-                                    <a href="#" id="reg_dialog_btn">Регистрация</a>
-                                </div>
-                            </div>
+                            <a class="ah-login js-button-auth" href="javascript:void(0)">Вход на сайт</a>
+                            <a class="ah-register js-button-register" href="javascript:void(0)">Регистрация</a>
                         <?php endif; ?>
                     </div>
-                    <div class="clearfix"></div>
                 </div>
-                <div class="clearfix"></div>
+                <nav>
+                    <ul>
+                        <li class="ah-active"><a href="/">ОБМЕН ВАЛЮТ</a></li>
+                        <li><a href="<?=Url::to(['page/index', 'slug'=>'pravila'])?>">ПРАВИЛА</a></li>
+                        <?php /* <li><a href="<?=Url::to(['page/help'])?>">ПОМОЩЬ</a></li> */ ?>
+                        <li><a href="<?=Url::to(['page/index', 'slug'=>'partneram'])?>">ПАРТНЕРАМ</a></li>
+                        <li><a href="<?=Url::to(['news/index'])?>">НОВОСТИ</a></li>
+                        <li><a href="<?=Url::to(['page/index', 'slug'=>'kontakty'])?>">КОНТАКТЫ</a></li>
+                    </ul>
+                </nav>
+                <button type="button" class="main-nav-button"></button>
             </div>
-        </div><!-- /.top -->
-        <div class="menu">
-            <div class="container">
-                <div class="close"></div>
-                <ul class="nav">
-                    <li><a href="/">Обмен валют</a></li>
-
-                    <li><a href="<?=Url::to(['page/index', 'slug'=>'pravila'])?>">Правила</a></li>
-                    <li><a href="<?=Url::to(['page/help'])?>">Помощь</a></li>
-                    <li><a href="<?=Url::to(['page/index', 'slug'=>'partneram'])?>">Партнерам</a></li>
-
-                    <li><a href="<?=Url::to(['news/index'])?>">Новости</a></li>
-                    <li><a href="<?=Url::to(['page/index', 'slug'=>'kontakty'])?>">Контакты</a></li>
-                </ul>
-                <div class="clearfix"></div>
-            </div>
-        </div><!-- /.menu -->
-    </div><!-- /.header -->
-
-
-<div class="inner-wrapper inner-wrapper-auto account-page">
-    <div class="container">
-      <?=$this->render('/account/_menu')?>
-
+        </header>
+        <?=$this->render('/account/_menu')?>
         <?=$content?>
-
-    </div>
-</div><!-- /.inner-wrapper -->
-
-<?php if(!empty($this->params['showFirms'])):
-	$currencies = Currency::find()->all();
-  ?>
-    <?php $form = ActiveForm::begin([
-            'id'=>'firms-form',
-      'options'=>['class'=>'firms'],
-    ])?>
-    <div class="container">
-        <div id="shadow"></div>
-        <div class="col">
-            <?php foreach($currencies as $currency): ?>
-            <div class="payway">
-                <div class="image">
-                    <div class="image-wrapper">
-                        <h4>
-                            <?=$currency->getImage() ? Html::img($currency->getImage()->getUrl()) : ''?>
-                            <?=$currency->title?>
-                        </h4>
-                    </div>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-
-
-                  
-                    <div class="form-group">
-                        <img src="../img/dialog-close-ico.png" alt="close" width="20" height="20" class="close"/>
-
-                        <p>Создать шаблон автозаполнения</p>
-							<?php foreach($currency->fields as $field): ?>
-                            <input type="text" placeholder="<?=$field->title?>" name="currency[<?=$field->currency_id?>][fields][<?=$field->id?>]" <?php if($user_fields){?>value="<?=!empty($user_fields[$field->currency_id][$field->id]) ? $user_fields[$field->currency_id][$field->id] : ''?>" <?php } ?>>
-							<?php endforeach; ?>
-                    <?=Html::submitButton('Сохранить', ['class'=>'btn-save-firm'])?>
-                    </div>
-
-
-            <?php endforeach; ?>
-        </div>
-
         
-        <div class="clearfix"></div>
+        <?php if(!empty($this->params['showFirms'])):
+            $currencies = Currency::find()->all();
+            $i = 1;
+        ?>
+        <?php $form = ActiveForm::begin([
+                    'id'=>'firms-form',
+              'options'=>['class'=>'firms'],
+            ])?>
+        <div class="currencies-list">					
+		<?foreach($currencies as $currency):
+            //var_dump($currency->fields);
+            ?>
+			<?php if($i == 1){?>
+			<div class="ah-group">
+			<?php } ?>
+				<div class="item payway">
+					<div class="ah-img"><?=$currency->getImage() ? Html::img($currency->getImage()->getUrl()) : ''?></div>
+					<div class="ah-name"><?=$currency->title?></div>
+				</div>
+                <div class="ah-popup form-group ah-hidden">
+                    <div class="ah-popup-bg"></div>
+                    <div class="ah-popup-content">
+                        <div class="ah-panel ah-panel-green2 ah-bg-nah">
+                            <div class="ah-header">
+                                <h4>СОЗДАТЬ ШАБЛОН АВТОЗАПОЛНЕНИЯ</h4>
+                            </div>
+                            <div class="ah-content">
+                                <?php foreach($currency->fields as $field): ?>
+                                <div class="ah-form-field">
+                                    <input type="text" placeholder="<?=$field->title?>" name="currency[<?=$field->currency_id?>][fields][<?=$field->id?>]" <?php if($user_fields){?>value="<?=!empty($user_fields[$field->currency_id][$field->id]) ? $user_fields[$field->currency_id][$field->id] : ''?>" <?php } ?>>
+                                </div>
+                                <?php endforeach; ?>
+                                <div class="ah-form-submit">
+                                <?=Html::submitButton('СОХРАНИТЬ', ['class'=>'btn-save-firm ah-button ah-button-orange'])?>
+                                </div>
+                                <div class="ah-button-close js-popup-close"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>                
+			<?php if($i == 3){ $i = 0;?>
+			</div>
+			<?php }?>
+		<?$i++;endforeach;?>
+		</div>
+        <?php ActiveForm::end()?><!-- /.firms -->
+        <? endif; ?>
+        
+        
+        
+        
+        <footer>
+            <div class="ah-wrapper">
+                <p class="ah-text-center">Сотрудничая с нами, вы получаете не только уверенность в честности проводимой сделки, но и значительно экономите на совершении переводов.</p>
+                <div class="ah-copy">
+                    <p>Copyright 2017 Web-obmen</p>
+                </div>
+                <nav class="ah-footer-nav">
+                    <ul>
+                        <li class="ah-active"><a href="/">ОБМЕН ВАЛЮТ</a></li>
+                        <li><a href="<?=Url::to(['page/index', 'slug'=>'pravila'])?>">ПРАВИЛА</a></li>
+                        <?php /* <li><a href="<?=Url::to(['page/help'])?>">ПОМОЩЬ</a></li> */ ?>
+                        <li><a href="<?=Url::to(['page/index', 'slug'=>'partneram'])?>">ПАРТНЕРАМ</a></li>
+                        <li><a href="<?=Url::to(['news/index'])?>">НОВОСТИ</a></li>
+                        <li><a href="<?=Url::to(['page/index', 'slug'=>'kontakty'])?>">КОНТАКТЫ</a></li>
+                    </ul>
+                </nav>
+                <div class="ah-social">
+                    <ul>
+                        <li>
+                            <a href="#">
+                                <img src="/img/icon/icon-fb.png" />
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="/img/icon/icon-tw.png" />
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="/img/icon/icon-ma.png" />
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="/img/icon/icon-gp.png" />
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
     </div>
-<?php ActiveForm::end()?><!-- /.firms -->
-<?php endif; ?>
-
-
-<div class="footer">
-    <div class="container">
-        <div class="info">
-            <div class="copy">© 100 монет 2014—2016. Все права защищены</div>
-            <div>Экспорт курсов в xml: xrates.ru, bestchange.ru</div>
-            <div>Добавление вашего IP по запросу</div>
-        </div>
-        <div class="counters">
-            <div class="counter"><img src="/img/counter-1.jpg" /></div>
-            <div class="counter"><img src="/img/counter-2.jpg" /></div>
-            <div class="counter"><img src="/img/counter-3.jpg" /></div>
-            <div class="counter"><img src="/img/counter-4.jpg" /></div>
-            <div class="counter"><img src="/img/counter-5.jpg" /></div>
-        </div>
-        <div class="clearfix"></div>
-    </div>
-</div><!-- /.footer -->
-
-<div id="reg_dialog">
-    <div class="d-title">Регистрация</div>
-	<?php
-    $user = Yii::createObject(RegistrationForm::className());
-    $form = ActiveForm::begin([
-            'id' => 'registration-form',
-            'options'=>[
-                'class'=>'ajax-form',
-            ],
-            'action' => ['/user/register'],
-	]); ?>
-	    <?= $form->field($user, 'email')->textInput(['placeholder'=>'Email'])->label(false) ?>
-	    <?= $form->field($user, 'username')->hiddenInput()->label(false) ?>
-        <?= $form->field($user, 'password')->passwordInput(['placeholder'=>'Пароль'])->label(false) ?>
-	    <?= $form->field($user, 'source')->textInput(['maxlength' => 255,'placeholder'=>'Источник информации о сайте'])->label(false) ?>
-        <div class="chkbx">
-            <input type="checkbox" id="acc" /> <label for="acc">Я принимаю <a href="#">условия соглашения</a> </label>
-            <div class="clearfix"></div>
-        </div>
-        <div class="chkbx">
-            <input type="checkbox" id="all" /> <label for="all">Разрешаю обработку моих персональных данных</label>
-            <div class="clearfix"></div>
-        </div>
-	    <?= Html::submitInput('Зарегистрироваться') ?>
-	<?php ActiveForm::end(); ?>
-</div>
-
-<div id="reset_dialog">
-    <div class="d-title">Восстановление</div>
-    <form>
-        <input type="text" placeholder="Email" />
-        <input type="submit" value="Отправить" />
-    </form>
-</div>
-
-<div id="auth_dialog">
-    <div class="d-title">Авторизация</div>
-	<?php
-    $login = \Yii::createObject(LoginForm::className());
-    $form = ActiveForm::begin([
-			'id'                     => 'login-form',
-			'enableAjaxValidation'   => true,
-			'enableClientValidation' => false,
-			'validateOnBlur'         => false,
-			'validateOnType'         => false,
-			'validateOnChange'       => false,
-      'options'=>['class'=>'ajax-form'],
-      'action'=>['/user/login']
-	]) ?>
-
-	<?= $form->field($login,'login')->textInput(['placeholder'=>'Email'])->label(false) ?>
-
-	<?= $form->field($login,'password')->passwordInput(['placeholder'=>"Пароль"])->label(false) ?>
-
-    <div class="chkbx">
-	<?= $form->field($login, 'rememberMe')->checkbox([],false)->label('Запомнить меня') ?>
-        <div class="forgot"><a id="reset_dialog_btn" href="#">Забыли пароль?</a></div>
-        <div class="clearfix"></div>
-    </div>
-	<?= Html::submitInput('Войти') ?>
-
-	<?php ActiveForm::end(); ?>
-</div>
-
+    
 <?php $this->endBody() ?>
 </body>
 </html>
